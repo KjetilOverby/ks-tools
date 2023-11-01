@@ -6,13 +6,23 @@ const FirstLoginPage = async () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-400">
       <div className="flex flex-col justify-center">
-        <h1 className="text-5xl text-slate-600">
-          Velkommen {session?.user.name}
+        <h1>TOOLSTORE</h1>
+        <h1 className="mb-5 text-5xl text-slate-600">
+          VELKOMMEN {session?.user.name}
         </h1>
-        <p className="text-xs text-slate-600">
-          Du har nå logged deg inn på verktøyregister men har ingen rolle enda.
-          Kontakt Kjetil på kjeoever@msn.com for å få tildelt tilgang til appen.
-        </p>
+        <div className="w-96 ">
+          <p className="text-xs text-slate-600">
+            Dette er en privat nettside og din konto har ikke tilgang til denne
+            siden. Dersom du skal ha tilgang på denne nettsiden så må du
+            kontakte:
+          </p>
+          <p className="mt-5 text-sm text-slate-800">Kjetil Øverby</p>
+          <p className="mb-5 text-sm text-slate-800">ktldesign80@gmail.com</p>
+          <p className="text-xs text-slate-600">
+            Etter at du har fått tilgang så får du en mail. Da må du ta en
+            reload på nettsiden eller logge inn på nytt.
+          </p>
+        </div>
         <div className="mt-10 flex flex-col items-center justify-center gap-4">
           <Link
             href={session ? "/api/auth/signout" : "/api/auth/signin"}

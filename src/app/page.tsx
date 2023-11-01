@@ -14,18 +14,6 @@ export default async function Home() {
       {!session && <FrontpageSessionless />}
       {session && session?.user.role === "ADMIN" && <AdminStartpage />}
       {session && session?.user.role === "LOGIN" && <FirstLoginPage />}
-      <div className="flex flex-col items-center justify-center gap-4">
-        {session && session.user.role}
-        <p className="text-center text-2xl text-white">
-          {session && <span>Logged in as {session.user?.name}</span>}
-        </p>
-        <Link
-          href={session ? "/api/auth/signout" : "/api/auth/signin"}
-          className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-        >
-          {session ? "Sign out" : "Sign in"}
-        </Link>
-      </div>
     </main>
   );
 }
