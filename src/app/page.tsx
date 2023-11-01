@@ -3,6 +3,7 @@ import { getServerAuthSession } from "~/server/auth";
 
 // import { api } from "~/trpc/server";
 import AdminStartpage from "./admin/AdminStartpage";
+import FirstLoginPage from "./_components/FirstLoginPage";
 import FrontpageSessionless from "./_components/FrontpageSessionless";
 
 export default async function Home() {
@@ -12,6 +13,7 @@ export default async function Home() {
     <main>
       {!session && <FrontpageSessionless />}
       {session && session?.user.role === "ADMIN" && <AdminStartpage />}
+      {session && session?.user.role === "LOGIN" && <FirstLoginPage />}
       <div className="flex flex-col items-center justify-center gap-4">
         {session && session.user.role}
         <p className="text-center text-2xl text-white">
