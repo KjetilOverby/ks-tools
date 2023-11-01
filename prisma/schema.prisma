@@ -1,17 +1,13 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
 
 generator client {
     provider = "prisma-client-js"
-}
-
-datasource db {
-    provider = "sqlite"
-    // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
-    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-    url      = env("DATABASE_URL")
 }
 
 model Post {
@@ -24,6 +20,7 @@ model Post {
     createdById String
 
     @@index([name])
+    @@index([createdById])
 }
 
 // Necessary for Next auth
@@ -33,16 +30,17 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? // @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
+    @@index([userId])
 }
 
 model Session {
@@ -51,6 +49,14 @@ model Session {
     userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+}
+
+enum UserRole {
+    ADMIN
+    USER
+    LOGIN
 }
 
 model User {
@@ -59,9 +65,17 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
+
+    // role  UserRole @default(LOGIN)
+    role UserRole @default(LOGIN)
+
+    accounts        Account[]
+    sessions        Session[]
+    posts           Post[]
+    personal        personal[]
+    sawblades       sawblades[]
+    sawbladeComment sawbladeComment[]
+    oml             oml[]
 }
 
 model VerificationToken {
@@ -70,4 +84,51 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model personal {
+    id     String @id @default(cuid())
+    img    String
+    msg    String
+    title  String
+    secret String
+    user   User   @relation(fields: [userId], references: [id])
+    userId String
+
+    @@index([userId])
+}
+
+model sawblades {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    type      String
+    serial    String
+    dateOml   DateTime @default(now())
+    user      User     @relation(fields: [userId], references: [id])
+    userId    String
+
+    @@index([userId])
+}
+
+model sawbladeComment {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    comment   String
+    user      User     @relation(fields: [userId], references: [id])
+    userId    String
+
+    @@index([userId])
+}
+
+model oml {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    firma     String
+    user      User     @relation(fields: [userId], references: [id])
+    userId    String
+
+    @@index([userId])
 }
