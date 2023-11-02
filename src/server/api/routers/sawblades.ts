@@ -6,7 +6,17 @@ import {
   protectedProcedure,
 } from "~/server/api/trpc";
 export const sawbladesRouter = createTRPCRouter({
-    
+  // getAll: protectedProcedure
+  // .query(({ ctx }) => {
+ 
+  // return ctx.db.sawblades.findMany({});
+
+   
+    getAll: protectedProcedure
+      .query(({ ctx }) => {
+         return ctx.db.sawblades.findMany({})
+      }),
+})
 
     // delete: protectedProcedure.input(z.object({id: z.string()}))
     // .mutation(async ({ctx, input}) => {
@@ -39,11 +49,7 @@ export const sawbladesRouter = createTRPCRouter({
     //         };
     //       }),
 
-    getAll: protectedProcedure
-    .query(({ ctx }) => {
-   
-    return ctx.db.sawblades.findMany({});
- }),
+
  
 //      create: protectedProcedure
 //      .input(z.object({ serial: z.string(), type: z.string() }))
@@ -58,6 +64,6 @@ export const sawbladesRouter = createTRPCRouter({
 //     })
 
 //  })
- })
+//  })
 
 
