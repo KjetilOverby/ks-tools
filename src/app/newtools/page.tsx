@@ -3,16 +3,22 @@ import HeaderComponent from "../_components/HeaderComponent";
 
 import { api } from "~/trpc/server";
 
-const page = () => {
-  const { data: sawblades, refetch: refetchSawblades } =
-    api.sawblades.getAll.useQuery(undefined);
-
-  // const bl = await api.sawblades.query({});
+const page = async () => {
+  const sawblades = await api.sawblades.getAll.query();
 
   return (
     <>
-      <div>
+      <div className="h-screen bg-gray-800">
         <HeaderComponent />
+        <div>
+          {sawblades.map((blade) => {
+            return (
+              <div>
+                <h1 className="text-white">{blade.type}</h1>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );

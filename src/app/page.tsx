@@ -8,13 +8,15 @@ import FrontpageSessionless from "./_components/FrontpageSessionless";
 import ReadOnlyUser from "./_components/ReadOnlyUser/ReadOnlyUser";
 
 export default async function Home() {
-  // const { data: sawblades, refetch: refetchSawblades } =
-  //   api.sawblades.getAll.useQuery(undefined);
-  const hello = await api.post.hello.query({ text: "from tRPC" });
+  const sawblades = api.sawblades.getAll.query();
+
+  // const hello = await api.post.hello.query({ text: "from tRPC" });
 
   const session = await getServerAuthSession();
   return (
     <main>
+      {(await sawblades).map((blade) => blade.type)}
+
       {!session && <FrontpageSessionless />}
       {session && session?.user.role === "ADMIN" && <AdminStartpage />}
       {session && session?.user.role === "LOGIN" && <FirstLoginPage />}
