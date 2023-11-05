@@ -16,6 +16,10 @@ export const sawbladesRouter = createTRPCRouter({
       .query(({ ctx }) => {
          return ctx.db.sawblades.findMany({})
       }),
+    getCommnets: protectedProcedure
+      .query(({ ctx }) => {
+         return ctx.db.sawbladeComment.findMany({})
+      }),
 })
 
     // delete: protectedProcedure.input(z.object({id: z.string()}))

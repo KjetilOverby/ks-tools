@@ -15,8 +15,6 @@ export default async function Home() {
   const session = await getServerAuthSession();
   return (
     <main>
-      {(await sawblades).map((blade) => blade.type)}
-
       {!session && <FrontpageSessionless />}
       {session && session?.user.role === "ADMIN" && <AdminStartpage />}
       {session && session?.user.role === "LOGIN" && <FirstLoginPage />}
