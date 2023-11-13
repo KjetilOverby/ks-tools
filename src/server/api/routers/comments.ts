@@ -5,7 +5,7 @@ import {
   createTRPCRouter,
   protectedProcedure,
 } from "~/server/api/trpc";
-export const sawbladesRouter = createTRPCRouter({
+export const commentsRouter = createTRPCRouter({
   // getAll: protectedProcedure
   // .query(({ ctx }) => {
  
@@ -31,17 +31,19 @@ export const sawbladesRouter = createTRPCRouter({
       }),
  
 
-   delete: protectedProcedure.input(z.object({id: z.string()}))
-    .mutation(async ({ctx, input}) => {
-        return ctx.db.sawblades.delete({
-            
-            where: {
-                id: input.id
-            },
-        });
-    }),
 
+  //     create: protectedProcedure
+  //     .input(z.object({ serial: z.string(), type: z.string(), title: z.string() }))
+  //     .mutation(({ ctx, input }) => {
     
+  //    return ctx.db.sawblades.create({
+  //        data: {
+  //            serial: input.serial,
+  //            type: input.type,
+  //        }
+  //    })
+ 
+  // })
       create: protectedProcedure
       .input(z.object({ serial: z.string(), type: z.string() }))
       .mutation(({ ctx, input }) => {
@@ -52,8 +54,7 @@ export const sawbladesRouter = createTRPCRouter({
              type: input.type,
              userId: ctx.session.user.id,
              createdBy: { connect: { id: ctx.session.user.id} },
-         },
-       
+         }
      })
  
   }),
@@ -75,7 +76,14 @@ export const sawbladesRouter = createTRPCRouter({
 
 })
 
- 
+    // delete: protectedProcedure.input(z.object({id: z.string()}))
+    // .mutation(async ({ctx, input}) => {
+    //     return ctx.db.blade.delete({
+    //         where: {
+    //             id: input.id
+    //         },
+    //     });
+    // }),
 
     // update: protectedProcedure.input(z.object({serial: z.string(), type: z.string(), id: z.string(), title: z.string()}))
     // .mutation(async ({ctx, input}) => {

@@ -4,37 +4,16 @@ import dateFormat, { masks } from "dateformat";
 import { api } from "~/trpc/server";
 import { CreatePost } from "../_components/create-post";
 import TestComponent from "../_components/TestComponent";
+import Deleteblades from "../_components/deleteblades";
 
 const page = async () => {
   const sawblades = await api.sawblades.getAll.query();
-  console.log(sawblades);
-
-  // const createBlade = api.sawblades.create.useMutation({
-  //   onSuccess: () => {
-  //     void refetchBlade();
-  //   },
-  // });
-
-  // const submitForm = () => {
-  //   createBlade.mutate({
-  //     serial: "tool.serial",
-  //     type: "tool.type",
-  //   });
-  // };
 
   return (
     <>
       <div className="h-screen bg-gray-800">
         <HeaderComponent />
-        {/* <div>
-          {sawblades.map((blade) => {
-            return (
-              <div>
-                <h1 className="text-white">{blade.type}</h1>
-              </div>
-            );
-          })}
-        </div> */}
+
         <TestComponent />
         <CreatePost />
 
@@ -127,6 +106,11 @@ const page = async () => {
                           <button className="btn btn-ghost btn-xs">
                             REDIGER
                           </button>
+                        </th>
+                      </td>
+                      <td>
+                        <th>
+                          <Deleteblades />
                         </th>
                       </td>
                     </tr>
