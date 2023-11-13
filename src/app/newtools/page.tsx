@@ -38,7 +38,7 @@ const page = async () => {
         <TestComponent />
         <CreatePost />
 
-        <div className="overflow-x-auto pt-24">
+        <div className="overflow-x-auto px-5 pt-24">
           <table className="table">
             <thead>
               <tr>
