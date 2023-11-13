@@ -7,7 +7,8 @@ datasource db {
 }
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["selectRelationCount"]
 }
 
 model Post {
@@ -87,53 +88,58 @@ model VerificationToken {
 }
 
 model personal {
-    id     String @id @default(cuid())
-    img    String
-    msg    String
-    title  String
-    secret String
-    user   User   @relation(fields: [userId], references: [id])
-    userId String
+    id        String    @id @default(cuid())
+    img       String
+    msg       String
+    title     String
+    secret    String
+    user      User      @relation(fields: [userId], references: [id])
+    userId    String
+    userBlade sawblades @relation(fields: [id], references: [id])
 
     @@index([userId])
+    @@index([id])
 }
 
 model sawblades {
-    id                String          @id @default(cuid())
-    createdAt         DateTime        @default(now())
-    updatedAt         DateTime        @updatedAt
-    type              String
-    serial            String
-    createdBy         User            @relation(fields: [createdById], references: [id])
-    createdById       String
-    userId            String
-    comments          sawbladeComment @relation(fields: [sawbladeCommentId], references: [id])
-    sawbladeCommentId String
+    id              String            @id @default(cuid())
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+    type            String
+    serial          String
+    createdBy       User              @relation(fields: [createdById], references: [id])
+    createdById     String
+    userId          String
+    sawbladeComment sawbladeComment[]
+    oml             oml[]
+    personal        personal[]
 
     @@index([userId])
     @@index([createdById])
-    @@index([sawbladeCommentId])
 }
 
 model sawbladeComment {
-    id        String      @id @default(cuid())
-    createdAt DateTime    @default(now())
-    updatedAt DateTime    @updatedAt
+    id        String    @id @default(cuid())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
     comment   String
-    user      User        @relation(fields: [userId], references: [id])
+    user      User      @relation(fields: [userId], references: [id])
     userId    String
-    sawblades sawblades[]
+    blades    sawblades @relation(fields: [id], references: [id])
 
     @@index([userId])
+    @@index([id])
 }
 
 model oml {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id        String    @id @default(cuid())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
     firma     String
-    user      User     @relation(fields: [userId], references: [id])
+    user      User      @relation(fields: [userId], references: [id])
     userId    String
+    bladeOml  sawblades @relation(fields: [id], references: [id])
 
     @@index([userId])
+    @@index([id])
 }

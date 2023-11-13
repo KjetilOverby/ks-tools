@@ -14,12 +14,48 @@ export const sawbladesRouter = createTRPCRouter({
    
     getAll: protectedProcedure
       .query(({ ctx }) => {
-         return ctx.db.sawblades.findMany({})
+         return ctx.db.sawblades.findMany({
+          
+            include: {
+              _count: {
+                select: {
+                  sawbladeComment: true,
+                },
+              },
+              sawbladeComment: true,
+              oml: true,
+              personal: true
+            },
+          
+         })
       }),
-    getCommnets: protectedProcedure
-      .query(({ ctx }) => {
-         return ctx.db.sawbladeComment.findMany({})
-      }),
+ 
+
+
+  //     create: protectedProcedure
+  //     .input(z.object({ serial: z.string(), type: z.string(), title: z.string() }))
+  //     .mutation(({ ctx, input }) => {
+    
+  //    return ctx.db.sawblades.create({
+  //        data: {
+  //            serial: input.serial,
+  //            type: input.type,
+  //        }
+  //    })
+ 
+  // })
+      create: protectedProcedure
+      .input(z.object({ serial: z.string(), type: z.string() }))
+      .mutation(({ ctx, input }) => {
+    
+     return ctx.db.sawblades.create({
+         data: {
+             serial: input.serial,
+             type: input.type,
+         }
+     })
+ 
+  })
 })
 
     // delete: protectedProcedure.input(z.object({id: z.string()}))

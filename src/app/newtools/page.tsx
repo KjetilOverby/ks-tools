@@ -4,6 +4,20 @@ import { api } from "~/trpc/server";
 
 const page = async () => {
   const sawblades = await api.sawblades.getAll.query();
+  console.log(sawblades);
+
+  const createBlade = api.sawblades.create.useMutation({
+    onSuccess: () => {
+      void refetchBlade();
+    },
+  });
+
+  const submitForm = () => {
+    createBlade.mutate({
+      serial: "tool.serial",
+      type: "tool.type",
+    });
+  };
 
   return (
     <>
@@ -19,13 +33,21 @@ const page = async () => {
           })}
         </div> */}
         <div className="overflow-x-auto px-96 pt-24">
+          <button onClick={submitForm}>Submit</button>
           <table className="table">
             <thead>
               <tr>
                 <th className="text-sm">Serienummer/dato</th>
+
                 <th className="text-sm">Bladtype</th>
-                <th className="text-sm">Job</th>
+
+                <th className="text-sm">Transparent</th>
+
                 <th className="text-sm">Endret av</th>
+
+                <th className="text-sm">Comments</th>
+                <th className="text-sm">Service</th>
+
                 <th className="text-sm">Rediger post</th>
               </tr>
             </thead>
@@ -51,16 +73,50 @@ const page = async () => {
                         </span>
                       </td>
                       <td>{blade.userId}</td>
-                      <th>
-                        <button className="btn btn-ghost btn-xs">
-                          {blade.createdById}
-                        </button>
-                      </th>
-                      <th>
-                        <button className="btn btn-ghost btn-xs">
-                          REDIGER
-                        </button>
-                      </th>
+                      <td>
+                        <th>
+                          <button className="btn btn-ghost btn-xs">
+                            {blade.createdById}
+                          </button>
+                        </th>
+                      </td>
+                      <td>
+                        <th>
+                          {blade?.sawbladeComment.map((item) => (
+                            <p key={item.id}>{item.comment}</p>
+                          ))}
+                        </th>
+                      </td>
+                      <td>
+                        <th>
+                          {blade?.oml.map((item) => (
+                            <p key={item.id}>{item.firma}</p>
+                          ))}
+                        </th>
+                      </td>
+                      <td>
+                        <th>
+                          {blade?.personal.map((item) => (
+                            <>
+                              <p key={item.id}>{item.title}</p>
+                              <div className="h-10 w-10">
+                                <img
+                                  className="w-full rounded-full"
+                                  src={item.img}
+                                  alt=""
+                                />
+                              </div>
+                            </>
+                          ))}
+                        </th>
+                      </td>
+                      <td>
+                        <th>
+                          <button className="btn btn-ghost btn-xs">
+                            REDIGER
+                          </button>
+                        </th>
+                      </td>
                     </tr>
                   </>
                 );
