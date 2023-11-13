@@ -7,12 +7,14 @@ import { api } from "~/trpc/react";
 
 export function CreatePost() {
   const router = useRouter();
-  const [name, setName] = useState("");
+  const [bladeData, setBladeData] = useState({
+    type: "",
+    serial: "",
+  });
 
-  const createPost = api.post.create.useMutation({
+  const createPost = api.sawblades.create.useMutation({
     onSuccess: () => {
       router.refresh();
-      setName("");
     },
   });
 
@@ -20,15 +22,30 @@ export function CreatePost() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        createPost.mutate({ name });
+        createPost.mutate({
+          serial: bladeData.type,
+          type: bladeData.serial,
+        });
       }}
-      className="flex flex-col gap-2"
+      className="flex w-52 flex-col gap-2 p-5 "
     >
+      <p>Legg til nye</p>
       <input
         type="text"
-        placeholder="Title"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        placeholder="Type"
+        value={bladeData.type}
+        onChange={(e) =>
+          setBladeData({ ...bladeData, type: e.currentTarget.value })
+        }
+        className="w-full rounded-full px-4 py-2 text-black"
+      />
+      <input
+        type="text"
+        placeholder="Serial"
+        value={bladeData.serial}
+        onChange={(e) =>
+          setBladeData({ ...bladeData, serial: e.currentTarget.value })
+        }
         className="w-full rounded-full px-4 py-2 text-black"
       />
       <button

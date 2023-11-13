@@ -52,10 +52,28 @@ export const sawbladesRouter = createTRPCRouter({
          data: {
              serial: input.serial,
              type: input.type,
+             userId: ctx.session.user.id,
+             createdBy: { connect: { id: ctx.session.user.id} },
          }
      })
  
-  })
+  }),
+
+  // create: protectedProcedure
+  //   .input(z.object({ name: z.string().min(1) }))
+  //   .mutation(async ({ ctx, input }) => {
+  //     // simulate a slow db call
+  //     await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  //     return ctx.db.post.create({
+  //       data: {
+  //         name: input.name,
+  //         createdBy: { connect: { id: ctx.session.user.id } },
+  //       },
+  //     });
+  //   }),
+
+
 })
 
     // delete: protectedProcedure.input(z.object({id: z.string()}))

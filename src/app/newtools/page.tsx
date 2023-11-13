@@ -1,23 +1,26 @@
 import HeaderComponent from "../_components/HeaderComponent";
+import dateFormat, { masks } from "dateformat";
 
 import { api } from "~/trpc/server";
+import { CreatePost } from "../_components/create-post";
+import TestComponent from "../_components/TestComponent";
 
 const page = async () => {
   const sawblades = await api.sawblades.getAll.query();
   console.log(sawblades);
 
-  const createBlade = api.sawblades.create.useMutation({
-    onSuccess: () => {
-      void refetchBlade();
-    },
-  });
+  // const createBlade = api.sawblades.create.useMutation({
+  //   onSuccess: () => {
+  //     void refetchBlade();
+  //   },
+  // });
 
-  const submitForm = () => {
-    createBlade.mutate({
-      serial: "tool.serial",
-      type: "tool.type",
-    });
-  };
+  // const submitForm = () => {
+  //   createBlade.mutate({
+  //     serial: "tool.serial",
+  //     type: "tool.type",
+  //   });
+  // };
 
   return (
     <>
@@ -32,8 +35,10 @@ const page = async () => {
             );
           })}
         </div> */}
-        <div className="overflow-x-auto px-96 pt-24">
-          <button onClick={submitForm}>Submit</button>
+        <TestComponent />
+        <CreatePost />
+
+        <div className="overflow-x-auto pt-24">
           <table className="table">
             <thead>
               <tr>
@@ -53,6 +58,8 @@ const page = async () => {
             </thead>
             <tbody>
               {sawblades.map((blade) => {
+                console.log(blade.createdById);
+
                 return (
                   <>
                     <tr className="bg-slate-700">
@@ -61,7 +68,12 @@ const page = async () => {
                           <div className="avatar"></div>
                           <div>
                             <div className="font-bold">{blade.serial}</div>
-                            <div className="text-sm opacity-50">20.04.2023</div>
+                            <div className="text-sm opacity-50">
+                              {dateFormat(
+                                blade.updatedAt,
+                                "dd.mm.yyyy , HH:MM",
+                              )}
+                            </div>
                           </div>
                         </div>
                       </td>
@@ -69,7 +81,7 @@ const page = async () => {
                         {blade.type}
                         <br />
                         <span className="badge badge-ghost badge-sm">
-                          Created by: Kjetil
+                          Created by: Moff
                         </span>
                       </td>
                       <td>{blade.userId}</td>
