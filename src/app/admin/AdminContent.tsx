@@ -3,14 +3,15 @@ import React from "react";
 const AdminContent = () => {
   return (
     <>
-      <div data-theme="dark" className="bg-base-100 h-screen px-96 pt-24">
-        <h1 className="text-accent pt-5">TOOLSTORE</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque id
-          dolorum distinctio aut omnis, earum qui quae. Placeat sed
-          exercitationem suscipit eos quaerat aspernatur incidunt error vitae,
-          distinctio facilis asperiores.
-        </p>
+      <div data-theme="dark" className="h-screen bg-base-100 px-96 pt-24">
+        <h1 className="mb-40 bg-gradient-to-br from-blue-200 to-green-600 bg-clip-text text-7xl font-extrabold text-transparent">
+          TOOLSTORE
+        </h1>
+
+        <img
+          src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/25651/saw-blade-clipart-md.png"
+          alt=""
+        />
       </div>
     </>
   );

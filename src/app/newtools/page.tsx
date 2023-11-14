@@ -110,7 +110,7 @@ const page = async () => {
                       </td>
                       <td>
                         <th>
-                          <Deleteblades />
+                          <Deleteblades blade={blade.id} />
                         </th>
                       </td>
                     </tr>
