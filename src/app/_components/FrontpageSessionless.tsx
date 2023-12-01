@@ -1,14 +1,17 @@
 import Link from "next/link";
 import React from "react";
-// import { getServerAuthSession } from "~/server/auth";
 
-const FrontpageSessionless = () => {
-  // const session = await getServerAuthSession();
+interface userProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  session: any;
+}
+
+const FrontpageSessionless = ({ session }: userProps) => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div>
-        <h1>TOOLSTORE</h1>
-        <h1 className="mb-4 text-3xl">Velkommen til TOOLSTORE</h1>
+        <h1>KS TOOLS</h1>
+        <h1 className="mb-4 text-3xl">Velkommen til KS tools</h1>
         <div className="w-96">
           <p className="text-xs">
             Denne appen er privat og du må logge inn med en google konto. Etter
@@ -18,9 +21,9 @@ const FrontpageSessionless = () => {
           </p>
         </div>
         <div className="flex flex-col items-center gap-2">
-          {/* <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-center text-2xl text-white">
-              {session && <span>Logged in as {session.user?.name}</span>}
+              {session && <span>Logged in as </span>}
             </p>
             <Link
               href={session ? "/api/auth/signout" : "/api/auth/signin"}
@@ -28,7 +31,7 @@ const FrontpageSessionless = () => {
             >
               {session ? "Sign out" : "Sign in"}
             </Link>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

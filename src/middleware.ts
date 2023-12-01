@@ -1,10 +1,10 @@
 
 
 
-import { log } from 'console';
+
 import { NextRequest, NextResponse } from 'next/server';
 
-export default async function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const session = !!req.cookies.get("next-auth.session-token")
 
@@ -22,6 +22,6 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/newtools']
+  matcher: ['/nopage']
 }
 

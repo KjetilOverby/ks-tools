@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { api } from "~/trpc/react";
+import { NewInputComponent } from "./newblades/NewInputComponent";
 
 export function CreatePost() {
   const router = useRouter();
@@ -30,15 +31,8 @@ export function CreatePost() {
       className="flex w-52 flex-col gap-2 p-5 "
     >
       <p>Legg til nye</p>
-      <input
-        type="text"
-        placeholder="Type"
-        value={bladeData.type}
-        onChange={(e) =>
-          setBladeData({ ...bladeData, type: e.currentTarget.value })
-        }
-        className="w-full rounded-full px-4 py-2 text-black"
-      />
+      <NewInputComponent bladeData={bladeData} setBladeData={setBladeData} />
+
       <input
         type="text"
         placeholder="Serial"

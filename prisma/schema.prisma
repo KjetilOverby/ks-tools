@@ -69,13 +69,11 @@ model User {
     // role  UserRole @default(LOGIN)
     role UserRole @default(LOGIN)
 
-    accounts        Account[]
-    sessions        Session[]
-    posts           Post[]
-    personal        personal[]
-    sawblades       sawblades[]
-    sawbladeComment sawbladeComment[]
-    oml             oml[]
+    accounts  Account[]
+    sessions  Session[]
+    posts     Post[]
+    personal  personal[]
+    sawblades sawblades[]
 }
 
 model VerificationToken {
@@ -101,44 +99,34 @@ model personal {
 }
 
 model sawblades {
-    id              String            @id @default(cuid())
-    createdAt       DateTime          @default(now())
-    updatedAt       DateTime          @updatedAt
-    type            String
-    serial          String
-    createdBy       User              @relation(fields: [createdById], references: [id])
-    createdById     String
-    userId          String
-    sawbladeComment sawbladeComment[]
-    oml             oml[]
-    personal        personal[]
+    id            String          @id @default(cuid())
+    createdAt     DateTime        @default(now())
+    updatedAt     DateTime        @updatedAt
+    type          String
+    serial        String
+    createdBy     User            @relation(fields: [createdById], references: [id])
+    createdById   String
+    userId        String
+    personal      personal[]
+    bandhistorikk bandhistorikk[]
 
     @@index([userId])
     @@index([createdById])
 }
 
-model sawbladeComment {
-    id        String    @id @default(cuid())
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    comment   String
-    user      User      @relation(fields: [userId], references: [id])
-    userId    String
-    blades    sawblades @relation(fields: [id], references: [id])
+model bandhistorikk {
+    id          String    @id @default(cuid())
+    historikkId String
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    sagNr       String
+    postDato    DateTime
+    sagtid      Int
+    feilkode    String
+    handling    String
+    sideklaring Float
+    createdById String
+    bladedata   sawblades @relation(fields: [historikkId], references: [id])
 
-    @@index([userId])
-    @@index([id])
-}
-
-model oml {
-    id        String    @id @default(cuid())
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    firma     String
-    user      User      @relation(fields: [userId], references: [id])
-    userId    String
-    bladeOml  sawblades @relation(fields: [id], references: [id])
-
-    @@index([userId])
-    @@index([id])
+    @@index([historikkId])
 }

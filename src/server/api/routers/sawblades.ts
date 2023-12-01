@@ -19,12 +19,10 @@ export const sawbladesRouter = createTRPCRouter({
             include: {
               _count: {
                 select: {
-                  sawbladeComment: true,
+                  bandhistorikk: true,
                 },
               },
-              sawbladeComment: true,
-              oml: true,
-              personal: true
+              bandhistorikk: true,
             },
           
          })
