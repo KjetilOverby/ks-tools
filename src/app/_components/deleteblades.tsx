@@ -26,12 +26,12 @@ const Deleteblades = ({ blade }: bladeProps) => {
       </div>
       <div>
         {/* Open the modal using document.getElementById('ID').showModal() method */}
-        <button
+        {/* <button
           className="btn"
           onClick={() => document.getElementById("my_modal_5").showModal()}
         >
           open modal
-        </button>
+        </button> */}
         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
             <h3 className="text-lg font-bold">Hello!</h3>

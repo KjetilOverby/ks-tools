@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { getServerAuthSession } from "~/server/auth";
+// import { getServerAuthSession } from "~/server/auth";
 
-const FirstLoginPage = async () => {
-  const session = await getServerAuthSession();
+const FirstLoginPage = () => {
+  // const session = await getServerAuthSession();
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-400">
       <div className="flex flex-col justify-center">
         <h1>TOOLSTORE</h1>
-        <h1 className="mb-5 text-5xl text-slate-600">
+        {/* <h1 className="mb-5 text-5xl text-slate-600">
           VELKOMMEN {session?.user.name}
-        </h1>
+        </h1> */}
         <div className="w-96 ">
           <p className="text-xs text-slate-600">
             Dette er en privat nettside og din konto har ikke tilgang til denne
@@ -23,14 +23,14 @@ const FirstLoginPage = async () => {
             reload på nettsiden eller logge inn på nytt.
           </p>
         </div>
-        <div className="mt-10 flex flex-col items-center justify-center gap-4">
+        {/* <div className="mt-10 flex flex-col items-center justify-center gap-4">
           <Link
             href={session ? "/api/auth/signout" : "/api/auth/signin"}
             className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
           >
             {session ? "Sign out" : "Sign in"}
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

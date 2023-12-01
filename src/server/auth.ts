@@ -20,7 +20,7 @@ declare module "next-auth" {
     user: {
       id: string;
       // ...other properties
-       //role: UserRole;
+       role: string;
     } & DefaultSession["user"];
   }
 
@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions = {
         role: user.role
       },
     }),
-    async redirect({ url, baseUrl }) {
+   redirect({ baseUrl }) {
       return baseUrl
     },
   },

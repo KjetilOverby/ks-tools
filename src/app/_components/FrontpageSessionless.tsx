@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import { getServerAuthSession } from "~/server/auth";
+// import { getServerAuthSession } from "~/server/auth";
 
-const FrontpageSessionless = async () => {
-  const session = await getServerAuthSession();
+const FrontpageSessionless = () => {
+  // const session = await getServerAuthSession();
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div>
@@ -18,7 +18,7 @@ const FrontpageSessionless = async () => {
           </p>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="flex flex-col items-center justify-center gap-4">
+          {/* <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-center text-2xl text-white">
               {session && <span>Logged in as {session.user?.name}</span>}
             </p>
@@ -28,7 +28,7 @@ const FrontpageSessionless = async () => {
             >
               {session ? "Sign out" : "Sign in"}
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

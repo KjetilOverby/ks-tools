@@ -1,14 +1,12 @@
 import Link from "next/link";
 import React from "react";
-import { getServerAuthSession } from "~/server/auth";
 
-const HeaderComponent = async () => {
-  const session = await getServerAuthSession();
+const HeaderComponent = () => {
   return (
     <div className="border-b-1 flex h-16 items-center border border-l-0 border-gray-600 bg-gray-800 px-96 text-gray-50">
       <div className="mr-5 w-52">
         <Link href="/">
-          <h1 className="text-2xl">TOOLSTORE</h1>
+          <h1 className="text-2xl">KS TOOLS</h1>
         </Link>
       </div>
       <div className="flex">
@@ -18,7 +16,7 @@ const HeaderComponent = async () => {
         <p className="mr-3 text-xs font-bold">Overview</p>
       </div>
       <div className="flex items-center last-of-type:ml-auto">
-        <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
+        {/* <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
           <div className="h-10 w-10">
             <img
               className="w-full  rounded-full"
@@ -26,10 +24,10 @@ const HeaderComponent = async () => {
               alt=""
             />
           </div>
-        </Link>
-        <div className="ml-5">
+        </Link> */}
+        {/* <div className="ml-5">
           <p>{session?.user.name}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
