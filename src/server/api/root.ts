@@ -1,6 +1,5 @@
 import { postRouter } from "~/server/api/routers/post";
 import { sawbladesRouter } from "~/server/api/routers/sawblades";
-import { commentsRouter } from "~/server/api/routers/comments";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -11,7 +10,6 @@ import { createTRPCRouter } from "~/server/api/trpc";
 export const appRouter = createTRPCRouter({
   post: postRouter,
   sawblades: sawbladesRouter,
-  comments: commentsRouter,
 });
 
 // export type definition of API

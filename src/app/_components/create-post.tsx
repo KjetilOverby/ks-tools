@@ -40,14 +40,14 @@ export function CreatePost() {
         onChange={(e) =>
           setBladeData({ ...bladeData, serial: e.currentTarget.value })
         }
-        className="w-full rounded-full px-4 py-2 text-black"
+        className="w-full rounded-xl px-4 py-2 text-white"
       />
       <button
         type="submit"
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20"
+        className="btn-xl rounded-xl bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20"
         disabled={createPost.isLoading}
       >
-        {createPost.isLoading ? "Submitting..." : "Submit"}
+        {createPost.isLoading ? "Lagrer..." : "Lagre"}
       </button>
     </form>
   );

@@ -10,7 +10,7 @@ const page = async () => {
 
   return (
     <>
-      <div className="h-screen bg-gray-800">
+      <div className="h-screen bg-gray-400 dark:bg-slate-900">
         <HeaderComponent />
 
         <CreatePost />
@@ -23,26 +23,19 @@ const page = async () => {
 
                 <th className="text-sm">Serienummer</th>
 
-                <th className="text-sm">Transparent</th>
-
-                <th className="text-sm">Endret av</th>
-
-                <th className="text-sm">Comments</th>
-                <th className="text-sm">Service</th>
-
-                <th className="text-sm">Rediger post</th>
+                <th className="text-sm">Opprettet av</th>
               </tr>
             </thead>
             <tbody>
               {sawblades.map((blade) => {
                 return (
                   <>
-                    <tr className="bg-slate-700">
+                    <tr className="bg-slate-500">
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
                           <div>
-                            <div className="font-bold">{blade.serial}</div>
+                            <div className="text-xs">{blade.serial}</div>
                             <div className="text-sm opacity-50">
                               {dateFormat(
                                 blade.updatedAt,
@@ -54,26 +47,21 @@ const page = async () => {
                       </td>
                       <td className="font-bold text-orange-400">
                         {blade.type}
-                        <br />
+                      </td>
+
+                      <td>
+                        {" "}
                         <span className="badge badge-ghost badge-sm">
                           Created by: Moff
                         </span>
                       </td>
-                      <td>{blade.userId}</td>
-                      <td>
-                        <th>
-                          <button className="btn btn-ghost btn-xs">
-                            {blade.createdById}
-                          </button>
-                        </th>
-                      </td>
-                      <td>
+                      {/* <td>
                         <th>
                           {blade?.bandhistorikk.map((item) => (
                             <p key={item.id}>{item.sagNr}</p>
                           ))}
                         </th>
-                      </td>
+                      </td> */}
 
                       <td></td>
                       <td>
@@ -84,7 +72,7 @@ const page = async () => {
                         </th>
                       </td>
                       <td>
-                        <th>
+                        <th className="text-red-400">
                           <Deleteblades blade={blade.id} />
                         </th>
                       </td>
