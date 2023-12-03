@@ -71,9 +71,9 @@ model User {
 
     accounts  Account[]
     sessions  Session[]
-    posts     Post[]
     personal  personal[]
     sawblades sawblades[]
+    Post      Post[]
 }
 
 model VerificationToken {
@@ -107,6 +107,7 @@ model sawblades {
     createdBy     User            @relation(fields: [createdById], references: [id])
     createdById   String
     userId        String
+    creator       String
     personal      personal[]
     bandhistorikk bandhistorikk[]
 
@@ -126,6 +127,7 @@ model bandhistorikk {
     handling    String
     sideklaring Float
     createdById String
+    creator     String
     bladedata   sawblades @relation(fields: [historikkId], references: [id])
 
     @@index([historikkId])

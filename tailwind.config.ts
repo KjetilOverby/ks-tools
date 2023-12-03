@@ -6,6 +6,22 @@ export default {
   
   daisyui: {
     themes: [
+        {
+        mytheme: {
+          "primary": "#254e58",
+          "secondary": "#379683",
+          "accent": "#6e6658",
+          "neutral": "#88bdbc",
+          "base-100": "#112d32",
+        },
+        bluefresh: {
+          "primary": "#2e9cca",
+          "secondary": "#464866",
+          "accent": "#aaabbb",
+          "neutral": "#29648a",
+          "base-100": "#25274d",
+        },
+      },
       "light",
       "dark",
       "cupcake",

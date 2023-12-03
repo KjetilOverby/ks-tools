@@ -4,7 +4,7 @@ import AdminContent from "./AdminContent";
 
 const AdminStartpage = () => {
   return (
-    <div className="min-h-screen bg-gray-400">
+    <div className="min-h-screen bg-base-100">
       <HeaderComponent />
       <AdminContent />
     </div>

@@ -3,7 +3,7 @@ import React from "react";
 
 const HeaderComponent = () => {
   return (
-    <div className="border-b-1 flex h-16 items-center border border-l-0 border-gray-600 bg-gray-800 px-96 text-gray-50">
+    <div className="text-scondary flex h-16 items-center border border-x-0 border-t-0 border-b-primary bg-base-100 px-96">
       <div className="mr-5 w-52">
         <Link href="/">
           <h1 className="text-2xl">KS TOOLS</h1>

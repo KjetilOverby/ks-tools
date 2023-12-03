@@ -9,7 +9,6 @@ export default async function Home() {
   // const sawblades = api.sawblades.getAll.query();
 
   const session = await getServerAuthSession();
-  console.log(session);
 
   return (
     <main>

@@ -7,36 +7,37 @@ import Deleteblades from "../_components/deleteblades";
 
 const page = async () => {
   const sawblades = await api.sawblades.getAll.query();
+  console.log(sawblades);
 
   return (
     <>
-      <div className="h-screen bg-gray-400 dark:bg-slate-900">
+      <div className="h-screen bg-base-100">
         <HeaderComponent />
 
-        <CreatePost />
-
-        <div className="overflow-x-auto px-5 pt-24">
-          <table className="table">
+        <div className="overflow-x-auto px-5 pt-5">
+          <CreatePost />
+          <table className="table table-xs bg-secondary">
             <thead>
               <tr>
-                <th className="text-sm">Type/dato</th>
+                <th className="text-sm text-accent">Dato</th>
+                <th className="text-sm text-accent">Type</th>
 
-                <th className="text-sm">Serienummer</th>
+                <th className="text-sm text-accent">Serienummer</th>
 
-                <th className="text-sm">Opprettet av</th>
+                <th className="text-sm text-accent">Opprettet av</th>
+                <th className="text-sm text-accent"></th>
               </tr>
             </thead>
             <tbody>
               {sawblades.map((blade) => {
                 return (
                   <>
-                    <tr className="bg-slate-500">
+                    <tr className="bg-accent">
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
                           <div>
-                            <div className="text-xs">{blade.serial}</div>
-                            <div className="text-sm opacity-50">
+                            <div className="text-xs text-primary">
                               {dateFormat(
                                 blade.updatedAt,
                                 "dd.mm.yyyy , HH:MM",
@@ -45,34 +46,22 @@ const page = async () => {
                           </div>
                         </div>
                       </td>
-                      <td className="font-bold text-orange-400">
-                        {blade.type}
+                      <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar"></div>
+                          <div>
+                            <div className="text-xs text-neutral">
+                              {blade.type}
+                            </div>
+                          </div>
+                        </div>
                       </td>
+                      <td className="font-bold text-neutral">{blade.serial}</td>
+
+                      <td>{blade.creator}</td>
 
                       <td>
-                        {" "}
-                        <span className="badge badge-ghost badge-sm">
-                          Created by: Moff
-                        </span>
-                      </td>
-                      {/* <td>
-                        <th>
-                          {blade?.bandhistorikk.map((item) => (
-                            <p key={item.id}>{item.sagNr}</p>
-                          ))}
-                        </th>
-                      </td> */}
-
-                      <td></td>
-                      <td>
-                        <th>
-                          <button className="btn btn-ghost btn-xs">
-                            REDIGER
-                          </button>
-                        </th>
-                      </td>
-                      <td>
-                        <th className="text-red-400">
+                        <th className="text-secondary">
                           <Deleteblades blade={blade.id} />
                         </th>
                       </td>

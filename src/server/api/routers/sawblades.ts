@@ -23,6 +23,8 @@ export const sawbladesRouter = createTRPCRouter({
                 },
               },
               bandhistorikk: true,
+           
+        
             },
           
          })
@@ -43,12 +45,14 @@ export const sawbladesRouter = createTRPCRouter({
       create: protectedProcedure
       .input(z.object({ serial: z.string(), type: z.string() }))
       .mutation(({ ctx, input }) => {
+        const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
     
      return ctx.db.sawblades.create({
          data: {
              serial: input.serial,
              type: input.type,
              userId: ctx.session.user.id,
+             creator: creatorName,
              createdBy: { connect: { id: ctx.session.user.id} },
          },
        

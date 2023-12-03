@@ -24,8 +24,8 @@ export function CreatePost() {
       onSubmit={(e) => {
         e.preventDefault();
         createPost.mutate({
-          serial: bladeData.type,
-          type: bladeData.serial,
+          serial: bladeData.serial,
+          type: bladeData.type,
         });
       }}
       className="flex w-52 flex-col gap-2 p-5 "
@@ -40,11 +40,11 @@ export function CreatePost() {
         onChange={(e) =>
           setBladeData({ ...bladeData, serial: e.currentTarget.value })
         }
-        className="w-full rounded-xl px-4 py-2 text-white"
+        className="w-full rounded-xl bg-secondary px-4 py-2 text-sm text-accent"
       />
       <button
         type="submit"
-        className="btn-xl rounded-xl bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20"
+        className="btn-xl rounded-xl bg-secondary px-10 py-3 text-xs font-semibold transition hover:bg-white/20"
         disabled={createPost.isLoading}
       >
         {createPost.isLoading ? "Lagrer..." : "Lagre"}
