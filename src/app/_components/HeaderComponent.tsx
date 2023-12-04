@@ -49,7 +49,7 @@ const HeaderComponent = async () => {
               <div className="h-10 w-10">
                 <img
                   className="w-full  rounded-full"
-                  src={session && session.user.image}
+                  src={session?.user.image}
                   alt=""
                 />
               </div>
