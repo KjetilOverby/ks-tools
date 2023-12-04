@@ -7,11 +7,10 @@ import Deleteblades from "../_components/deleteblades";
 
 const page = async () => {
   const sawblades = await api.sawblades.getAll.query();
-  console.log(sawblades);
 
   return (
     <>
-      <div className="h-screen bg-base-100">
+      <div className="h-screen bg-base-100 ">
         <HeaderComponent />
 
         <div className="overflow-x-auto px-5 pt-5">

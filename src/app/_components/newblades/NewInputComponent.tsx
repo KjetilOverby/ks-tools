@@ -6,11 +6,15 @@ interface bladeDataProps {
   bladeData: {
     type: string;
     serial: string;
+    note: string;
+    deleted: boolean;
   };
   setBladeData: Dispatch<
     SetStateAction<{
       type: string;
       serial: string;
+      deleted: boolean;
+      note: string;
     }>
   >;
 }

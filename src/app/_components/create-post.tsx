@@ -11,6 +11,8 @@ export function CreatePost() {
   const [bladeData, setBladeData] = useState({
     type: "",
     serial: "",
+    note: "",
+    deleted: false,
   });
 
   const createPost = api.sawblades.create.useMutation({
@@ -26,6 +28,8 @@ export function CreatePost() {
         createPost.mutate({
           serial: bladeData.serial,
           type: bladeData.type,
+          note: bladeData.note,
+          deleted: false,
         });
       }}
       className="flex w-52 flex-col gap-2 p-5 "
