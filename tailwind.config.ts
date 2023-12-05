@@ -22,12 +22,11 @@ export default {
           "base-100": "#25274d",
         },
         futurisc: {
-          "primary": "#116466",
-          "secondary": "#116466",
-          "accent": "#d9b08c",
-          "neutral": "#116466",
-          "base-100": "#2c3531",
-          "deleted": "#aaabbb"
+          "primary": "#7d7d7d",
+          "secondary": "#474646",
+          "accent": "rgb(0, 138, 138)",
+          "neutral": "#c2c0c0",
+          "base-100": "rgb(51, 51, 51)",
         },
       },
       "light",

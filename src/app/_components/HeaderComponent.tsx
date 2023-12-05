@@ -110,15 +110,6 @@ const HeaderComponent = () => {
             <ul className="mt-4 flex flex-col font-medium lg:mt-0 lg:flex-row lg:space-x-8">
               <li>
                 <a
-                  href="/newtools"
-                  className="bg-primary-700 lg:text-primary-700 block rounded py-2 pl-3 pr-4 text-sm text-accent lg:bg-transparent lg:p-0"
-                  aria-current="page"
-                >
-                  Opprett
-                </a>
-              </li>
-              <li>
-                <a
                   href="/search"
                   className="lg:hover:text-primary-700  block border-b border-gray-100 py-2 pl-3 pr-4 text-sm text-accent hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
                 >
@@ -155,6 +146,15 @@ const HeaderComponent = () => {
                   className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pl-3 pr-4 text-sm text-accent hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
                 >
                   Contact
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/newtools"
+                  className="bg-primary-700 lg:text-primary-700 block rounded py-2 pl-3 pr-4 text-sm text-accent lg:bg-transparent lg:p-0"
+                  aria-current="page"
+                >
+                  Opprett
                 </a>
               </li>
             </ul>
