@@ -1,12 +1,13 @@
 import HeaderComponent from "../_components/HeaderComponent";
 import dateFormat from "dateformat";
-
+// import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { CreatePost } from "../_components/create-post";
 import Deleteblades from "../_components/deleteblades";
 
 const page = async () => {
   const sawblades = await api.sawblades.getAll.query();
+  // const session = await getServerAuthSession();
 
   return (
     <>
@@ -57,7 +58,7 @@ const page = async () => {
                       </td>
                       <td className="font-bold text-neutral">{blade.serial}</td>
 
-                      <td>{blade.creator}</td>
+                      <td className="text-primary">{blade.creator}</td>
 
                       <td>
                         <th className="text-secondary">

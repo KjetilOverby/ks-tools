@@ -43,6 +43,7 @@ export const authOptions: NextAuthOptions = {
         ...session.user,
         id: user.id,
         role: user.role
+        
       },
     }),
    redirect({ baseUrl }) {

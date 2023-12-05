@@ -1,8 +1,19 @@
+"use client";
 import Link from "next/link";
-import { getServerAuthSession } from "~/server/auth";
 
-const HeaderComponent = async () => {
-  const session = await getServerAuthSession();
+// interface sessionProps {
+//   session: {
+//     user: {
+//       name: string;
+//       image: string;
+//       email: string;
+//       id: string;
+//       role: string;
+//     };
+//   };
+// }
+
+const HeaderComponent = () => {
   return (
     // <div className="text-scondary flex h-16 items-center border border-x-0 border-t-0 border-b-primary bg-base-100 px-96">
     //   <div className="mr-5 w-52">
@@ -31,6 +42,7 @@ const HeaderComponent = async () => {
     //     </div> */}
     //   </div>
     // </div>
+
     <header>
       <nav className="border border-x-0 border-t-0 border-gray-200 border-b-primary bg-base-100 px-4 py-2.5 dark:bg-gray-800 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
@@ -45,7 +57,7 @@ const HeaderComponent = async () => {
             </span>
           </a>
           <div className="flex items-center lg:order-2">
-            <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
+            {/* <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
               <div className="h-10 w-10">
                 <img
                   className="w-full  rounded-full"
@@ -56,7 +68,7 @@ const HeaderComponent = async () => {
             </Link>
             <div className="ml-5">
               <p>{session?.user.name}</p>
-            </div>
+            </div> */}
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
@@ -107,7 +119,7 @@ const HeaderComponent = async () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/search"
                   className="lg:hover:text-primary-700  block border-b border-gray-100 py-2 pl-3 pr-4 text-sm text-accent hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
                 >
                   Søk
