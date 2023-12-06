@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import dateFormat from "dateformat";
-import Deleteblades from "../deleteblades";
+import { DeleteComponent } from "./DeleteComponent";
+import { RestoreComponent } from "./RestoreComponent";
 
 const SearchMain = ({ sawblades }) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
+
   return (
-    <div>
+    <div className="m-5">
       <div>
         <table className="table table-xs bg-secondary">
           <thead>
@@ -30,7 +32,7 @@ const SearchMain = ({ sawblades }) => {
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
                           <div>
-                            <div className="text-xs text-primary">
+                            <div className="text-xs text-neutral">
                               {dateFormat(
                                 blade.updatedAt,
                                 "dd.mm.yyyy , HH:MM",
@@ -54,7 +56,9 @@ const SearchMain = ({ sawblades }) => {
                       <td className="text-primary">{blade.creator}</td>
 
                       <td>
-                        <th className="text-secondary">Delete</th>
+                        <th className="text-secondary">
+                          <DeleteComponent id={blade.id} />
+                        </th>
                       </td>
                     </tr>
                   )}
@@ -93,7 +97,7 @@ const SearchMain = ({ sawblades }) => {
                           <div className="flex items-center space-x-3">
                             <div className="avatar"></div>
                             <div>
-                              <div className="text-xs text-primary">
+                              <div className="text-xs text-neutral">
                                 {dateFormat(
                                   blade.updatedAt,
                                   "dd.mm.yyyy , HH:MM",
@@ -120,7 +124,9 @@ const SearchMain = ({ sawblades }) => {
                         <td className="text-primary">KTl</td>
 
                         <td>
-                          <th className="text-secondary">Gjenopprett</th>
+                          <th className="text-secondary">
+                            <RestoreComponent id={blade.id} />
+                          </th>
                         </td>
                       </tr>
                     )}

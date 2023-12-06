@@ -5,6 +5,7 @@ import { api } from "~/trpc/server";
 
 const page = async () => {
   const sawblades = await api.sawblades.getAll.query();
+
   return (
     <div>
       <HeaderComponent />

@@ -75,24 +75,26 @@ export const sawbladesRouter = createTRPCRouter({
   //       },
   //     });
   //   }),
+  update: protectedProcedure.input(z.object({deleted: z.boolean(), id: z.string()}))
+  .mutation(async ({ctx, input}) => {
+      return ctx.db.sawblades.update({
+          where: {
+              id: input.id
+          },
+          data: {
+              deleted: input.deleted,
+          
+          }
+      });
+  }),
 
 
 })
 
+
  
 
-    // update: protectedProcedure.input(z.object({serial: z.string(), type: z.string(), id: z.string(), title: z.string()}))
-    // .mutation(async ({ctx, input}) => {
-    //     return ctx.db.blade.update({
-    //         where: {
-    //             id: input.id
-    //         },
-    //         data: {
-    //             title: input.title,
-            
-    //         }
-    //     });
-    // }),
+ 
 
     // export const postRouter = createTRPCRouter({
     //     hello: publicProcedure
