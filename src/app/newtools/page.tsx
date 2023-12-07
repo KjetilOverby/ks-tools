@@ -6,7 +6,10 @@ import { CreatePost } from "../_components/create-post";
 import Deleteblades from "../_components/deleteblades";
 
 const page = async () => {
-  const sawblades = await api.sawblades.getAll.query();
+  const sawblades = await api.sawblades.getAll.query({
+    date: new Date("2023.12.08"),
+    date2: new Date("2023.12.06"),
+  });
   // const session = await getServerAuthSession();
 
   return (
@@ -37,7 +40,7 @@ const page = async () => {
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
                           <div>
-                            <div className="text-xs text-primary">
+                            <div className="text-xs text-neutral">
                               {dateFormat(
                                 blade.updatedAt,
                                 "dd.mm.yyyy , HH:MM",
@@ -58,7 +61,7 @@ const page = async () => {
                       </td>
                       <td className="font-bold text-neutral">{blade.serial}</td>
 
-                      <td className="text-primary">{blade.creator}</td>
+                      <td className="text-neutral">{blade.creator}</td>
 
                       <td>
                         <th className="text-secondary">

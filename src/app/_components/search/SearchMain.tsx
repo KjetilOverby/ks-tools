@@ -4,7 +4,20 @@ import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
 
-const SearchMain = ({ sawblades }) => {
+interface Blade {
+  type: string;
+  serial: string;
+  deleted: boolean;
+  creator: string;
+  updatedAt: Date; // Assuming updatedAt is a Date property
+  id: string; // Assuming id is a string property
+}
+
+interface BladeProps {
+  sawblades: Blade[];
+}
+
+const SearchMain = ({ sawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
   return (

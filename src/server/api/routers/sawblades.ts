@@ -12,9 +12,15 @@ export const sawbladesRouter = createTRPCRouter({
   // return ctx.db.sawblades.findMany({});
 
    
-    getAll: protectedProcedure
-      .query(({ ctx }) => {
+    getAll: protectedProcedure.input(z.object({date: z.date(), date2: z.date()}))
+        .query(({ ctx, input }) => {
          return ctx.db.sawblades.findMany({
+          where: {
+             createdAt: {
+              lte: input.date,
+              gte: input.date2,
+             },
+          },
           
             include: {
               _count: {

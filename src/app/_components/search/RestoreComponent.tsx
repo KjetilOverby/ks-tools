@@ -2,7 +2,11 @@ import React from "react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 
-export const RestoreComponent = ({ id }) => {
+interface IdProps {
+    id: string
+}
+
+export const RestoreComponent = ({ id }:IdProps) => {
   const router = useRouter();
   const updateBlade = api.sawblades.update.useMutation({
     onSuccess: () => {
