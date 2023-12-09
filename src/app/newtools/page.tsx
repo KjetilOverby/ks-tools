@@ -4,19 +4,30 @@ import dateFormat from "dateformat";
 import { api } from "~/trpc/server";
 import { CreatePost } from "../_components/create-post";
 import Deleteblades from "../_components/deleteblades";
+import { SearchByDate } from "../_components/search/SearchByDate";
 
-const page = async () => {
+const page = async ({ searchParams }) => {
+  console.log(searchParams);
+
+  let date1 = "2023-12-07";
+  let date2 = "2023-12-07";
+
+  if (searchParams.date) {
+    date1 = searchParams.date;
+    date2 = searchParams.date2;
+  }
+
   const sawblades = await api.sawblades.getAll.query({
-    date: new Date("2023.12.08"),
-    date2: new Date("2023.12.06"),
+    date: date1,
+    date2: date2,
   });
   // const session = await getServerAuthSession();
 
   return (
     <>
+      <HeaderComponent />
+      <SearchByDate />
       <div className="h-screen bg-base-100 ">
-        <HeaderComponent />
-
         <div className="overflow-x-auto px-5 pt-5">
           <CreatePost />
           <table className="table table-xs bg-secondary">
