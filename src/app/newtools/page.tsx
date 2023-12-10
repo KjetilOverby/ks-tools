@@ -6,11 +6,16 @@ import { CreatePost } from "../_components/create-post";
 import Deleteblades from "../_components/deleteblades";
 import { SearchByDate } from "../_components/search/SearchByDate";
 
-const page = async ({ searchParams }) => {
-  console.log(searchParams);
+interface dateProps {
+  searchParams: {
+    date: string;
+    date2: string;
+  };
+}
 
-  let date1 = "2023-12-07";
-  let date2 = "2023-12-07";
+const page = async ({ searchParams }: dateProps) => {
+  let date1 = "2023-12-12";
+  let date2 = "2023-12-05";
 
   if (searchParams.date) {
     date1 = searchParams.date;
@@ -26,10 +31,12 @@ const page = async ({ searchParams }) => {
   return (
     <>
       <HeaderComponent />
-      <SearchByDate />
-      <div className="h-screen bg-base-100 ">
+      <div className="h-screen bg-base-100 p-5">
         <div className="overflow-x-auto px-5 pt-5">
-          <CreatePost />
+          <div className="flex h-96 flex-row py-5">
+            <CreatePost />
+            <SearchByDate />
+          </div>
           <table className="table table-xs bg-secondary">
             <thead>
               <tr>

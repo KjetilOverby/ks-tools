@@ -1,28 +1,30 @@
 "use client";
+// SearchByDate.tsx
 import React, { useState } from "react";
 import Link from "next/link";
+import DatepickerComponent from "../reusable/Datepicker";
 
-import dateFormat from "dateformat";
-
-export const SearchByDate = () => {
-  const [byDate1, setByDate1] = useState(new Date().getDate());
-  const [byDate2, setByDate2] = useState(new Date());
-
-  console.log(byDate1);
+export const SearchByDate: React.FC = () => {
+  const [byDate1, setByDate1] = useState({
+    endDate: "2023-12-10T23:59:59.000Z",
+    startDate: "2023-12-10T23:59:59.000Z",
+  });
 
   return (
-    <>
+    <div className="ml-5">
+      <p>Søk på egendefinert periode</p>
+      <DatepickerComponent setByDate1={setByDate1} byDate1={byDate1} />
       <Link
         href={{
           pathname: "/newtools",
           query: {
-            date: dateFormat(byDate1, "yyyy-mm-dd"),
-            date2: dateFormat(byDate2, "yyyy-mm-dd"),
+            date: `${byDate1.endDate}T23:59:59.000Z`,
+            date2: `${byDate1.startDate}T00:00:00.000Z`,
           },
         }}
       >
-        <div>SearchByDate</div>
+        <button className="btn mt-5 bg-primary">Søk på dato</button>
       </Link>
-    </>
+    </div>
   );
 };

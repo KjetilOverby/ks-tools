@@ -32,7 +32,7 @@ export function CreatePost() {
           deleted: false,
         });
       }}
-      className="flex w-52 flex-col gap-2 p-5 "
+      className="flex flex-col gap-2"
     >
       <p>Legg til nye</p>
       <NewInputComponent bladeData={bladeData} setBladeData={setBladeData} />
