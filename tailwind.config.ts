@@ -24,7 +24,7 @@ export default {
         futurisc: {
           "primary": "#7d7d7d",
           "secondary": "#474646",
-          "accent": "#29648a",
+          "accent": "#164555",
           "neutral": "#c2c0c0",
           "base-100": "rgb(51, 51, 51)",
         },

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
+import BandDetails from "./BandDetails";
 
 interface Blade {
   type: string;
@@ -11,6 +12,11 @@ interface Blade {
   creator: string;
   updatedAt: Date; // Assuming updatedAt is a Date property
   id: string; // Assuming id is a string property
+  _count: {
+    bandhistorikk: number;
+  };
+  setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
+  openBandhistorikkData: boolean;
 }
 
 interface BladeProps {
@@ -20,23 +26,42 @@ interface BladeProps {
 const SearchMain = ({ sawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
+  const [bandhistorikkData, setBandhistorikkData] = useState();
+  const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
+
+  console.log(bandhistorikkData);
+
   return (
     <div className="m-5">
+      {openBandhistorikkData && (
+        <BandDetails
+          bandhistorikkData={bandhistorikkData}
+          setOpenBandhistorikkData={setOpenBandhistorikkData}
+        />
+      )}
+
       <div>
-        <table className="table table-xs bg-secondary">
+        <table className="table table-xs bg-neutral">
           <thead>
             <tr>
               <th className="text-sm text-accent">Dato</th>
               <th className="text-sm text-accent">Type</th>
 
-              <th className="text-sm text-accent">Serienummer</th>
+              <th className="text-sm text-accent">ID</th>
 
               <th className="text-sm text-accent">Opprettet av</th>
+              <th className="text-sm text-accent">Bandhistorikk</th>
               <th className="text-sm text-accent"></th>
             </tr>
           </thead>
           <tbody>
             {sawblades.map((blade) => {
+              console.log(blade);
+              const openHistorikkHandler = () => {
+                setOpenBandhistorikkData(true);
+                setBandhistorikkData(blade);
+              };
+
               return (
                 <>
                   {!blade.deleted && (
@@ -67,9 +92,21 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                       <td className="font-bold text-neutral">{blade.serial}</td>
 
                       <td className="text-primary">{blade.creator}</td>
+                      <td>{blade._count.bandhistorikk}</td>
+                      <td className="text-primary">
+                        <button
+                          onClick={openHistorikkHandler}
+                          className="btn btn-xs"
+                        >
+                          Åpne
+                        </button>
+                      </td>
+                      <td className="text-primary">
+                        <button className="btn btn-xs">Rediger</button>
+                      </td>
 
                       <td>
-                        <th className="text-secondary">
+                        <th className="text-red-400">
                           <DeleteComponent id={blade.id} />
                         </th>
                       </td>
@@ -87,13 +124,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
       {showDeletedBlades && (
         <div>
           <h1>Slettede blad</h1>
-          <table className="table table-xs bg-secondary">
+          <table className="table table-xs bg-neutral">
             <thead>
               <tr>
                 <th className="text-sm text-accent">Dato</th>
                 <th className="text-sm text-accent">Type</th>
 
-                <th className="text-sm text-accent">Serienummer</th>
+                <th className="text-sm text-accent">ID</th>
 
                 <th className="text-sm text-accent">Opprettet av</th>
                 <th className="text-sm text-accent">Slettet av</th>
@@ -105,7 +142,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                 return (
                   <>
                     {blade.deleted && (
-                      <tr className="bg-base-100">
+                      <tr className="bg-teal-800">
                         <td>
                           <div className="flex items-center space-x-3">
                             <div className="avatar"></div>
@@ -137,7 +174,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                         <td className="text-primary">KTl</td>
 
                         <td>
-                          <th className="text-secondary">
+                          <th className="text-neutral">
                             <RestoreComponent id={blade.id} />
                           </th>
                         </td>

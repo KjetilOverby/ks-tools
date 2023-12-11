@@ -20,13 +20,11 @@ const page = async ({ searchParams }: dateProps) => {
   if (searchParams.date) {
     date1 = searchParams.date;
     date2 = searchParams.date2;
-    serial = searchParams.serial;
   }
 
   const sawblades = await api.sawblades.getAll.query({
     date: date1,
     date2: date2,
-    serial: serial,
   });
   // const session = await getServerAuthSession();
 
@@ -84,7 +82,7 @@ const page = async ({ searchParams }: dateProps) => {
                       <td className="text-neutral">{blade.creator}</td>
 
                       <td>
-                        <th className="text-secondary">
+                        <th className="text-red-400">
                           <Deleteblades blade={blade.id} />
                         </th>
                       </td>
