@@ -4,6 +4,7 @@ import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
+import DatePicker2 from "../reusable/Datepicker2";
 
 interface Blade {
   type: string;
@@ -36,16 +37,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
     sawblades.filter((item: any) => item.serial.includes("40116")),
   );
 
-  /*  setSearchIdResult(
-    sawblades.filter((item: any) => item.serial.includes("40116")),
-  );
- */
+  const [updateSearch, setUpdateSearch] = useState(false);
 
   useEffect(() => {
     setSearchIdResult(
       sawblades.filter((item: any) => item.serial.includes(IdInput)),
     );
-  }, [IdInput]);
+  }, [IdInput, updateSearch]);
 
   return (
     <div className="m-5">
@@ -57,14 +55,23 @@ const SearchMain = ({ sawblades }: BladeProps) => {
       )}
 
       <div>
-        <div className="ml-5 rounded-xl bg-accent p-5">
-          <label>Søk på id nummer</label>
-          <input
-            onChange={(e) => setIdInput(e.currentTarget.value)}
-            type="text"
-            placeholder="ID nummer"
-            className="input input-bordered input-xs mt-5 w-full max-w-xs text-xs"
-          />
+        <div className="ml-5 rounded-xl py-5">
+          <div className="flex ">
+            <DatePicker2
+              link="/search"
+              setUpdateSearch={setUpdateSearch}
+              updateSearch={updateSearch}
+            />
+            <div className="ml-5 rounded-xl bg-accent p-5">
+              <label>Søk på id nummer</label>
+              <input
+                onChange={(e) => setIdInput(e.currentTarget.value)}
+                type="text"
+                placeholder="ID nummer"
+                className="input input-bordered input-xs mt-5 w-full max-w-xs text-xs"
+              />
+            </div>
+          </div>
         </div>
         <h1 className="text-xl text-orange-300">Registrerte blad</h1>
         <table className="table table-xs bg-neutral">

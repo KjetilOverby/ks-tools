@@ -28,9 +28,6 @@ const page = async ({ searchParams }: dateProps) => {
     <div>
       <HeaderComponent />
       <div className="m-5">
-        <div className="m-5 flex">
-          <DatePicker2 link="/search" />
-        </div>
         <SearchMain sawblades={sawblades} />
       </div>
     </div>

@@ -1,14 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 interface DateProps {
   link: string;
+  setUpdateSearch: React.Dispatch<React.SetStateAction<boolean>>;
+  updateSearch: boolean;
 }
 
-const DatePicker2 = ({ link }: DateProps) => {
+const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
   const [value, setValue] = useState("2023-12-11");
   const [value2, setValue2] = useState("2023-12-11");
+
   return (
     <div className="w-22 rounded-xl bg-accent p-5">
       <label htmlFor="">Filtrer med dato</label>
@@ -29,6 +32,7 @@ const DatePicker2 = ({ link }: DateProps) => {
           />
         </div>
       </div>
+
       <Link
         href={{
           pathname: `${link}`,
@@ -38,7 +42,12 @@ const DatePicker2 = ({ link }: DateProps) => {
           },
         }}
       >
-        <button className="btn btn-xs mt-5 bg-primary">Hent data</button>
+        <button
+          onClick={() => setUpdateSearch(!updateSearch)}
+          className="btn btn-xs mt-5 bg-primary"
+        >
+          Hent data
+        </button>
       </Link>
     </div>
   );

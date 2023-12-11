@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import dateFormat from "dateformat";
+import HistorikkInput from "./HistorikkInput";
 
 interface bandProps {
   bandhistorikkData: {
@@ -30,16 +31,32 @@ const BandDetails = ({
   bandhistorikkData,
   setOpenBandhistorikkData,
 }: bandProps) => {
+  const [openInput, setOpenInput] = useState(false);
+
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
+      {openInput && <HistorikkInput setOpenInput={setOpenInput} />}
       <div className="mb-12">
-        <button onClick={() => setOpenBandhistorikkData(false)} className="btn">
-          Lukk
-        </button>
-        <h1 className="mt-5 text-4xl text-orange-300">
-          Bånd ID: {bandhistorikkData.serial}
-        </h1>
-        <p>Type: {bandhistorikkData.type}</p>
+        <div>
+          <button
+            onClick={() => setOpenBandhistorikkData(false)}
+            className="btn btn-xs bg-red-700"
+          >
+            Lukk
+          </button>
+          <h1 className="mt-5 text-4xl text-orange-300">
+            Bånd ID: {bandhistorikkData.serial}
+          </h1>
+          <p>Type: {bandhistorikkData.type}</p>
+        </div>
+        <div>
+          <button
+            onClick={() => setOpenInput(true)}
+            className="btn btn-xs mt-5"
+          >
+            Ny post
+          </button>
+        </div>
       </div>
       <div>
         <table className="table table-xs w-full bg-neutral">
