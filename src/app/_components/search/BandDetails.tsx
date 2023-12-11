@@ -20,6 +20,10 @@ interface bandProps {
   sagtid: number;
   creator: string;
   updatedAt: Date;
+  postDato: Date;
+  feilkode: string;
+  handling: string;
+  sideklaring: number;
 }
 
 const BandDetails = ({
@@ -27,24 +31,28 @@ const BandDetails = ({
   setOpenBandhistorikkData,
 }: bandProps) => {
   return (
-    <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100">
-      <button onClick={() => setOpenBandhistorikkData(false)} className="btn">
-        Lukk
-      </button>
-      <h1 className="text-neutral">Bånd: {bandhistorikkData.serial}</h1>
-      <p>Type: {bandhistorikkData.type}</p>
+    <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
+      <div className="mb-12">
+        <button onClick={() => setOpenBandhistorikkData(false)} className="btn">
+          Lukk
+        </button>
+        <h1 className="mt-5 text-4xl text-orange-300">
+          Bånd ID: {bandhistorikkData.serial}
+        </h1>
+        <p>Type: {bandhistorikkData.type}</p>
+      </div>
       <div>
-        <table className="w-screen">
+        <table className="table table-xs w-full bg-neutral">
           <thead>
             <tr>
-              <th className="text-sm text-accent">Dato</th>
-              <th className="text-sm text-accent">Type</th>
+              <th className="text-sm text-accent">Sag</th>
+              <th className="text-sm text-accent">Innpostet</th>
 
-              <th className="text-sm text-accent">ID</th>
+              <th className="text-sm text-accent">Sagtid</th>
 
-              <th className="text-sm text-accent">Opprettet av</th>
-              <th className="text-sm text-accent">Bandhistorikk</th>
-              <th className="text-sm text-accent"></th>
+              <th className="text-sm text-accent">Feilkode</th>
+              <th className="text-sm text-accent">Handling</th>
+              <th className="text-sm text-accent">Sideklaring</th>
             </tr>
           </thead>
           <tbody>
@@ -55,30 +63,18 @@ const BandDetails = ({
                 <>
                   <tr className="bg-accent">
                     <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar"></div>
-                        <div>
-                          <div className="text-xs text-neutral">
-                            {dateFormat(blade.updatedAt, "dd.mm.yyyy , HH:MM")}
-                          </div>
-                        </div>
-                      </div>
+                      <div className="text-xs text-neutral">{blade.sagNr}</div>
                     </td>
                     <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar"></div>
-                        <div>
-                          <div className="text-xs text-neutral">
-                            {blade.sagNr}
-                          </div>
-                        </div>
+                      <div className="text-xs text-neutral">
+                        {dateFormat(blade.postDato, "dd.mm.yyyy , HH:MM")}
                       </div>
                     </td>
                     <td className="font-bold text-neutral">{blade.sagtid}</td>
 
-                    <td className="text-primary">{blade.creator}</td>
-
-                    <td></td>
+                    <td className="text-primary">{blade.feilkode}</td>
+                    <td className="text-primary">{blade.handling}</td>
+                    <td className="text-primary">{blade.sideklaring}</td>
                   </tr>
                 </>
               );

@@ -10,7 +10,8 @@ const DatePicker2 = ({ link }: DateProps) => {
   const [value, setValue] = useState("2023-12-11");
   const [value2, setValue2] = useState("2023-12-11");
   return (
-    <div className="rounded-xl bg-accent p-5">
+    <div className="w-22 rounded-xl bg-accent p-5">
+      <label htmlFor="">Filtrer med dato</label>
       <div className="mt-5 flex ">
         <div className=" flex flex-col">
           <label htmlFor="">Startdato</label>
@@ -21,7 +22,7 @@ const DatePicker2 = ({ link }: DateProps) => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="">Slutdato</label>
+          <label htmlFor="">Sluttdato</label>
           <input
             onChange={(e) => setValue(e.currentTarget.value)}
             type="date"
@@ -37,7 +38,7 @@ const DatePicker2 = ({ link }: DateProps) => {
           },
         }}
       >
-        <button className="btn mt-5 bg-primary">Hent data</button>
+        <button className="btn btn-xs mt-5 bg-primary">Hent data</button>
       </Link>
     </div>
   );

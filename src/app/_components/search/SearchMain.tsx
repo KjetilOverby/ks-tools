@@ -17,6 +17,8 @@ interface Blade {
   };
   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
   openBandhistorikkData: boolean;
+  setBandhistorikkData: React.Dispatch<React.SetStateAction<{}>>;
+  bandhistorikkData: {};
 }
 
 interface BladeProps {
@@ -26,10 +28,8 @@ interface BladeProps {
 const SearchMain = ({ sawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
-  const [bandhistorikkData, setBandhistorikkData] = useState();
+  const [bandhistorikkData, setBandhistorikkData] = useState({});
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
-
-  console.log(bandhistorikkData);
 
   return (
     <div className="m-5">
@@ -41,6 +41,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
       )}
 
       <div>
+        <h1 className="text-xl text-orange-300">Registrerte blad</h1>
         <table className="table table-xs bg-neutral">
           <thead>
             <tr>
@@ -118,12 +119,15 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           </tbody>
         </table>
       </div>
-      <button onClick={() => setShowDeletedBlades(!showDeletedBlades)}>
+      <button
+        className="btn btn-xs my-5"
+        onClick={() => setShowDeletedBlades(!showDeletedBlades)}
+      >
         {showDeletedBlades ? "Skjul slettede blad" : "Vis slettede blad"}
       </button>
       {showDeletedBlades && (
         <div>
-          <h1>Slettede blad</h1>
+          <h1 className="text-xl text-orange-300">Slettede blad</h1>
           <table className="table table-xs bg-neutral">
             <thead>
               <tr>

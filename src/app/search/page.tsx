@@ -28,8 +28,16 @@ const page = async ({ searchParams }: dateProps) => {
     <div>
       <HeaderComponent />
       <div className="m-5">
-        <div className="m-5">
+        <div className="m-5 flex">
           <DatePicker2 link="/search" />
+          <div className="ml-5 rounded-xl bg-accent p-5">
+            <label>Søk på id nummer</label>
+            <input
+              type="text"
+              placeholder="ID nummer"
+              className="input input-bordered input-xs mt-5 w-full max-w-xs text-xs"
+            />
+          </div>
         </div>
         <SearchMain sawblades={sawblades} />
       </div>
