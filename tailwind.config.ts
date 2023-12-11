@@ -24,7 +24,7 @@ export default {
         futurisc: {
           "primary": "#7d7d7d",
           "secondary": "#474646",
-          "accent": "rgb(0, 138, 138)",
+          "accent": "#29648a",
           "neutral": "#c2c0c0",
           "base-100": "rgb(51, 51, 51)",
         },
@@ -61,7 +61,8 @@ export default {
     ],
   },
 
-  content: ["./src/**/*.tsx"],
+  content: ["./src/**/*.tsx",  "./src/**/*.{js,jsx,ts,tsx}",
+  "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",],
   theme: {
     extend: {
       fontFamily: {
@@ -71,9 +72,7 @@ export default {
   },
   
   plugins: [require("daisyui")],
-  content: [ 
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",]
+
   
   
 } satisfies Config;

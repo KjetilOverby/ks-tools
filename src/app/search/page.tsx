@@ -2,17 +2,40 @@ import React from "react";
 import HeaderComponent from "../_components/HeaderComponent";
 import SearchMain from "../_components/search/SearchMain";
 import { api } from "~/trpc/server";
+import DatePicker2 from "../_components/reusable/Datepicker2";
 
-const page = async () => {
+interface dateProps {
+  searchParams: {
+    date: string;
+    date2: string;
+  };
+}
+const page = async ({ searchParams }: dateProps) => {
+  let date1 = "2023-12-12";
+  let date2 = "2023-12-05";
+  let serial = "";
+
+  if (searchParams.date) {
+    date1 = searchParams.date;
+    date2 = searchParams.date2;
+    serial = searchParams.serial;
+  }
+
   const sawblades = await api.sawblades.getAll.query({
-    date: "2023-12-10",
-    date2: "2023-12-07",
+    date: date1,
+    date2: date2,
+    serial: serial,
   });
 
   return (
     <div>
       <HeaderComponent />
-      <SearchMain sawblades={sawblades} />
+      <div className="m-5">
+        <div className="m-5">
+          <DatePicker2 link="/search" />
+        </div>
+        <SearchMain sawblades={sawblades} />
+      </div>
     </div>
   );
 };
