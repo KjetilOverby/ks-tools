@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
@@ -31,6 +31,22 @@ const SearchMain = ({ sawblades }: BladeProps) => {
   const [bandhistorikkData, setBandhistorikkData] = useState({});
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
 
+  const [IdInput, setIdInput] = useState("");
+  const [searchIdResult, setSearchIdResult] = useState(
+    sawblades.filter((item: any) => item.serial.includes("40116")),
+  );
+
+  /*  setSearchIdResult(
+    sawblades.filter((item: any) => item.serial.includes("40116")),
+  );
+ */
+
+  useEffect(() => {
+    setSearchIdResult(
+      sawblades.filter((item: any) => item.serial.includes(IdInput)),
+    );
+  }, [IdInput]);
+
   return (
     <div className="m-5">
       {openBandhistorikkData && (
@@ -41,6 +57,15 @@ const SearchMain = ({ sawblades }: BladeProps) => {
       )}
 
       <div>
+        <div className="ml-5 rounded-xl bg-accent p-5">
+          <label>Søk på id nummer</label>
+          <input
+            onChange={(e) => setIdInput(e.currentTarget.value)}
+            type="text"
+            placeholder="ID nummer"
+            className="input input-bordered input-xs mt-5 w-full max-w-xs text-xs"
+          />
+        </div>
         <h1 className="text-xl text-orange-300">Registrerte blad</h1>
         <table className="table table-xs bg-neutral">
           <thead>
@@ -56,7 +81,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
             </tr>
           </thead>
           <tbody>
-            {sawblades.map((blade) => {
+            {searchIdResult.map((blade) => {
               console.log(blade);
               const openHistorikkHandler = () => {
                 setOpenBandhistorikkData(true);
@@ -142,7 +167,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
               </tr>
             </thead>
             <tbody>
-              {sawblades.map((blade) => {
+              {searchIdResult.map((blade) => {
                 return (
                   <>
                     {blade.deleted && (
