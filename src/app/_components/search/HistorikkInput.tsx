@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 
 interface historikkInputProps {
   setOpenInput: React.Dispatch<React.SetStateAction<boolean>>;
+  bandId: string;
 }
 
-const HistorikkInput = ({ setOpenInput }: historikkInputProps) => {
+const HistorikkInput = ({ setOpenInput, bandId }: historikkInputProps) => {
   const router = useRouter();
   const createPost = api.bandhistorikk.create.useMutation({
     onSuccess: () => {
@@ -24,7 +25,7 @@ const HistorikkInput = ({ setOpenInput }: historikkInputProps) => {
     handling: "Slipp",
     sideklaring: 0.45,
     creator: "",
-    baldedata: "",
+    bladedata: "",
   });
   return (
     <div className="absolute z-40">
@@ -39,7 +40,7 @@ const HistorikkInput = ({ setOpenInput }: historikkInputProps) => {
             handling: historikkData.handling,
             sideklaring: 0,
             createdById: "",
-            bladedata: "clpu3gubr000enlz8cgt222tv",
+            bladedata: bandId,
           });
         }}
         className="card w-96 bg-neutral text-neutral-content"

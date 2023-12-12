@@ -31,11 +31,15 @@ const BandDetails = ({
   setOpenBandhistorikkData,
 }: bandProps) => {
   const [openInput, setOpenInput] = useState(false);
-  console.log(bandhistorikkData);
 
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
-      {openInput && <HistorikkInput setOpenInput={setOpenInput} />}
+      {openInput && (
+        <HistorikkInput
+          setOpenInput={setOpenInput}
+          bandId={bandhistorikkData.id}
+        />
+      )}
       <div className="mb-12">
         <div>
           <button
