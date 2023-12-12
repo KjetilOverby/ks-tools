@@ -7,13 +7,20 @@ import { useRouter } from "next/navigation";
 interface historikkInputProps {
   setOpenInput: React.Dispatch<React.SetStateAction<boolean>>;
   bandId: string;
+  setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HistorikkInput = ({ setOpenInput, bandId }: historikkInputProps) => {
+const HistorikkInput = ({
+  setOpenInput,
+  bandId,
+  setOpenBandhistorikkData,
+}: historikkInputProps) => {
   const router = useRouter();
   const createPost = api.bandhistorikk.create.useMutation({
     onSuccess: () => {
       router.refresh();
+      setOpenInput(false);
+      setOpenBandhistorikkData(false);
     },
   });
 

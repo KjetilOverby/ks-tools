@@ -38,6 +38,7 @@ const BandDetails = ({
         <HistorikkInput
           setOpenInput={setOpenInput}
           bandId={bandhistorikkData.id}
+          setOpenBandhistorikkData={setOpenBandhistorikkData}
         />
       )}
       <div className="mb-12">
