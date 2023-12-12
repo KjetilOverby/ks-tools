@@ -13,14 +13,18 @@ export const sawbladesRouter = createTRPCRouter({
 
    
     getAll: protectedProcedure
-    .input(z.object({date: z.string(), date2: z.string()}))
+    .input(z.object({date: z.string(), date2: z.string(), serial: z.string()}))
         .query(({ ctx, input }) => {
          return ctx.db.sawblades.findMany({
           where: {
-             createdAt: {
-              lte: new Date(input.date),
-              gte: new Date(input.date2),
-             },
+            AND: [{
+              createdAt: {
+               lte: new Date(input.date),
+               gte: new Date(input.date2),
+              },
+              serial: {contains: input.serial ? input.serial : undefined}
+            }
+            ]
         
           },
           

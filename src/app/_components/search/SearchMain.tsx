@@ -6,21 +6,6 @@ import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
 import DatePicker2 from "../reusable/Datepicker2";
 
-// interface Blade {
-//   type: string;
-//   serial: string;
-//   deleted: boolean;
-//   creator: string;
-//   updatedAt: Date; // Assuming updatedAt is a Date property
-//   id: string; // Assuming id is a string property
-//   _count: {
-//     bandhistorikk: number;
-//   };
-//   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
-//   openBandhistorikkData: boolean;
-//   setBandhistorikkData: React.Dispatch<React.SetStateAction<object>>;
-//   bandhistorikkData: [];
-// }
 interface Blade {
   type: string;
   serial: string;
@@ -54,7 +39,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
 
   const [bandhistorikkData, setBandhistorikkData] = useState({
     updatedAt: new Date(),
-    id: '',
+    id: "",
     serial: "",
     type: "",
     bandhistorikk: [
@@ -75,19 +60,18 @@ const SearchMain = ({ sawblades }: BladeProps) => {
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
   console.log(bandhistorikkData);
 
-  const [IdInput, setIdInput] = useState("");
-  const [searchIdResult, setSearchIdResult] = useState(
+  /*   const [searchIdResult, setSearchIdResult] = useState(
     sawblades.filter((item: Blade) => item.serial.includes("")),
-  );
+  ); */
 
   const [updateSearch, setUpdateSearch] = useState(false);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setSearchIdResult(
       sawblades.filter((item: Blade) => item.serial.includes(IdInput)),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [IdInput, updateSearch]);
+  }, [IdInput, updateSearch]); */
 
   return (
     <div className="m-5">
@@ -106,15 +90,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
               setUpdateSearch={setUpdateSearch}
               updateSearch={updateSearch}
             />
-            <div className="ml-5 rounded-xl bg-accent p-5">
-              <label>Søk på id nummer</label>
-              <input
-                onChange={(e) => setIdInput(e.currentTarget.value)}
-                type="text"
-                placeholder="ID nummer"
-                className="input input-bordered input-xs mt-5 w-full max-w-xs text-xs"
-              />
-            </div>
           </div>
         </div>
         <h1 className="text-xl text-orange-300">Registrerte blad</h1>
@@ -132,7 +107,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
             </tr>
           </thead>
           <tbody>
-            {searchIdResult.map((blade) => {
+            {sawblades.map((blade) => {
               console.log(blade.bandhistorikk);
               const openHistorikkHandler = () => {
                 setOpenBandhistorikkData(true);
@@ -141,7 +116,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                   type: blade.type,
                   bandhistorikk: blade.bandhistorikk,
                   id: blade.id,
-                  updatedAt: blade.updatedAt
+                  updatedAt: blade.updatedAt,
                 });
               };
 
@@ -224,7 +199,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
               </tr>
             </thead>
             <tbody>
-              {searchIdResult.map((blade) => {
+              {sawblades.map((blade) => {
                 return (
                   <>
                     {blade.deleted && (

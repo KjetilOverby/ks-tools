@@ -12,6 +12,7 @@ interface DateProps {
 const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
   const [value, setValue] = useState("2023-12-11");
   const [value2, setValue2] = useState("2023-12-11");
+  const [searchSerial, setSearchSerial] = useState("");
 
   return (
     <div className="w-22 rounded-xl bg-accent p-5">
@@ -32,24 +33,35 @@ const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
             type="date"
           />
         </div>
-      </div>
+        <div>
+          <form onSubmit={(e) => setSearchSerial(e.currentTarget.value)}>
+            <input
+              onChange={(e) => setSearchSerial(e.currentTarget.value)}
+              type="text"
+              placeholder="ID nummer"
+              className="input input-bordered input-xs mt-5 w-full max-w-xs text-xs"
+            />
 
-      <Link
-        href={{
-          pathname: `${link}`,
-          query: {
-            date: `${value}T23:59:59.000Z`,
-            date2: `${value2}T00:00:00.000Z`,
-          },
-        }}
-      >
-        <button
-          onClick={() => setUpdateSearch(!updateSearch)}
-          className="btn btn-xs mt-5 bg-primary"
-        >
-          Hent data
-        </button>
-      </Link>
+            <Link
+              href={{
+                pathname: `${link}`,
+                query: {
+                  date: `${value}T23:59:59.000Z`,
+                  date2: `${value2}T00:00:00.000Z`,
+                  serial: searchSerial,
+                },
+              }}
+            >
+              <button
+                onClick={() => setUpdateSearch(!updateSearch)}
+                className="btn btn-xs mt-5 bg-primary"
+              >
+                Hent data
+              </button>
+            </Link>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

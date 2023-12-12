@@ -7,20 +7,24 @@ interface dateProps {
   searchParams: {
     date: string;
     date2: string;
+    serial: string;
   };
 }
 const page = async ({ searchParams }: dateProps) => {
-  let date1 = "2023-12-12";
+  let date1 = "2035-12-12";
   let date2 = "2023-12-05";
+  let serial = "4444";
 
   if (searchParams.date) {
     date1 = searchParams.date;
     date2 = searchParams.date2;
+    serial = searchParams.serial;
   }
 
   const sawblades = await api.sawblades.getAll.query({
     date: date1,
     date2: date2,
+    serial: serial,
   });
 
   return (
