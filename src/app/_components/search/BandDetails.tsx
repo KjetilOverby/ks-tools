@@ -87,7 +87,7 @@ const BandDetails = ({
                     </td>
                     <td>
                       <div className="text-xs text-neutral">
-                        {dateFormat(blade.postDato, "dd.mm.yyyy , HH:MM")}
+                        {dateFormat(blade.postDato, "dd.mm.yyyy")}
                       </div>
                     </td>
                     <td className="font-bold text-neutral">{blade.sagtid}</td>

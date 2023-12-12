@@ -55,7 +55,7 @@ const HistorikkInput = ({
         <div className="card-body">
           <h2 className="card-title">Legg til data</h2>
           <div>
-            <p>Sag</p>
+            <p>Sag nr:</p>
             <select className="select select-bordered select-xs w-full max-w-xs bg-white">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -67,43 +67,57 @@ const HistorikkInput = ({
             </select>
           </div>
           <div>
-            <p>Innpostningsdato</p>
+            <p>Innpostningsdato:</p>
             <input
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  postDato: new Date(e.currentTarget.value),
+                })
+              }
               type="date"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
           </div>
           <div>
-            <p>Klokka</p>
+            <p>Klokkeslett:</p>
             <input
               type="time"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
           </div>
           <div>
-            <p>Timer</p>
+            <p>antall timer:</p>
             <input
               type="number"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
           </div>
           <div>
-            <p>Temperatur</p>
+            <p>Temperatur:</p>
             <input
               type="number"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
           </div>
           <div>
-            <p>Rutine</p>
+            <p>Rutine:</p>
             <input
               type="text"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
           </div>
           <div>
-            <p>Feilkode</p>
-            <select className="select select-bordered select-xs w-full max-w-xs bg-white">
+            <p>Feilkode:</p>
+            <select
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  feilkode: e.currentTarget.value,
+                })
+              }
+              className="select select-bordered select-xs w-full max-w-xs bg-white"
+            >
               <option value="Ingen anmerkning">Ingen anmerkning</option>
               <option value="Randigt">Randigt</option>
               <option value="Vingler">vingler</option>
@@ -122,7 +136,7 @@ const HistorikkInput = ({
             </select>
           </div>
           <div>
-            <p>Handling</p>
+            <p>Handling:</p>
             <select className="select select-bordered select-xs w-full max-w-xs bg-white">
               <option value="">Velg</option>
               <option value="Slip">Slip</option>
@@ -131,7 +145,7 @@ const HistorikkInput = ({
             </select>
           </div>
           <div>
-            <p>Sideklaring</p>
+            <p>Sideklaring:</p>
             <select className="select select-bordered select-xs w-full max-w-xs bg-white">
               <option value="">Velg</option>
               <option value="0.45">0.45</option>
