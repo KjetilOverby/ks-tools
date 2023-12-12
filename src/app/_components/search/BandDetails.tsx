@@ -5,26 +5,25 @@ import HistorikkInput from "./HistorikkInput";
 
 interface bandProps {
   bandhistorikkData: {
+    id: string;
+    updatedAt: Date;
     serial: string;
     type: string;
-    createdAt: Date;
-    createdById: string;
-    userId: string;
-    creator: string;
-    deleted: boolean;
-    note: string;
-    personal: [];
-    bandhistorikk: [];
+    bandhistorikk: {
+      creator: string;
+      feilkode: string;
+      handling: string;
+      historikkId: string;
+      id: string;
+      postDato: Date;
+      sagNr: string;
+      sagtid: number;
+      sideklaring: number;
+      updatedAt: Date;
+    }[];
   };
+
   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
-  sagNr: string;
-  sagtid: number;
-  creator: string;
-  updatedAt: Date;
-  postDato: Date;
-  feilkode: string;
-  handling: string;
-  sideklaring: number;
 }
 
 const BandDetails = ({
@@ -32,6 +31,7 @@ const BandDetails = ({
   setOpenBandhistorikkData,
 }: bandProps) => {
   const [openInput, setOpenInput] = useState(false);
+  console.log(bandhistorikkData);
 
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
@@ -73,9 +73,7 @@ const BandDetails = ({
             </tr>
           </thead>
           <tbody>
-            {bandhistorikkData.bandhistorikk.map((blade: bandProps) => {
-              console.log(blade);
-
+            {bandhistorikkData.bandhistorikk.map((blade) => {
               return (
                 <>
                   <tr className="bg-accent">

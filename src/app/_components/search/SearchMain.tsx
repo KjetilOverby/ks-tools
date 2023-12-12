@@ -6,20 +6,43 @@ import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
 import DatePicker2 from "../reusable/Datepicker2";
 
+// interface Blade {
+//   type: string;
+//   serial: string;
+//   deleted: boolean;
+//   creator: string;
+//   updatedAt: Date; // Assuming updatedAt is a Date property
+//   id: string; // Assuming id is a string property
+//   _count: {
+//     bandhistorikk: number;
+//   };
+//   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
+//   openBandhistorikkData: boolean;
+//   setBandhistorikkData: React.Dispatch<React.SetStateAction<object>>;
+//   bandhistorikkData: [];
+// }
 interface Blade {
   type: string;
   serial: string;
   deleted: boolean;
   creator: string;
-  updatedAt: Date; // Assuming updatedAt is a Date property
-  id: string; // Assuming id is a string property
+  updatedAt: Date;
+  id: string;
   _count: {
     bandhistorikk: number;
   };
-  setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
-  openBandhistorikkData: boolean;
-  setBandhistorikkData: React.Dispatch<React.SetStateAction<{}>>;
-  bandhistorikkData: {};
+  bandhistorikk: {
+    creator: string;
+    feilkode: string;
+    handling: string;
+    historikkId: string;
+    id: string;
+    postDato: Date;
+    sagNr: string;
+    sagtid: number;
+    sideklaring: number;
+    updatedAt: Date;
+  }[];
 }
 
 interface BladeProps {
@@ -29,20 +52,41 @@ interface BladeProps {
 const SearchMain = ({ sawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
-  const [bandhistorikkData, setBandhistorikkData] = useState({});
+  const [bandhistorikkData, setBandhistorikkData] = useState({
+    updatedAt: new Date(),
+    id: '',
+    serial: "",
+    type: "",
+    bandhistorikk: [
+      {
+        creator: "",
+        feilkode: "",
+        handling: "",
+        historikkId: "",
+        postDato: new Date(),
+        sagNr: "",
+        id: "",
+        updatedAt: new Date(),
+        sagtid: 0,
+        sideklaring: 0,
+      },
+    ],
+  });
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
+  console.log(bandhistorikkData);
 
   const [IdInput, setIdInput] = useState("");
   const [searchIdResult, setSearchIdResult] = useState(
-    sawblades.filter((item: any) => item.serial.includes("40116")),
+    sawblades.filter((item: Blade) => item.serial.includes("")),
   );
 
   const [updateSearch, setUpdateSearch] = useState(false);
 
   useEffect(() => {
     setSearchIdResult(
-      sawblades.filter((item: any) => item.serial.includes(IdInput)),
+      sawblades.filter((item: Blade) => item.serial.includes(IdInput)),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [IdInput, updateSearch]);
 
   return (
@@ -89,10 +133,16 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           </thead>
           <tbody>
             {searchIdResult.map((blade) => {
-              console.log(blade);
+              console.log(blade.bandhistorikk);
               const openHistorikkHandler = () => {
                 setOpenBandhistorikkData(true);
-                setBandhistorikkData(blade);
+                setBandhistorikkData({
+                  serial: blade.serial,
+                  type: blade.type,
+                  bandhistorikk: blade.bandhistorikk,
+                  id: blade.id,
+                  updatedAt: blade.updatedAt
+                });
               };
 
               return (

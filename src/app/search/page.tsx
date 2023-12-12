@@ -2,7 +2,6 @@ import React from "react";
 import HeaderComponent from "../_components/HeaderComponent";
 import SearchMain from "../_components/search/SearchMain";
 import { api } from "~/trpc/server";
-import DatePicker2 from "../_components/reusable/Datepicker2";
 
 interface dateProps {
   searchParams: {
