@@ -44,7 +44,7 @@ export function CreatePost() {
         onChange={(e) =>
           setBladeData({ ...bladeData, serial: e.currentTarget.value })
         }
-        className="w-full rounded-xl bg-secondary px-4 py-2 text-sm text-accent"
+        className="w-full rounded-xl bg-secondary px-4 py-2 text-sm text-neutral"
       />
       <button
         type="submit"

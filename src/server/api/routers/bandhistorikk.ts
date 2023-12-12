@@ -10,7 +10,7 @@ export const bandhistorikkRouter = createTRPCRouter({
 
     
       create: protectedProcedure
-      .input(z.object({ sagNr: z.string(), postDato: z.date(), sagtid: z.number(), feilkode: z.string(), handling: z.string(), sideklaring: z.number(), createdById: z.string() }))
+      .input(z.object({ sagNr: z.string(), postDato: z.date(), sagtid: z.number(), feilkode: z.string(), handling: z.string(), sideklaring: z.number(), createdById: z.string(), bladedata: z.string() }))
       .mutation(({ ctx, input }) => {
         const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
     
@@ -24,7 +24,7 @@ export const bandhistorikkRouter = createTRPCRouter({
              sideklaring: input.sideklaring,
              creator: creatorName,
              createdById: input.createdById,
-             bladedata: { connect: { id: ctx.session.user.id} }
+             bladedata: { connect: { id: input.bladedata} }
              
 
          },

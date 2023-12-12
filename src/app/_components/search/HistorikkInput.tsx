@@ -1,15 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { api } from "~/trpc/react";
+import { useRouter } from "next/navigation";
 
 interface historikkInputProps {
   setOpenInput: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const HistorikkInput = ({ setOpenInput }: historikkInputProps) => {
+  const router = useRouter();
+  const createPost = api.bandhistorikk.create.useMutation({
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
+
+  const [historikkData, setHistorikkData] = useState({
+    sagNr: "4",
+    postDato: new Date(),
+    sagtid: 40,
+    feilkode: "feil",
+    handling: "Slipp",
+    sideklaring: 0.45,
+    creator: "",
+    baldedata: "",
+  });
   return (
     <div className="absolute z-40">
-      <div className="card w-96 bg-neutral text-neutral-content">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          createPost.mutate({
+            sagNr: historikkData.sagNr,
+            postDato: historikkData.postDato,
+            sagtid: historikkData.sagtid,
+            feilkode: historikkData.feilkode,
+            handling: historikkData.handling,
+            sideklaring: 0,
+            createdById: "",
+            bladedata: "clpu3gubr000enlz8cgt222tv",
+          });
+        }}
+        className="card w-96 bg-neutral text-neutral-content"
+      >
         <div className="card-body">
           <h2 className="card-title">Legg til data</h2>
           <div>
@@ -108,7 +142,7 @@ const HistorikkInput = ({ setOpenInput }: historikkInputProps) => {
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

@@ -11,7 +11,7 @@ import { createTRPCRouter } from "~/server/api/trpc";
 export const appRouter = createTRPCRouter({
   post: postRouter,
   sawblades: sawbladesRouter,
-  bandhistorikkRouter: bandhistorikkRouter,
+  bandhistorikk: bandhistorikkRouter,
 });
 
 // export type definition of API

@@ -29,7 +29,7 @@ export const NewInputComponent = ({
         onChange={(e) =>
           setBladeData({ ...bladeData, type: e.currentTarget.value })
         }
-        className="select select-info bg-secondary text-xs text-accent"
+        className="select select-info bg-accent text-xs text-neutral"
       >
         <option disabled selected>
           Velg bladtype

@@ -13,7 +13,7 @@ interface dateProps {
 const page = async ({ searchParams }: dateProps) => {
   let date1 = "2035-12-12";
   let date2 = "2023-12-05";
-  let serial = "4444";
+  let serial = "";
 
   if (searchParams.date) {
     date1 = searchParams.date;
