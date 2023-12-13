@@ -120,34 +120,27 @@ const HistorikkInput = ({
             >
               <option value="Ingen anmerkning">Ingen anmerkning</option>
               <option value="Randigt">Randigt</option>
-              <option value="Vingler">vingler</option>
+              <option value="Bølger">Bølger</option>
               <option value="Vandrer på hjul">Vandrer på hjul</option>
               <option value="Sprekk">Sprekk</option>
               <option value="Tannbrudd">Tannbrudd</option>
-              <option value="Sponfrysning">Sponfrysning</option>
-              <option value="Skarv">Skarv</option>
+              <option value="Sponpåliming">Sponpåliming</option>
+              <option value="Sløv">Sløv</option>
               <option value="River">River</option>
               <option value="Ytre faktorer">Ytre faktorer</option>
-              <option value="Handhavane">Handhavande</option>
               <option value="Reklamasjon">Reklamasjon</option>
               <option value="Ampere">Ampere</option>
               <option value="Havari">Havari</option>
-              <option value="Skrotet band">Skrotet band</option>
+              <option value="Røk av">Røk av</option>
             </select>
           </div>
-          <div>
-            <p>Handling:</p>
-            <select className="select select-bordered select-xs w-full max-w-xs bg-white">
-              <option value="">Velg</option>
-              <option value="Slip">Slip</option>
-              <option value="0">0</option>
-              <option value="5">5</option>
-            </select>
-          </div>
+
           <div>
             <p>Sideklaring:</p>
             <select className="select select-bordered select-xs w-full max-w-xs bg-white">
               <option value="">Velg</option>
+              <option value="0.45">0.35</option>
+              <option value="0.45">0.4</option>
               <option value="0.45">0.45</option>
               <option value="0.5">0.5</option>
               <option value="0.55">0.55</option>

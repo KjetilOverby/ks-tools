@@ -95,6 +95,9 @@ const BandDetails = ({
                     <td className="text-primary">{blade.feilkode}</td>
                     <td className="text-primary">{blade.handling}</td>
                     <td className="text-primary">{blade.sideklaring}</td>
+                    <td className="text-primary">
+                      <button className="btn btn-xs">KS</button>
+                    </td>
                   </tr>
                 </>
               );

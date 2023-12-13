@@ -154,13 +154,15 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                       <td className="text-primary">
                         <button
                           onClick={openHistorikkHandler}
-                          className="btn btn-xs"
+                          className="btn btn-xs bg-secondary"
                         >
-                          Åpne
+                          Historikk
                         </button>
                       </td>
                       <td className="text-primary">
-                        <button className="btn btn-xs">Rediger</button>
+                        <button className="btn btn-xs bg-accent">
+                          Registreringskort
+                        </button>
                       </td>
 
                       <td>
