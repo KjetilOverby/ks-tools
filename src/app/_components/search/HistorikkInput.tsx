@@ -31,9 +31,9 @@ const HistorikkInput = ({
     datoUt: new Date(),
     klUt: new Date(),
     sagtid: 0,
-    feilkode: "feil",
-    handling: "Slipp",
-    sideklaring: 0.45,
+    feilkode: "Ingen anmerkning",
+    handling: "Ingen handling",
+    sideklaring: 0,
     creator: "",
     bladedata: "",
     anmSag: "",
@@ -52,7 +52,7 @@ const HistorikkInput = ({
             sagtid: historikkData.sagtid,
             feilkode: historikkData.feilkode,
             handling: historikkData.handling,
-            sideklaring: 0,
+            sideklaring: historikkData.sideklaring,
             createdById: "",
             bladedata: bandId,
             anmSag: historikkData.anmSag,
@@ -181,21 +181,29 @@ const HistorikkInput = ({
             </select>
           </div>
 
-          <div>
+          {/*   <div>
             <p>Sideklaring:</p>
-            <select className="select select-bordered select-xs w-full max-w-xs bg-white">
-              <option value="">Velg</option>
-              <option value="0.35">0.35</option>
-              <option value="0.4">0.4</option>
-              <option value="0.45">0.45</option>
-              <option value="0.5">0.5</option>
-              <option value="0.55">0.55</option>
-              <option value="0.6">0.6</option>
-              <option value="0.65">0.65</option>
-              <option value="0.7">0.7</option>
-              <option value="0.75">0.75</option>
+            <select
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  sideklaring: e.currentTarget.value,
+                })
+              }
+              className="select select-bordered select-xs w-full max-w-xs bg-white"
+            >
+              <option value={0}>Velg</option>
+              <option value={0.35}>0.35</option>
+              <option value={0.4}>0.4</option>
+              <option value={0.45}>0.45</option>
+              <option value={0.5}>0.5</option>
+              <option value={0.55}>0.55</option>
+              <option value={0.6}>0.6</option>
+              <option value={0.65}>0.65</option>
+              <option value={0.7}>0.7</option>
+              <option value={0.75}>0.75</option>
             </select>
-          </div>
+          </div> */}
           <div className="card-actions">
             <button className="btn btn-primary btn-xs">Lagre</button>
             <button onClick={() => setOpenInput(false)} className="btn btn-xs">

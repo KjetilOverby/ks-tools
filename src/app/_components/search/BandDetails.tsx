@@ -82,35 +82,35 @@ const BandDetails = ({
             </tr>
           </thead>
           <tbody>
-            {bandhistorikkData.bandhistorikk.map((blade) => {
+            {bandhistorikkData.bandhistorikk.map((post) => {
               return (
                 <>
                   <tr className="bg-accent">
                     <td>
-                      <div className="text-xs text-neutral">{blade.sagNr}</div>
+                      <div className="text-xs text-neutral">{post.sagNr}</div>
                     </td>
                     <td>
                       <div className="text-xs text-neutral">
-                        {dateFormat(blade.datoInn, "dd.mm.yyyy")}
+                        {dateFormat(post.datoInn, "dd.mm.yyyy")}
                       </div>
                     </td>
                     <td>
                       <div className="text-xs text-neutral">
-                        {dateFormat(blade.datoUt, "dd.mm.yyyy")}
+                        {dateFormat(post.datoUt, "dd.mm.yyyy")}
                       </div>
                     </td>
                     <td className="font-bold text-neutral"></td>
 
-                    <td className="text-primary">{blade.feilkode}</td>
-                    <td className="text-primary">{blade.handling}</td>
-                    <td className="text-primary">{blade.sideklaring}</td>
+                    <td className="text-primary">{post.feilkode}</td>
+                    <td className="text-primary">{post.handling}</td>
+                    <td className="text-primary">{post.sideklaring}</td>
 
                     <td className="text-primary">
                       <button className="btn btn-xs">KS</button>
                     </td>
                     <td className="text-primary">
                       <Deletehistorikkpost
-                        post={blade.id}
+                        post={post.id}
                         setOpenBandhistorikkData={setOpenBandhistorikkData}
                       />
                     </td>
