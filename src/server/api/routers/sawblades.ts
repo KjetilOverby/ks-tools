@@ -13,7 +13,7 @@ export const sawbladesRouter = createTRPCRouter({
 
    
     getAll: protectedProcedure
-    .input(z.object({date: z.string(), date2: z.string(), serial: z.string()}))
+    .input(z.object({date: z.string(), date2: z.string(), IdNummer: z.string()}))
         .query(({ ctx, input }) => {
          return ctx.db.sawblades.findMany({
           where: {
@@ -22,7 +22,7 @@ export const sawbladesRouter = createTRPCRouter({
                lte: new Date(input.date),
                gte: new Date(input.date2),
               },
-              serial: {contains: input.serial ? input.serial : undefined},
+              IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined},
               
             }]
         
@@ -55,18 +55,19 @@ export const sawbladesRouter = createTRPCRouter({
 
     
       create: protectedProcedure
-      .input(z.object({ serial: z.string(), type: z.string(), deleted: z.boolean(), note: z.string() }))
+      .input(z.object({ IdNummer: z.string(), type: z.string(), deleted: z.boolean(), note: z.string(), kunde: z.string() }))
       .mutation(({ ctx, input }) => {
         const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
     
      return ctx.db.sawblades.create({
          data: {
-             serial: input.serial,
+             IdNummer: input.IdNummer,
              type: input.type,
              deleted: false,
              note: input.note,
              userId: ctx.session.user.id,
              creator: creatorName,
+             kunde: 'Østerdalsbruket',
              createdBy: { connect: { id: ctx.session.user.id} },
          },
        

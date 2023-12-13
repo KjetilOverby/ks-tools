@@ -10,9 +10,10 @@ export function CreatePost() {
   const router = useRouter();
   const [bladeData, setBladeData] = useState({
     type: "",
-    serial: "",
+    IdNummer: "",
     note: "",
     deleted: false,
+    kunde: "",
   });
 
   const createPost = api.sawblades.create.useMutation({
@@ -26,10 +27,11 @@ export function CreatePost() {
       onSubmit={(e) => {
         e.preventDefault();
         createPost.mutate({
-          serial: bladeData.serial,
+          IdNummer: bladeData.IdNummer,
           type: bladeData.type,
           note: bladeData.note,
           deleted: false,
+          kunde: "",
         });
       }}
       className="flex flex-col gap-2"
@@ -39,10 +41,10 @@ export function CreatePost() {
 
       <input
         type="text"
-        placeholder="Serial"
-        value={bladeData.serial}
+        placeholder="ID nummer"
+        value={bladeData.IdNummer}
         onChange={(e) =>
-          setBladeData({ ...bladeData, serial: e.currentTarget.value })
+          setBladeData({ ...bladeData, IdNummer: e.currentTarget.value })
         }
         className="w-full rounded-xl bg-secondary px-4 py-2 text-sm text-neutral"
       />

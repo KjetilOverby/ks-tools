@@ -26,7 +26,10 @@ const HistorikkInput = ({
 
   const [historikkData, setHistorikkData] = useState({
     sagNr: "4",
-    postDato: new Date(),
+    datoInn: new Date(),
+    klInn: new Date(),
+    datoUt: new Date(),
+    klUt: new Date(),
     sagtid: 40,
     feilkode: "feil",
     handling: "Slipp",
@@ -41,13 +44,21 @@ const HistorikkInput = ({
           e.preventDefault();
           createPost.mutate({
             sagNr: historikkData.sagNr,
-            postDato: historikkData.postDato,
+            datoInn: historikkData.datoInn,
+            klInn: historikkData.klInn,
+            datoUt: historikkData.datoUt,
+            klUt: historikkData.klUt,
             sagtid: historikkData.sagtid,
             feilkode: historikkData.feilkode,
             handling: historikkData.handling,
             sideklaring: 0,
             createdById: "",
             bladedata: bandId,
+            anmSag: "",
+            anmKS: "",
+            antTimer: 0,
+            hv: "",
+            datoSrv: new Date(),
           });
         }}
         className="card w-96 bg-neutral text-neutral-content"
@@ -72,7 +83,7 @@ const HistorikkInput = ({
               onChange={(e) =>
                 setHistorikkData({
                   ...historikkData,
-                  postDato: new Date(e.currentTarget.value),
+                  datoInn: new Date(e.currentTarget.value),
                 })
               }
               type="date"
@@ -119,7 +130,6 @@ const HistorikkInput = ({
               className="select select-bordered select-xs w-full max-w-xs bg-white"
             >
               <option value="Ingen anmerkning">Ingen anmerkning</option>
-              <option value="Randigt">Randigt</option>
               <option value="Bølger">Bølger</option>
               <option value="Vandrer på hjul">Vandrer på hjul</option>
               <option value="Sprekk">Sprekk</option>
@@ -139,8 +149,8 @@ const HistorikkInput = ({
             <p>Sideklaring:</p>
             <select className="select select-bordered select-xs w-full max-w-xs bg-white">
               <option value="">Velg</option>
-              <option value="0.45">0.35</option>
-              <option value="0.45">0.4</option>
+              <option value="0.35">0.35</option>
+              <option value="0.4">0.4</option>
               <option value="0.45">0.45</option>
               <option value="0.5">0.5</option>
               <option value="0.55">0.55</option>

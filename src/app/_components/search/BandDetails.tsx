@@ -7,7 +7,7 @@ interface bandProps {
   bandhistorikkData: {
     id: string;
     updatedAt: Date;
-    serial: string;
+    IdNummer: string;
     type: string;
     bandhistorikk: {
       creator: string;
@@ -15,7 +15,7 @@ interface bandProps {
       handling: string;
       historikkId: string;
       id: string;
-      postDato: Date;
+      datoInn: Date;
       sagNr: string;
       sagtid: number;
       sideklaring: number;
@@ -50,7 +50,7 @@ const BandDetails = ({
             Lukk
           </button>
           <h1 className="mt-5 text-4xl text-orange-300">
-            Bånd ID: {bandhistorikkData.serial}
+            Bånd ID: {bandhistorikkData.IdNummer}
           </h1>
           <p>Type: {bandhistorikkData.type}</p>
         </div>
@@ -87,7 +87,7 @@ const BandDetails = ({
                     </td>
                     <td>
                       <div className="text-xs text-neutral">
-                        {dateFormat(blade.postDato, "dd.mm.yyyy")}
+                        {dateFormat(blade.datoInn, "dd.mm.yyyy")}
                       </div>
                     </td>
                     <td className="font-bold text-neutral">{blade.sagtid}</td>

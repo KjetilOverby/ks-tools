@@ -24,7 +24,7 @@ const page = async ({ searchParams }: dateProps) => {
   const sawblades = await api.sawblades.getAll.query({
     date: date1,
     date2: date2,
-    serial: serial,
+    IdNummer: serial,
   });
 
   return (

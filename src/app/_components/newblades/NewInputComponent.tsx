@@ -5,16 +5,18 @@ import { Dispatch, SetStateAction } from "react";
 interface bladeDataProps {
   bladeData: {
     type: string;
-    serial: string;
+    IdNummer: string;
     note: string;
     deleted: boolean;
+    kunde: string;
   };
   setBladeData: Dispatch<
     SetStateAction<{
       type: string;
-      serial: string;
+      IdNummer: string;
       deleted: boolean;
       note: string;
+      kunde: string;
     }>
   >;
 }

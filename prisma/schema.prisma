@@ -102,8 +102,9 @@ model sawblades {
     id            String          @id @default(cuid())
     createdAt     DateTime        @default(now())
     updatedAt     DateTime        @updatedAt
+    kunde         String
     type          String
-    serial        String
+    IdNummer      String          @unique
     createdBy     User            @relation(fields: [createdById], references: [id])
     createdById   String
     userId        String
@@ -118,28 +119,27 @@ model sawblades {
 }
 
 model bandhistorikk {
-    id          String   @id @default(cuid())
+    id          String    @id @default(cuid())
     historikkId String
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
     sagNr       String
     datoInn     DateTime
-    klInn       DateTime
+    klInn       DateTime  @db.Time()
     datoUt      DateTime
-    klUt        DateTime
-    sagtid      Int
+    klUt        DateTime  @db.Time()
+    sagtid      Float
     feilkode    String
     sideklaring Float
     antTimer    Float
     anmSag      String
     createdById String
     creator     String
-
-    anmKS     String
-    hv        String
-    handling  String
-    datoSrv   DateTime
-    bladedata sawblades @relation(fields: [historikkId], references: [id])
+    anmKS       String
+    hv          String
+    handling    String
+    datoSrv     DateTime
+    bladedata   sawblades @relation(fields: [historikkId], references: [id])
 
     @@index([historikkId])
 }

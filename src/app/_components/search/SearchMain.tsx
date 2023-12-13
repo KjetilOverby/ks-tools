@@ -8,11 +8,12 @@ import DatePicker2 from "../reusable/Datepicker2";
 
 interface Blade {
   type: string;
-  serial: string;
+  IdNummer: string;
   deleted: boolean;
   creator: string;
   updatedAt: Date;
   id: string;
+  kunde: string;
   _count: {
     bandhistorikk: number;
   };
@@ -22,7 +23,7 @@ interface Blade {
     handling: string;
     historikkId: string;
     id: string;
-    postDato: Date;
+    datoInn: Date;
     sagNr: string;
     sagtid: number;
     sideklaring: number;
@@ -40,7 +41,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
   const [bandhistorikkData, setBandhistorikkData] = useState({
     updatedAt: new Date(),
     id: "",
-    serial: "",
+    IdNummer: "",
     type: "",
     bandhistorikk: [
       {
@@ -48,7 +49,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
         feilkode: "",
         handling: "",
         historikkId: "",
-        postDato: new Date(),
+        datoInn: new Date(),
         sagNr: "",
         id: "",
         updatedAt: new Date(),
@@ -112,7 +113,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
               const openHistorikkHandler = () => {
                 setOpenBandhistorikkData(true);
                 setBandhistorikkData({
-                  serial: blade.serial,
+                  IdNummer: blade.IdNummer,
                   type: blade.type,
                   bandhistorikk: blade.bandhistorikk,
                   id: blade.id,
@@ -147,7 +148,9 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           </div>
                         </div>
                       </td>
-                      <td className="font-bold text-neutral">{blade.serial}</td>
+                      <td className="font-bold text-neutral">
+                        {blade.IdNummer}
+                      </td>
 
                       <td className="text-primary">{blade.creator}</td>
                       <td>{blade._count.bandhistorikk}</td>
@@ -230,7 +233,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           </div>
                         </td>
                         <td className="font-bold text-neutral">
-                          {blade.serial}
+                          {blade.IdNummer}
                         </td>
 
                         <td className="text-primary">{blade.creator}</td>
