@@ -30,12 +30,13 @@ const HistorikkInput = ({
     klInn: new Date(),
     datoUt: new Date(),
     klUt: new Date(),
-    sagtid: 40,
+    sagtid: 0,
     feilkode: "feil",
     handling: "Slipp",
     sideklaring: 0.45,
     creator: "",
     bladedata: "",
+    anmSag: "",
   });
   return (
     <div className="absolute z-40">
@@ -54,7 +55,7 @@ const HistorikkInput = ({
             sideklaring: 0,
             createdById: "",
             bladedata: bandId,
-            anmSag: "",
+            anmSag: historikkData.anmSag,
             anmKS: "",
             antTimer: 0,
             hv: "",
@@ -67,7 +68,16 @@ const HistorikkInput = ({
           <h2 className="card-title">Legg til data</h2>
           <div>
             <p>Sag nr:</p>
-            <select className="select select-bordered select-xs w-full max-w-xs bg-white">
+            <select
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  sagNr: e.currentTarget.value,
+                })
+              }
+              className="select select-bordered select-xs w-full max-w-xs bg-white"
+            >
+              <option value="">Velg</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -84,6 +94,19 @@ const HistorikkInput = ({
                 setHistorikkData({
                   ...historikkData,
                   datoInn: new Date(e.currentTarget.value),
+                })
+              }
+              type="date"
+              className="input input-bordered input-xs w-full max-w-xs bg-white"
+            />
+          </div>
+          <div>
+            <p>Utpostningsdato:</p>
+            <input
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  datoUt: new Date(e.currentTarget.value),
                 })
               }
               type="date"
@@ -114,6 +137,19 @@ const HistorikkInput = ({
           <div>
             <p>Rutine:</p>
             <input
+              type="text"
+              className="input input-bordered input-xs w-full max-w-xs bg-white"
+            />
+          </div>
+          <div>
+            <p>Anm sag:</p>
+            <input
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  anmSag: e.currentTarget.value,
+                })
+              }
               type="text"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />

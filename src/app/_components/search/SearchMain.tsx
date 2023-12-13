@@ -24,9 +24,11 @@ interface Blade {
     historikkId: string;
     id: string;
     datoInn: Date;
+    datoUt: Date;
     sagNr: string;
     sagtid: number;
     sideklaring: number;
+    anmSag: string;
     updatedAt: Date;
   }[];
 }
@@ -50,6 +52,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
         handling: "",
         historikkId: "",
         datoInn: new Date(),
+        datoUt: new Date(),
         sagNr: "",
         id: "",
         updatedAt: new Date(),
@@ -59,7 +62,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
     ],
   });
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
-  console.log(bandhistorikkData);
 
   /*   const [searchIdResult, setSearchIdResult] = useState(
     sawblades.filter((item: Blade) => item.serial.includes("")),
@@ -109,7 +111,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           </thead>
           <tbody>
             {sawblades.map((blade) => {
-              console.log(blade.bandhistorikk);
               const openHistorikkHandler = () => {
                 setOpenBandhistorikkData(true);
                 setBandhistorikkData({
@@ -160,11 +161,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           className="btn btn-xs bg-secondary"
                         >
                           Historikk
-                        </button>
-                      </td>
-                      <td className="text-primary">
-                        <button className="btn btn-xs bg-accent">
-                          Registreringskort
                         </button>
                       </td>
 

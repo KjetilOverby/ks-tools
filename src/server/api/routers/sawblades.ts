@@ -67,7 +67,7 @@ export const sawbladesRouter = createTRPCRouter({
              note: input.note,
              userId: ctx.session.user.id,
              creator: creatorName,
-             kunde: 'Østerdalsbruket',
+             kunde: 'Moelven Østerdalsbruket',
              createdBy: { connect: { id: ctx.session.user.id} },
          },
        

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import dateFormat from "dateformat";
 import HistorikkInput from "./HistorikkInput";
+import Deletehistorikkpost from "./deletehistorikkpost";
 
 interface bandProps {
   bandhistorikkData: {
@@ -9,6 +10,7 @@ interface bandProps {
     updatedAt: Date;
     IdNummer: string;
     type: string;
+
     bandhistorikk: {
       creator: string;
       feilkode: string;
@@ -16,6 +18,7 @@ interface bandProps {
       historikkId: string;
       id: string;
       datoInn: Date;
+      datoUt: Date;
       sagNr: string;
       sagtid: number;
       sideklaring: number;
@@ -69,6 +72,7 @@ const BandDetails = ({
             <tr>
               <th className="text-sm text-accent">Sag</th>
               <th className="text-sm text-accent">Innpostet</th>
+              <th className="text-sm text-accent">Utpostet</th>
 
               <th className="text-sm text-accent">Sagtid</th>
 
@@ -90,13 +94,25 @@ const BandDetails = ({
                         {dateFormat(blade.datoInn, "dd.mm.yyyy")}
                       </div>
                     </td>
-                    <td className="font-bold text-neutral">{blade.sagtid}</td>
+                    <td>
+                      <div className="text-xs text-neutral">
+                        {dateFormat(blade.datoUt, "dd.mm.yyyy")}
+                      </div>
+                    </td>
+                    <td className="font-bold text-neutral"></td>
 
                     <td className="text-primary">{blade.feilkode}</td>
                     <td className="text-primary">{blade.handling}</td>
                     <td className="text-primary">{blade.sideklaring}</td>
+
                     <td className="text-primary">
                       <button className="btn btn-xs">KS</button>
+                    </td>
+                    <td className="text-primary">
+                      <Deletehistorikkpost
+                        post={blade.id}
+                        setOpenBandhistorikkData={setOpenBandhistorikkData}
+                      />
                     </td>
                   </tr>
                 </>

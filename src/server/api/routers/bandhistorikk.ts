@@ -38,7 +38,18 @@ export const bandhistorikkRouter = createTRPCRouter({
          },
        
      })
+
+     
  
+  }),
+  delete: protectedProcedure.input(z.object({id: z.string()}))
+  .mutation(async ({ctx, input}) => {
+      return ctx.db.bandhistorikk.delete({
+          
+          where: {
+              id: input.id
+          },
+      });
   }),
 })
 
