@@ -1,6 +1,5 @@
 "use client";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import dateFormat from "dateformat";
 
@@ -20,7 +19,7 @@ const [value2, setValue2] = useState(`${year}-${month}-${day}`); */
 const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
   const [value, setValue] = useState(`2033-12-01`);
   const [value2, setValue2] = useState(`2023-12-01`);
-  const [searchSerial, setSearchSerial] = useState("");
+  const [searchSerial, setSearchSerial] = useState<string>("");
 
   return (
     <div className="w-22 rounded-xl bg-accent p-5">
@@ -45,7 +44,11 @@ const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
           </div>
 
           <div className="mt-5">
-            <form onSubmit={(e) => setSearchSerial(e.currentTarget.value)}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <label>Id nummer</label>
               <input
                 onChange={(e) => setSearchSerial(e.currentTarget.value)}
@@ -53,7 +56,6 @@ const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
                 placeholder="ID nummer"
                 className="input input-bordered input-xs mt-1 w-full max-w-xs text-xs"
               />
-
               <Link
                 href={{
                   pathname: `${link}`,
@@ -64,10 +66,7 @@ const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
                   },
                 }}
               >
-                <button
-                  onClick={() => setUpdateSearch(!updateSearch)}
-                  className="btn btn-xs mt-5 bg-primary"
-                >
+                <button className="btn btn-xs mt-5 bg-primary">
                   Hent data
                 </button>
               </Link>
