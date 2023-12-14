@@ -70,7 +70,7 @@ const HistorikkInput = ({
             createdBy: "",
           });
         }}
-        className="card w-96 bg-neutral text-neutral-content"
+        className="card w-96 bg-slate-500 text-neutral-content"
       >
         <div className="card-body">
           <h2 className="card-title">Legg til data</h2>

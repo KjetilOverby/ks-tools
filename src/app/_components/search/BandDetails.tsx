@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import dateFormat from "dateformat";
 import HistorikkInput from "./HistorikkInput";
 import Deletehistorikkpost from "./deletehistorikkpost";
+import HistorikkInputKS from "./HistorikkInputKS";
 
 interface bandProps {
   bandhistorikkData: {
@@ -40,6 +41,7 @@ const BandDetails = ({
   const [openInput, setOpenInput] = useState(false);
   const [openMessage, setOpenMessage] = useState(false);
   const [openMessageKS, setOpenMessageKS] = useState(false);
+  const [openInputKS, setOpenInputKS] = useState();
 
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
@@ -50,6 +52,7 @@ const BandDetails = ({
           setOpenBandhistorikkData={setOpenBandhistorikkData}
         />
       )}
+      {openInputKS && <HistorikkInputKS />}
       <div className="mb-12">
         <div>
           <button
@@ -139,7 +142,12 @@ const BandDetails = ({
                     </td>
                     <td className="text-primary">KTL</td>
                     <td className="text-primary">
-                      <button className="btn btn-xs">KS</button>
+                      <button
+                        onClick={() => setOpenInputKS(!openInputKS)}
+                        className="btn btn-xs"
+                      >
+                        KS
+                      </button>
                     </td>
                     <td className="text-primary">Handling</td>
                     <td className="max-w-56 text-primary">
