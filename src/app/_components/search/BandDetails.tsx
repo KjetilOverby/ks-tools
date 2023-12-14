@@ -68,9 +68,6 @@ const BandDetails = ({
         <HistorikkInputKS
           setOpenBandhistorikkData={setOpenInputKS}
           postId={postId}
-          anmKS={""}
-          handling={""}
-          datoSrv={new Date()}
           historikkKs={historikkKs}
           setHistorikkKs={setHistorikkKs}
         />
