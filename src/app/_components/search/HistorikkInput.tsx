@@ -37,6 +37,7 @@ const HistorikkInput = ({
     creator: "",
     bladedata: "",
     anmSag: "",
+    antTimer: 0,
   });
   return (
     <div className="absolute z-40">
@@ -57,7 +58,7 @@ const HistorikkInput = ({
             bladedata: bandId,
             anmSag: historikkData.anmSag,
             anmKS: "",
-            antTimer: 0,
+            antTimer: historikkData.antTimer,
             hv: "",
             datoSrv: new Date(),
           });
@@ -101,6 +102,24 @@ const HistorikkInput = ({
             />
           </div>
           <div>
+            <p>Klokkeslett inn:</p>
+            <input
+              onChange={(e) => {
+                const [hours, minutes] = e.currentTarget.value.split(":");
+                const updatedDate = new Date(historikkData.klInn);
+                updatedDate.setHours(Number(hours));
+                updatedDate.setMinutes(Number(minutes));
+                updatedDate.setSeconds(0); // Optionally, set seconds to 0
+                setHistorikkData({
+                  ...historikkData,
+                  klInn: updatedDate,
+                });
+              }}
+              type="time"
+              className="input input-bordered input-xs w-full max-w-xs bg-white"
+            />
+          </div>
+          <div>
             <p>Utpostningsdato:</p>
             <input
               onChange={(e) =>
@@ -114,8 +133,19 @@ const HistorikkInput = ({
             />
           </div>
           <div>
-            <p>Klokkeslett:</p>
+            <p>Klokkeslett ut:</p>
             <input
+              onChange={(e) => {
+                const [hours, minutes] = e.currentTarget.value.split(":");
+                const updatedDate = new Date(historikkData.klInn);
+                updatedDate.setHours(Number(hours));
+                updatedDate.setMinutes(Number(minutes));
+                updatedDate.setSeconds(0); // Optionally, set seconds to 0
+                setHistorikkData({
+                  ...historikkData,
+                  klUt: updatedDate,
+                });
+              }}
               type="time"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
@@ -123,6 +153,12 @@ const HistorikkInput = ({
           <div>
             <p>antall timer:</p>
             <input
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  sagtid: Number(e.currentTarget.value),
+                })
+              }
               type="number"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
@@ -130,6 +166,12 @@ const HistorikkInput = ({
           <div>
             <p>Temperatur:</p>
             <input
+              onChange={(e) =>
+                setHistorikkData({
+                  ...historikkData,
+                  anmSag: e.currentTarget.value,
+                })
+              }
               type="number"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
@@ -181,13 +223,13 @@ const HistorikkInput = ({
             </select>
           </div>
 
-          {/*   <div>
+          <div>
             <p>Sideklaring:</p>
             <select
               onChange={(e) =>
                 setHistorikkData({
                   ...historikkData,
-                  sideklaring: e.currentTarget.value,
+                  sideklaring: Number(e.currentTarget.value),
                 })
               }
               className="select select-bordered select-xs w-full max-w-xs bg-white"
@@ -203,7 +245,7 @@ const HistorikkInput = ({
               <option value={0.7}>0.7</option>
               <option value={0.75}>0.75</option>
             </select>
-          </div> */}
+          </div>
           <div className="card-actions">
             <button className="btn btn-primary btn-xs">Lagre</button>
             <button onClick={() => setOpenInput(false)} className="btn btn-xs">

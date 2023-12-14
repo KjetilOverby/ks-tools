@@ -24,7 +24,9 @@ interface Blade {
     historikkId: string;
     id: string;
     datoInn: Date;
+    klInn: Date;
     datoUt: Date;
+    klUt: Date;
     sagNr: string;
     sagtid: number;
     sideklaring: number;
@@ -52,7 +54,9 @@ const SearchMain = ({ sawblades }: BladeProps) => {
         handling: "",
         historikkId: "",
         datoInn: new Date(),
+        klInn: new Date(),
         datoUt: new Date(),
+        klUt: new Date(),
         sagNr: "",
         id: "",
         updatedAt: new Date(),

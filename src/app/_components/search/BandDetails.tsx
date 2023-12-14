@@ -20,9 +20,11 @@ interface bandProps {
       datoInn: Date;
       datoUt: Date;
       sagNr: string;
-      sagtid: number;
       sideklaring: number;
       updatedAt: Date;
+      sagtid: number;
+      klInn: Date;
+      klUt: Date;
     }[];
   };
 
@@ -74,15 +76,23 @@ const BandDetails = ({
               <th className="text-sm text-accent">Innpostet</th>
               <th className="text-sm text-accent">Utpostet</th>
 
-              <th className="text-sm text-accent">Sagtid</th>
+              <th className="text-sm text-accent">T</th>
 
+              <th className="text-sm text-accent">Temp</th>
+              <th className="text-sm text-accent">Rutine</th>
+              <th className="text-sm text-accent">SK</th>
               <th className="text-sm text-accent">Feilkode</th>
-              <th className="text-sm text-accent">Handling</th>
-              <th className="text-sm text-accent">Sideklaring</th>
+              <th className="text-sm text-accent">Anm sag</th>
+              <th className="text-sm text-blue-500"></th>
+              <th className="text-sm text-blue-500">Handling</th>
+              <th className="text-sm text-blue-500">Anm KS</th>
+              <th className="text-sm text-blue-500">Dato srv</th>
             </tr>
           </thead>
           <tbody>
             {bandhistorikkData.bandhistorikk.map((post) => {
+              console.log(post);
+
               return (
                 <>
                   <tr className="bg-accent">
@@ -91,23 +101,34 @@ const BandDetails = ({
                     </td>
                     <td>
                       <div className="text-xs text-neutral">
-                        {dateFormat(post.datoInn, "dd.mm.yyyy")}
+                        {dateFormat(post.datoInn, "dd.mm.yyyy")},{" "}
+                        {dateFormat(post.klInn, "HH:MM")}
                       </div>
                     </td>
                     <td>
                       <div className="text-xs text-neutral">
-                        {dateFormat(post.datoUt, "dd.mm.yyyy")}
+                        {dateFormat(post.datoUt, "dd.mm.yyyy")},{" "}
+                        {dateFormat(post.klUt, "HH:MM")}
                       </div>
                     </td>
-                    <td className="font-bold text-neutral"></td>
+                    <td className="font-bold text-neutral">{post.sagtid}</td>
 
-                    <td className="text-primary">{post.feilkode}</td>
-                    <td className="text-primary">{post.handling}</td>
+                    <td className="text-primary">20 grader</td>
+                    <td className="text-primary">Rutine</td>
                     <td className="text-primary">{post.sideklaring}</td>
+                    <td className="text-primary">{post.feilkode}</td>
 
+                    <td className="text-primary">
+                      <button className="btn btn-xs bg-accent">Vis</button>
+                    </td>
                     <td className="text-primary">
                       <button className="btn btn-xs">KS</button>
                     </td>
+                    <td className="text-primary">Handling</td>
+                    <td className="text-primary">
+                      <button className="btn btn-xs bg-primary">Vis</button>
+                    </td>
+                    <td className="text-primary">20.05.2020</td>
                     <td className="text-primary">
                       <Deletehistorikkpost
                         post={post.id}
