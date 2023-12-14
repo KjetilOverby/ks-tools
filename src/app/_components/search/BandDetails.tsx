@@ -41,7 +41,8 @@ const BandDetails = ({
   const [openInput, setOpenInput] = useState(false);
   const [openMessage, setOpenMessage] = useState(false);
   const [openMessageKS, setOpenMessageKS] = useState(false);
-  const [openInputKS, setOpenInputKS] = useState();
+  const [openInputKS, setOpenInputKS] = useState(false);
+  const [postId, setPostId] = useState("");
 
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
@@ -52,7 +53,13 @@ const BandDetails = ({
           setOpenBandhistorikkData={setOpenBandhistorikkData}
         />
       )}
-      {openInputKS && <HistorikkInputKS />}
+      {openInputKS && (
+        <HistorikkInputKS
+          setOpenBandhistorikkData={setOpenInputKS}
+          postId={postId}
+          anmKS={""}
+        />
+      )}
       <div className="mb-12">
         <div>
           <button
@@ -100,8 +107,10 @@ const BandDetails = ({
           </thead>
           <tbody>
             {bandhistorikkData.bandhistorikk.map((post) => {
-              console.log(post);
-
+              const openKSinput = () => {
+                setOpenInputKS(true);
+                setPostId(post.id);
+              };
               return (
                 <>
                   <tr className="bg-accent">
@@ -142,16 +151,13 @@ const BandDetails = ({
                     </td>
                     <td className="text-primary">KTL</td>
                     <td className="text-primary">
-                      <button
-                        onClick={() => setOpenInputKS(!openInputKS)}
-                        className="btn btn-xs"
-                      >
+                      <button onClick={openKSinput} className="btn btn-xs">
                         KS
                       </button>
                     </td>
                     <td className="text-primary">Handling</td>
                     <td className="max-w-56 text-primary">
-                      {/* {post.anmKS && (
+                      {post.anmKS && (
                         <>
                           <button
                             onClick={() => setOpenMessageKS(!openMessageKS)}
@@ -161,7 +167,7 @@ const BandDetails = ({
                           </button>
                           {openMessageKS && <p>{post.anmKS}</p>}
                         </>
-                      )} */}
+                      )}
                     </td>
                     <td className="text-primary">KL</td>
                     <td className="text-primary">20.05.2020</td>
