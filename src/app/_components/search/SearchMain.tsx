@@ -19,6 +19,7 @@ interface Blade {
   };
   bandhistorikk: {
     creator: string;
+
     feilkode: string;
     handling: string;
     historikkId: string;
@@ -33,6 +34,9 @@ interface Blade {
     anmSag: string;
     updatedAt: Date;
     anmKS: string;
+    temperatur: number;
+    sgSag: string;
+    sgKS: string;
   }[];
 }
 
@@ -65,6 +69,9 @@ const SearchMain = ({ sawblades }: BladeProps) => {
         sideklaring: 0,
         anmSag: "",
         anmKS: "",
+        temperatur: 0,
+        sgSag: "",
+        sgKS: "",
       },
     ],
   });

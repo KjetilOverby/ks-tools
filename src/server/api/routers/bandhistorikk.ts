@@ -10,7 +10,7 @@ export const bandhistorikkRouter = createTRPCRouter({
 
     
       create: protectedProcedure
-      .input(z.object({ sagNr: z.string(), datoInn: z.date(), klInn: z.date(), klUt: z.date(), datoUt: z.date(),antTimer: z.number(), feilkode: z.string(), anmSag: z.string(), hv: z.string(), handling: z.string(), sideklaring: z.number(), datoSrv: z.date(),createdById: z.string(), bladedata: z.string(), anmKS: z.string(), sagtid:z.number() }))
+      .input(z.object({ sagNr: z.string(), datoInn: z.date(), klInn: z.date(), klUt: z.date(), datoUt: z.date(),antTimer: z.number(), feilkode: z.string(), anmSag: z.string(), temperatur: z.number(), userId: z.string(),  handling: z.string(), sideklaring: z.number(), sgSag: z.string(), datoSrv: z.date(),createdById: z.string(), bladedata: z.string(), anmKS: z.string(), createdBy: z.string(), sagtid:z.number(), sgKS: z.string() }))
       .mutation(({ ctx, input }) => {
         const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
     
@@ -25,13 +25,16 @@ export const bandhistorikkRouter = createTRPCRouter({
              feilkode: input.feilkode,
              sideklaring: input.sideklaring,
              anmSag: input.anmSag,
+             temperatur: input.temperatur,
              creator: creatorName,
-             createdById: input.createdById,
-             hv: input.hv,
+             userId: '',
              sagtid: input.sagtid,
+             sgSag: input.sgSag,
              anmKS: input.anmKS,
              handling: input.handling,
              datoSrv: input.datoSrv,
+             sgKS: input.sgKS,
+             createdBy: { connect: { id: ctx.session.user.id} },
              bladedata: { connect: { id: input.bladedata} },
              
 

@@ -38,6 +38,9 @@ const HistorikkInput = ({
     bladedata: "",
     anmSag: "",
     antTimer: 0,
+    temperatur: 0,
+    sgSag: "",
+    sgKS: "",
   });
   return (
     <div className="absolute z-40">
@@ -59,8 +62,12 @@ const HistorikkInput = ({
             anmSag: historikkData.anmSag,
             anmKS: "",
             antTimer: historikkData.antTimer,
-            hv: "",
             datoSrv: new Date(),
+            temperatur: historikkData.temperatur,
+            userId: "",
+            sgSag: "",
+            sgKS: "",
+            createdBy: "",
           });
         }}
         className="card w-96 bg-neutral text-neutral-content"
@@ -169,7 +176,7 @@ const HistorikkInput = ({
               onChange={(e) =>
                 setHistorikkData({
                   ...historikkData,
-                  anmSag: e.currentTarget.value,
+                  temperatur: Number(e.currentTarget.value),
                 })
               }
               type="number"
