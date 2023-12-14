@@ -25,6 +25,8 @@ interface bandProps {
       sagtid: number;
       klInn: Date;
       klUt: Date;
+      anmSag: string;
+      anmKS: string;
     }[];
   };
 
@@ -36,6 +38,8 @@ const BandDetails = ({
   setOpenBandhistorikkData,
 }: bandProps) => {
   const [openInput, setOpenInput] = useState(false);
+  const [openMessage, setOpenMessage] = useState(false);
+  const [openMessageKS, setOpenMessageKS] = useState(false);
 
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
@@ -82,10 +86,12 @@ const BandDetails = ({
               <th className="text-sm text-accent">Rutine</th>
               <th className="text-sm text-accent">SK</th>
               <th className="text-sm text-accent">Feilkode</th>
-              <th className="text-sm text-accent">Anm sag</th>
+              <th className="text-sm text-accent">Anm</th>
+              <th className="text-sm text-accent">Sign</th>
               <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500">Handling</th>
               <th className="text-sm text-blue-500">Anm KS</th>
+              <th className="text-sm text-blue-500">SG</th>
               <th className="text-sm text-blue-500">Dato srv</th>
             </tr>
           </thead>
@@ -118,16 +124,38 @@ const BandDetails = ({
                     <td className="text-primary">{post.sideklaring}</td>
                     <td className="text-primary">{post.feilkode}</td>
 
-                    <td className="text-primary">
-                      <button className="btn btn-xs bg-accent">Vis</button>
+                    <td className="max-w-56  text-primary">
+                      {post.anmSag && (
+                        <>
+                          <button
+                            onClick={() => setOpenMessage(!openMessage)}
+                            className="btn btn-xs bg-accent"
+                          >
+                            Vis
+                          </button>
+                          {openMessage && <p>{post.anmSag}</p>}
+                        </>
+                      )}
                     </td>
+                    <td className="text-primary">KTL</td>
                     <td className="text-primary">
                       <button className="btn btn-xs">KS</button>
                     </td>
                     <td className="text-primary">Handling</td>
-                    <td className="text-primary">
-                      <button className="btn btn-xs bg-primary">Vis</button>
+                    <td className="max-w-56 text-primary">
+                      {/* {post.anmKS && (
+                        <>
+                          <button
+                            onClick={() => setOpenMessageKS(!openMessageKS)}
+                            className="btn btn-xs bg-accent"
+                          >
+                            Vis
+                          </button>
+                          {openMessageKS && <p>{post.anmKS}</p>}
+                        </>
+                      )} */}
                     </td>
+                    <td className="text-primary">KL</td>
                     <td className="text-primary">20.05.2020</td>
                     <td className="text-primary">
                       <Deletehistorikkpost

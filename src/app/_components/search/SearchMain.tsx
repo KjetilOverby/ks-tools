@@ -32,6 +32,7 @@ interface Blade {
     sideklaring: number;
     anmSag: string;
     updatedAt: Date;
+    anmKS: string;
   }[];
 }
 
@@ -62,6 +63,8 @@ const SearchMain = ({ sawblades }: BladeProps) => {
         updatedAt: new Date(),
         sagtid: 0,
         sideklaring: 0,
+        anmSag: "",
+        anmKS: "",
       },
     ],
   });

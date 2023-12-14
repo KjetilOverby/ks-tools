@@ -69,11 +69,12 @@ model User {
     // role  UserRole @default(LOGIN)
     role UserRole @default(LOGIN)
 
-    accounts  Account[]
-    sessions  Session[]
-    personal  personal[]
-    sawblades sawblades[]
-    Post      Post[]
+    accounts      Account[]
+    sessions      Session[]
+    personal      personal[]
+    sawblades     sawblades[]
+    Post          Post[]
+    bandhistorikk bandhistorikk[]
 }
 
 model VerificationToken {
@@ -123,6 +124,8 @@ model bandhistorikk {
     historikkId String
     createdAt   DateTime  @default(now())
     updatedAt   DateTime  @updatedAt
+    userId      String
+    createdBy   User      @relation(fields: [createdById], references: [id])
     sagNr       String
     datoInn     DateTime
     klInn       DateTime  @db.Time()
@@ -130,16 +133,19 @@ model bandhistorikk {
     klUt        DateTime  @db.Time()
     sagtid      Float
     feilkode    String
+    temperatur  Int
     sideklaring Float
     antTimer    Float
     anmSag      String
     createdById String
     creator     String
     anmKS       String
-    hv          String
+    sgSag       String
+    sgKS        String
     handling    String
     datoSrv     DateTime
     bladedata   sawblades @relation(fields: [historikkId], references: [id])
 
     @@index([historikkId])
+    @@index([createdById])
 }
