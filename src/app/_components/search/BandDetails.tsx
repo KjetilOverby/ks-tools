@@ -28,6 +28,10 @@ interface bandProps {
       klUt: Date;
       anmSag: string;
       anmKS: string;
+      sgKS: string;
+      sgSag: string;
+      datoSrv: Date;
+      temperatur: number;
     }[];
   };
 
@@ -44,6 +48,13 @@ const BandDetails = ({
   const [openInputKS, setOpenInputKS] = useState(false);
   const [postId, setPostId] = useState("");
 
+  const [historikkKs, setHistorikkKs] = useState({
+    anmKS: "",
+    sgKS: "",
+    datoSrv: new Date(),
+    handling: "",
+  });
+
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
       {openInput && (
@@ -58,6 +69,10 @@ const BandDetails = ({
           setOpenBandhistorikkData={setOpenInputKS}
           postId={postId}
           anmKS={""}
+          handling={""}
+          datoSrv={new Date()}
+          historikkKs={historikkKs}
+          setHistorikkKs={setHistorikkKs}
         />
       )}
       <div className="mb-12">
@@ -110,6 +125,12 @@ const BandDetails = ({
               const openKSinput = () => {
                 setOpenInputKS(true);
                 setPostId(post.id);
+                setHistorikkKs({
+                  anmKS: post.anmKS,
+                  handling: post.handling,
+                  sgKS: post.sgKS,
+                  datoSrv: post.datoSrv,
+                });
               };
               return (
                 <>
@@ -131,7 +152,7 @@ const BandDetails = ({
                     </td>
                     <td className="font-bold text-neutral">{post.sagtid}</td>
 
-                    <td className="text-primary">20 grader</td>
+                    <td className="text-primary">{post.temperatur}</td>
                     <td className="text-primary">Rutine</td>
                     <td className="text-primary">{post.sideklaring}</td>
                     <td className="text-primary">{post.feilkode}</td>
@@ -149,13 +170,13 @@ const BandDetails = ({
                         </>
                       )}
                     </td>
-                    <td className="text-primary">KTL</td>
+                    <td className="text-primary">{post.sgSag}</td>
                     <td className="text-primary">
                       <button onClick={openKSinput} className="btn btn-xs">
                         KS
                       </button>
                     </td>
-                    <td className="text-primary">Handling</td>
+                    <td className="text-primary">{post.handling}</td>
                     <td className="max-w-56 text-primary">
                       {post.anmKS && (
                         <>
@@ -169,8 +190,10 @@ const BandDetails = ({
                         </>
                       )}
                     </td>
-                    <td className="text-primary">KL</td>
-                    <td className="text-primary">20.05.2020</td>
+                    <td className="text-primary">{post.sgKS}</td>
+                    <td className="text-primary">
+                      {dateFormat(post.datoSrv, "dd.mm.yyyy")}
+                    </td>
                     <td className="text-primary">
                       <Deletehistorikkpost
                         post={post.id}

@@ -17,6 +17,7 @@ interface Blade {
   _count: {
     bandhistorikk: number;
   };
+  
   bandhistorikk: {
     creator: string;
 
@@ -37,6 +38,7 @@ interface Blade {
     temperatur: number;
     sgSag: string;
     sgKS: string;
+    datoSrv: Date;
   }[];
 }
 
@@ -72,6 +74,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
         temperatur: 0,
         sgSag: "",
         sgKS: "",
+        datoSrv: new Date(),
       },
     ],
   });
