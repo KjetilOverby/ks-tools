@@ -66,7 +66,8 @@ const BandDetails = ({
       )}
       {openInputKS && (
         <HistorikkInputKS
-          setOpenBandhistorikkData={setOpenInputKS}
+          setOpenBandhistorikkData={setOpenBandhistorikkData}
+          setOpenInputKS={setOpenInputKS}
           postId={postId}
           historikkKs={historikkKs}
           setHistorikkKs={setHistorikkKs}

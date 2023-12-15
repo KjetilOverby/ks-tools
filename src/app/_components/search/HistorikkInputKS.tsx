@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 
@@ -12,6 +12,7 @@ interface historikkInputProps {
     sgKS: string;
     datoSrv: Date;
   };
+  setOpenInputKS: React.Dispatch<React.SetStateAction<boolean>>;
   setHistorikkKs: React.Dispatch<
     React.SetStateAction<{
       anmKS: string;
@@ -27,6 +28,7 @@ const HistorikkInputKS = ({
   postId,
   historikkKs,
   setHistorikkKs,
+  setOpenInputKS,
 }: historikkInputProps) => {
   const router = useRouter();
   const updatePost = api.bandhistorikk.update.useMutation({
@@ -118,7 +120,7 @@ const HistorikkInputKS = ({
           <div className="card-actions">
             <button className="btn btn-primary btn-xs">Lagre</button>
             <button
-              onClick={() => setOpenBandhistorikkData(false)}
+              onClick={() => setOpenInputKS(false)}
               className="btn btn-xs"
             >
               Avbryt
