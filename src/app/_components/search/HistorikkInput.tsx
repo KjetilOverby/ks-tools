@@ -158,7 +158,7 @@ const HistorikkInput = ({
             />
           </div>
           <div>
-            <p>antall timer:</p>
+            <p>Antall timer:</p>
             <input
               onChange={(e) =>
                 setHistorikkData({
@@ -184,7 +184,7 @@ const HistorikkInput = ({
             />
           </div>
           <div>
-            <p>Rutine:</p>
+            <p>Ampere:</p>
             <input
               type="text"
               className="input input-bordered input-xs w-full max-w-xs bg-white"
@@ -224,9 +224,7 @@ const HistorikkInput = ({
               <option value="River">River</option>
               <option value="Ytre faktorer">Ytre faktorer</option>
               <option value="Reklamasjon">Reklamasjon</option>
-              <option value="Ampere">Ampere</option>
               <option value="Havari">Havari</option>
-              <option value="Røk av">Røk av</option>
             </select>
           </div>
 
@@ -242,7 +240,6 @@ const HistorikkInput = ({
               className="select select-bordered select-xs w-full max-w-xs bg-white"
             >
               <option value={0}>Velg</option>
-              <option value={0.35}>0.35</option>
               <option value={0.4}>0.4</option>
               <option value={0.45}>0.45</option>
               <option value={0.5}>0.5</option>
@@ -250,7 +247,6 @@ const HistorikkInput = ({
               <option value={0.6}>0.6</option>
               <option value={0.65}>0.65</option>
               <option value={0.7}>0.7</option>
-              <option value={0.75}>0.75</option>
             </select>
           </div>
           <div className="card-actions">

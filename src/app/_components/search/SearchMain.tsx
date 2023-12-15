@@ -17,7 +17,7 @@ interface Blade {
   _count: {
     bandhistorikk: number;
   };
-  
+
   bandhistorikk: {
     creator: string;
 

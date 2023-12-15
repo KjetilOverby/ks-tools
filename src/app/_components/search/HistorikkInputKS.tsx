@@ -85,7 +85,7 @@ const HistorikkInputKS = ({
           </div>
 
           <div>
-            <p>Handling:</p>
+            <p>Service:</p>
             <select
               value={historikkKs.handling}
               onChange={(e) =>
@@ -96,10 +96,22 @@ const HistorikkInputKS = ({
               }
               className="select select-bordered select-xs w-full max-w-xs bg-white"
             >
-              <option value="">Velg</option>
-              <option value="Slip">Slip</option>
-              <option value="Slip og sveis">Slip og Sveis</option>
-              <option value="Sveising toppbrudd">Sveising toppbrudd</option>
+              <option value="BFS423 EKSTRA RETTING BÅND">
+                BFS423 EKSTRA RETTING BÅND
+              </option>
+              <option value="BFS426 BUNNSTUK BÅND">BFS426 BUNNSTUK BÅND</option>
+              <option value="BFS427 RETTING-STREKKING-SLIPING METER">
+                BFS427 RETTING-STREKKING-SLIPING METER
+              </option>
+              <option value="BFS429 STELL.FERDIG SLIP OG RETT f.o.m 100mm bredde TANN">
+                BFS429 STELL.FERDIG SLIP OG RETT f.o.m 100mm bredde TANN
+              </option>
+              <option value="BSF438 REP.SVEIST STELLIT TANN">
+                BSF438 REP.SVEIST STELLIT TANN
+              </option>
+              <option value="BFS442 SLIPESERVICE AV REP.TENNER METER">
+                BFS442 SLIPESERVICE AV REP.TENNER METER
+              </option>
             </select>
           </div>
           <div>

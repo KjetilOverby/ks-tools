@@ -106,13 +106,13 @@ const BandDetails = ({
               <th className="text-sm text-accent">T</th>
 
               <th className="text-sm text-accent">Temp</th>
-              <th className="text-sm text-accent">Rutine</th>
+              <th className="text-sm text-accent">Ampere</th>
               <th className="text-sm text-accent">SK</th>
               <th className="text-sm text-accent">Feilkode</th>
               <th className="text-sm text-accent">Anm</th>
               <th className="text-sm text-accent">Sign</th>
               <th className="text-sm text-blue-500"></th>
-              <th className="text-sm text-blue-500">Handling</th>
+              <th className="text-sm text-blue-500">Service</th>
               <th className="text-sm text-blue-500">Anm KS</th>
               <th className="text-sm text-blue-500">SG</th>
               <th className="text-sm text-blue-500">Dato srv</th>
