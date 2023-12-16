@@ -49,42 +49,13 @@ interface BladeProps {
 const SearchMain = ({ sawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
-  const [bandhistorikkData, setBandhistorikkData] = useState({
-    updatedAt: new Date(),
-    id: "",
-    IdNummer: "",
-    type: "",
-    bandhistorikk: [
-      {
-        creator: "",
-        feilkode: "",
-        handling: "",
-        historikkId: "",
-        datoInn: new Date(),
-        klInn: new Date(),
-        datoUt: new Date(),
-        klUt: new Date(),
-        sagNr: "",
-        id: "",
-        updatedAt: new Date(),
-        sagtid: 0,
-        sideklaring: 0,
-        anmSag: "",
-        anmKS: "",
-        temperatur: 0,
-        sgSag: "",
-        sgKS: "",
-        datoSrv: new Date(),
-      },
-    ],
-  });
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
 
   /*   const [searchIdResult, setSearchIdResult] = useState(
     sawblades.filter((item: Blade) => item.serial.includes("")),
   ); */
 
-  const [updateSearch, setUpdateSearch] = useState(false);
+  const [searchSerial, setSearchSerial] = useState<string>("");
 
   /*   useEffect(() => {
     setSearchIdResult(
@@ -95,20 +66,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
 
   return (
     <div className="m-5">
-      {openBandhistorikkData && (
-        <BandDetails
-          bandhistorikkData={bandhistorikkData}
-          setOpenBandhistorikkData={setOpenBandhistorikkData}
-        />
-      )}
-
       <div>
         <div className="ml-5 rounded-xl py-5">
           <div className="flex ">
             <DatePicker2
               link="/search"
-              setUpdateSearch={setUpdateSearch}
-              updateSearch={updateSearch}
+              searchSerial={searchSerial}
+              setSearchSerial={setSearchSerial}
             />
           </div>
         </div>
@@ -129,14 +93,8 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           <tbody>
             {sawblades.map((blade) => {
               const openHistorikkHandler = () => {
-                setOpenBandhistorikkData(true);
-                setBandhistorikkData({
-                  IdNummer: blade.IdNummer,
-                  type: blade.type,
-                  bandhistorikk: blade.bandhistorikk,
-                  id: blade.id,
-                  updatedAt: blade.updatedAt,
-                });
+                setOpenBandhistorikkData(!openBandhistorikkData);
+                setSearchSerial("KS2058");
               };
 
               return (
@@ -172,14 +130,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
 
                       <td className="text-primary">{blade.creator}</td>
                       <td>{blade._count.bandhistorikk}</td>
-                      <td className="text-primary">
-                        <button
-                          onClick={openHistorikkHandler}
-                          className="btn btn-xs bg-secondary"
-                        >
-                          Historikk
-                        </button>
-                      </td>
 
                       <td>
                         <th className="text-red-400">
@@ -187,6 +137,15 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                         </th>
                       </td>
                     </tr>
+                  )}
+
+                  {sawblades.length === 1 && (
+                    <div className="absolute w-full">
+                      <BandDetails
+                        bandhistorikkData={blade}
+                        setOpenBandhistorikkData={setOpenBandhistorikkData}
+                      />
+                    </div>
                   )}
                 </>
               );
@@ -212,7 +171,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                 <th className="text-sm text-accent">ID</th>
 
                 <th className="text-sm text-accent">Opprettet av</th>
-                <th className="text-sm text-accent">Slettet av</th>
                 <th className="text-sm text-accent"></th>
               </tr>
             </thead>
@@ -250,7 +208,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                         </td>
 
                         <td className="text-primary">{blade.creator}</td>
-                        <td className="text-primary">KTl</td>
 
                         <td>
                           <th className="text-neutral">

@@ -21,7 +21,7 @@ export default {
           "neutral": "#29648a",
           "base-100": "#25274d",
         },
-        futurisc: {
+        futurisk: {
           "primary": "#7d7d7d",
           "secondary": "#474646",
           "accent": "#164555",

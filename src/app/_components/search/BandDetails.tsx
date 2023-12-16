@@ -56,7 +56,7 @@ const BandDetails = ({
   });
 
   return (
-    <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-base-100 p-5">
+    <div className="z-50 w-full bg-base-100">
       {openInput && (
         <HistorikkInput
           setOpenInput={setOpenInput}
@@ -74,18 +74,7 @@ const BandDetails = ({
         />
       )}
       <div className="mb-12">
-        <div>
-          <button
-            onClick={() => setOpenBandhistorikkData(false)}
-            className="btn btn-xs bg-red-700"
-          >
-            Lukk
-          </button>
-          <h1 className="mt-5 text-4xl text-orange-300">
-            Bånd ID: {bandhistorikkData.IdNummer}
-          </h1>
-          <p>Type: {bandhistorikkData.type}</p>
-        </div>
+        <h1 className="mt-5 text-lg text-orange-400">Historikk</h1>
         <div>
           <button
             onClick={() => setOpenInput(true)}
@@ -123,16 +112,16 @@ const BandDetails = ({
               const openKSinput = () => {
                 setOpenInputKS(true);
                 setPostId(post.id);
-                setHistorikkKs({
-                  anmKS: post.anmKS,
-                  handling: post.handling,
-                  sgKS: post.sgKS,
-                  datoSrv: post.datoSrv,
-                });
+                // setHistorikkKs({
+                //   anmKS: post.anmKS,
+                //   handling: post.handling,
+                //   sgKS: post.sgKS,
+                //   datoSrv: post.datoSrv,
+                // });
               };
               return (
                 <>
-                  <tr className="bg-accent">
+                  <tr className="bg-secondary">
                     <td>
                       <div className="text-xs text-neutral">{post.sagNr}</div>
                     </td>

@@ -1,7 +1,6 @@
-import React from "react";
+import { api } from "~/trpc/server";
 import HeaderComponent from "../_components/HeaderComponent";
 import SearchMain from "../_components/search/SearchMain";
-import { api } from "~/trpc/server";
 
 interface dateProps {
   searchParams: {
@@ -25,6 +24,12 @@ const page = async ({ searchParams }: dateProps) => {
     date: date1,
     date2: date2,
     IdNummer: serial,
+  });
+  const sawbladeCustomer = await api.sawblades.getCustomer.query({
+    date: date1,
+    date2: date2,
+    IdNummer: serial,
+    init: "MØ",
   });
 
   return (

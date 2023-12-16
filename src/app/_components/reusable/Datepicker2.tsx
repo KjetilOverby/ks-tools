@@ -5,8 +5,8 @@ import dateFormat from "dateformat";
 
 interface DateProps {
   link: string;
-  setUpdateSearch: React.Dispatch<React.SetStateAction<boolean>>;
-  updateSearch: boolean;
+  setSearchSerial: React.Dispatch<React.SetStateAction<string>>;
+  searchSerial: string;
 }
 
 const year = new Date().getFullYear();
@@ -16,10 +16,9 @@ const day = new Date().getDate();
 /* const [value, setValue] = useState(`${year}-${month}-${day}`);
 const [value2, setValue2] = useState(`${year}-${month}-${day}`); */
 
-const DatePicker2 = ({ link, setUpdateSearch, updateSearch }: DateProps) => {
+const DatePicker2 = ({ link, setSearchSerial, searchSerial }: DateProps) => {
   const [value, setValue] = useState(`2033-12-01`);
   const [value2, setValue2] = useState(`2023-12-01`);
-  const [searchSerial, setSearchSerial] = useState<string>("");
 
   return (
     <div className="w-22 rounded-xl bg-accent p-5">

@@ -23,7 +23,37 @@ export const sawbladesRouter = createTRPCRouter({
                gte: new Date(input.date2),
               },
               IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined},
-              
+             
+            }]
+        
+          },
+          
+            include: {
+              _count: {
+                select: {
+                  bandhistorikk: true,
+                },
+              },
+              bandhistorikk: true,
+           
+        
+            },
+          
+         })
+      }),
+   
+    getCustomer: protectedProcedure
+    .input(z.object({date: z.string(), date2: z.string(), IdNummer: z.string(), init: z.string()}))
+        .query(({ ctx, input }) => {
+         return ctx.db.sawblades.findMany({
+          where: {
+            AND: [{
+              createdAt: {
+               lte: new Date(input.date),
+               gte: new Date(input.date2),
+              },
+              IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined, startsWith: input.init},
+             
             }]
         
           },
@@ -67,7 +97,7 @@ export const sawbladesRouter = createTRPCRouter({
              note: input.note,
              userId: ctx.session.user.id,
              creator: creatorName,
-             kunde: 'Moelven Østerdalsbruket',
+             kunde: input.kunde,
              createdBy: { connect: { id: ctx.session.user.id} },
          },
        

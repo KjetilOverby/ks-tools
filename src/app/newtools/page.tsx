@@ -5,7 +5,6 @@ import { api } from "~/trpc/server";
 import { CreatePost } from "../_components/create-post";
 import Deleteblades from "../_components/deleteblades";
 import { SearchByDate } from "../_components/search/SearchByDate";
-import { log } from "console";
 
 interface dateProps {
   searchParams: {
@@ -32,7 +31,7 @@ const page = async ({ searchParams }: dateProps) => {
     IdNummer: serial,
   });
   // const session = await getServerAuthSession();
-  console.log(sawblades);
+
   return (
     <>
       <HeaderComponent />

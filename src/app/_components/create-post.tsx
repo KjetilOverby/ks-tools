@@ -1,9 +1,12 @@
 "use client";
 
+import { PrismaClient, Prisma } from "@prisma/client";
+
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { api } from "~/trpc/react";
+import { KundeSelector } from "./newblades/KundeSelector";
 import { NewInputComponent } from "./newblades/NewInputComponent";
 
 export function CreatePost() {
@@ -22,32 +25,69 @@ export function CreatePost() {
     },
   });
 
+  const [inputID, setInputID] = useState("");
+  const [kundeID, setKundeID] = useState("");
+
+  useEffect(() => {
+    if (bladeData.kunde === "Moelven Soknabruket") {
+      setKundeID("MS");
+    } else if (bladeData.kunde === "Moelven Østerdalsbruket") {
+      setKundeID("MØ");
+    } else if (bladeData.kunde === "Moelven Mjøsbruket") {
+      setKundeID("MM");
+    }
+  }, [bladeData]);
+
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        createPost.mutate({
-          IdNummer: bladeData.IdNummer,
-          type: bladeData.type,
-          note: bladeData.note,
-          deleted: false,
-          kunde: "",
-        });
+
+        try {
+          if (bladeData.kunde === "") {
+            alert("Du må legge inn kunde.");
+          } else if (bladeData.type === "") {
+            alert("Du må legge inn bladtype.");
+          } else if (inputID === "") {
+            alert("Du må legge inn ID nummer.");
+          } else {
+            const response = await createPost.mutateAsync({
+              IdNummer: `${kundeID}-${inputID}`,
+              type: bladeData.type,
+              note: bladeData.note,
+              deleted: false,
+              kunde: bladeData.kunde,
+            });
+            console.log(response);
+          }
+        } catch (e) {
+          if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            // The .code property can be accessed in a type-safe manner
+            if (e.code === "P2002") {
+              alert(
+                "There is a unique constraint violation, a new user cannot be created with this email",
+              );
+            }
+          }
+          throw e;
+        }
       }}
       className="flex flex-col gap-2"
     >
       <p>Legg til nye</p>
+      <KundeSelector bladeData={bladeData} setBladeData={setBladeData} />
       <NewInputComponent bladeData={bladeData} setBladeData={setBladeData} />
 
-      <input
-        type="text"
-        placeholder="ID nummer"
-        value={bladeData.IdNummer}
-        onChange={(e) =>
-          setBladeData({ ...bladeData, IdNummer: e.currentTarget.value })
-        }
-        className="w-full rounded-xl bg-secondary px-4 py-2 text-sm text-neutral"
-      />
+      <div className="flex">
+        <div className="flex items-center justify-center">{kundeID}-</div>
+        <input
+          type="text"
+          placeholder={"ID nummer"}
+          value={inputID}
+          onChange={(e) => setInputID(e.currentTarget.value)}
+          className="w-full rounded-xl bg-secondary px-4 py-2 text-sm text-neutral"
+        />
+      </div>
       <button
         type="submit"
         className="btn-xl rounded-xl bg-secondary px-10 py-3 text-xs font-semibold transition hover:bg-white/20"

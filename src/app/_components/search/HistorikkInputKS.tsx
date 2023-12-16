@@ -24,7 +24,6 @@ interface historikkInputProps {
 }
 
 const HistorikkInputKS = ({
-  setOpenBandhistorikkData,
   postId,
   historikkKs,
   setHistorikkKs,
@@ -34,7 +33,7 @@ const HistorikkInputKS = ({
   const updatePost = api.bandhistorikk.update.useMutation({
     onSuccess: () => {
       router.refresh();
-      setOpenBandhistorikkData(false);
+      setOpenInputKS(false);
     },
   });
 

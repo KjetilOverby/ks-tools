@@ -10,17 +10,12 @@ interface historikkInputProps {
   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HistorikkInput = ({
-  setOpenInput,
-  bandId,
-  setOpenBandhistorikkData,
-}: historikkInputProps) => {
+const HistorikkInput = ({ setOpenInput, bandId }: historikkInputProps) => {
   const router = useRouter();
   const createPost = api.bandhistorikk.create.useMutation({
     onSuccess: () => {
       router.refresh();
       setOpenInput(false);
-      setOpenBandhistorikkData(false);
     },
   });
 
