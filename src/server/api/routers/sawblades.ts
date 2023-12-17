@@ -23,12 +23,9 @@ export const sawbladesRouter = createTRPCRouter({
                gte: new Date(input.date2),
               },
               IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined},
-              deleted: false
-             
+           
             }]
-        
           },
-          
             include: {
               _count: {
                 select: {
@@ -36,10 +33,7 @@ export const sawbladesRouter = createTRPCRouter({
                 },
               },
               bandhistorikk: true,
-           
-        
             },
-          
          })
       }),
    
@@ -54,7 +48,7 @@ export const sawbladesRouter = createTRPCRouter({
                gte: new Date(input.date2),
               },
               IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined, startsWith: input.init},
-              deleted: false
+             
             }]
         
           },

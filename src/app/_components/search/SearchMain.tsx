@@ -5,7 +5,6 @@ import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
 import DatePicker2 from "../reusable/Datepicker2";
-import { array } from "zod";
 
 interface Blade {
   type: string;
@@ -101,10 +100,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           </thead>
           <tbody>
             {sawblades.map((blade) => {
-              const ingenAnm = blade.bandhistorikk.filter(
-                (item) => item.sagNr === "4" && item.feilkode === "Sprekk",
-              ).length;
-
               return (
                 <>
                   {!blade.deleted && (
