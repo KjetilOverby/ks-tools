@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
 import DatePicker2 from "../reusable/Datepicker2";
+import { array } from "zod";
 
 interface Blade {
   type: string;
@@ -64,6 +65,14 @@ const SearchMain = ({ sawblades }: BladeProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [IdInput, updateSearch]); */
 
+  // const getHistorikkdata = sawblades.map((item) => item.bandhistorikk);
+
+  // console.log(
+  //   getHistorikkdata.filter(
+  //     (item) => item.sagNr === "4" && item.feilkode === "Ingen anmerkning",
+  //   ).length,
+  // );
+
   return (
     <div className="m-5">
       <div>
@@ -92,10 +101,9 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           </thead>
           <tbody>
             {sawblades.map((blade) => {
-              const openHistorikkHandler = () => {
-                setOpenBandhistorikkData(!openBandhistorikkData);
-                setSearchSerial("KS2058");
-              };
+              const ingenAnm = blade.bandhistorikk.filter(
+                (item) => item.sagNr === "4" && item.feilkode === "Sprekk",
+              ).length;
 
               return (
                 <>
@@ -104,6 +112,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
+
                           <div>
                             <div className="text-xs text-neutral">
                               {dateFormat(
@@ -127,10 +136,8 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                       <td className="font-bold text-neutral">
                         {blade.IdNummer}
                       </td>
-
                       <td className="text-primary">{blade.creator}</td>
                       <td>{blade._count.bandhistorikk}</td>
-
                       <td>
                         <th className="text-red-400">
                           <DeleteComponent id={blade.id} />
