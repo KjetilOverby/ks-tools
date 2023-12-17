@@ -12,8 +12,6 @@ interface statistikkProps {
 export const StatistikkMain = ({ historikkData }: statistikkProps) => {
   const [searchSerial, setSearchSerial] = useState<string>("");
 
-  //   console.log(historikkData);
-
   // const feilkoder = [
   //   "Ingen anmerkning",
   //   "Bølger",
@@ -28,11 +26,11 @@ export const StatistikkMain = ({ historikkData }: statistikkProps) => {
   //   "Havari",
   // ];
 
-  console.log(
-    historikkData.filter(
-      (item) => item.sagNr === "4" && item.feilkode === "Ingen anmerkning",
-    ),
-  );
+  //   console.log(
+  //     historikkData.filter(
+  //       (item) => item.sagNr === "4" && item.feilkode === "Ingen anmerkning",
+  //     ),
+  //   );
 
   //   const br = historikkData.map((item: statistikkProps) =>
   //     item.map((item) => item.feilkode === "Sprekk" && item.sagNr === "4"),

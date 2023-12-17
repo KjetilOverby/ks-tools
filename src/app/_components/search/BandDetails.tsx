@@ -7,6 +7,7 @@ import HistorikkInputKS from "./HistorikkInputKS";
 
 interface bandProps {
   bandhistorikkData: {
+    side: string;
     id: string;
     updatedAt: Date;
     IdNummer: string;
@@ -62,6 +63,8 @@ const BandDetails = ({
           setOpenInput={setOpenInput}
           bandId={bandhistorikkData.id}
           setOpenBandhistorikkData={setOpenBandhistorikkData}
+          side={bandhistorikkData.side}
+          bladType={bandhistorikkData.type}
         />
       )}
       {openInputKS && (

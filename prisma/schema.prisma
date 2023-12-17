@@ -115,6 +115,7 @@ model sawblades {
     creator     String
     deleted     Boolean
     note        String
+    side        String
 
     personal      personal[]
     bandhistorikk bandhistorikk[]
@@ -143,10 +144,13 @@ model bandhistorikk {
     anmSag      String
     createdById String
     creator     String
+    creatorImg  String
     anmKS       String
     sgSag       String
     sgKS        String
     handling    String
+    side        String
+    bladType    String
     datoSrv     DateTime
     bladedata   sawblades @relation(fields: [historikkId], references: [id])
 

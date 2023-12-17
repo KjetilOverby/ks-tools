@@ -9,6 +9,7 @@ interface bladeDataProps {
     note: string;
     deleted: boolean;
     kunde: string;
+    side: string;
   };
   setBladeData: Dispatch<
     SetStateAction<{
@@ -17,6 +18,7 @@ interface bladeDataProps {
       deleted: boolean;
       note: string;
       kunde: string;
+      side: string;
     }>
   >;
 }

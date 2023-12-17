@@ -17,6 +17,7 @@ export function CreatePost() {
     note: "",
     deleted: false,
     kunde: "",
+    side: "",
   });
 
   const createPost = api.sawblades.create.useMutation({
@@ -57,6 +58,7 @@ export function CreatePost() {
               note: bladeData.note,
               deleted: false,
               kunde: bladeData.kunde,
+              side: bladeData.side,
             });
             console.log(response);
           }
@@ -77,6 +79,20 @@ export function CreatePost() {
       <p>Legg til nye</p>
       <KundeSelector bladeData={bladeData} setBladeData={setBladeData} />
       <NewInputComponent bladeData={bladeData} setBladeData={setBladeData} />
+      <select
+        onChange={(e) =>
+          setBladeData({ ...bladeData, side: e.currentTarget.value })
+        }
+        className="select select-info select-sm bg-accent text-lg text-neutral"
+      >
+        <option disabled selected>
+          Velg side
+        </option>
+
+        <option value="Høyre">Høyre</option>
+
+        <option value="Venstre">Venstre</option>
+      </select>
 
       <div className="flex">
         <div className="flex items-center justify-center">{kundeID}-</div>

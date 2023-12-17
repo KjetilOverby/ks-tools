@@ -14,6 +14,7 @@ interface Blade {
   updatedAt: Date;
   id: string;
   kunde: string;
+  side: string;
   _count: {
     bandhistorikk: number;
   };
@@ -48,6 +49,8 @@ interface BladeProps {
 
 const SearchMain = ({ sawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
+
+  console.log(sawblades);
 
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
 
@@ -123,7 +126,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           <div className="avatar"></div>
                           <div>
                             <div className="text-xs text-neutral">
-                              {blade.type}
+                              {blade.type} {blade.side}
                             </div>
                           </div>
                         </div>
@@ -181,7 +184,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                 return (
                   <>
                     {blade.deleted && (
-                      <tr className="bg-teal-800">
+                      <tr className="bg-primary">
                         <td>
                           <div className="flex items-center space-x-3">
                             <div className="avatar"></div>
@@ -200,7 +203,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                             <div className="avatar"></div>
                             <div>
                               <div className="text-xs text-neutral">
-                                {blade.type}
+                                {blade.type} {blade.side}
                               </div>
                             </div>
                           </div>

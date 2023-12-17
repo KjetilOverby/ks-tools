@@ -26,11 +26,7 @@ const page = async ({ searchParams }: dateProps) => {
     IdNummer: serial,
   });
 
-  return (
-    <div>
-      <StatistikkMain historikkData={statistikkData} />
-    </div>
-  );
+  return <div>{/* <StatistikkMain historikkData={statistikkData} /> */}</div>;
 };
 
 export default page;

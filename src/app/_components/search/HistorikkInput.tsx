@@ -8,9 +8,16 @@ interface historikkInputProps {
   setOpenInput: React.Dispatch<React.SetStateAction<boolean>>;
   bandId: string;
   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
+  side: string;
+  bladType: string;
 }
 
-const HistorikkInput = ({ setOpenInput, bandId }: historikkInputProps) => {
+const HistorikkInput = ({
+  setOpenInput,
+  bandId,
+  side,
+  bladType,
+}: historikkInputProps) => {
   const router = useRouter();
   const createPost = api.bandhistorikk.create.useMutation({
     onSuccess: () => {
@@ -63,6 +70,9 @@ const HistorikkInput = ({ setOpenInput, bandId }: historikkInputProps) => {
             sgSag: "",
             sgKS: "",
             createdBy: "",
+            side: side,
+            creatorImg: "",
+            bladType: bladType,
           });
         }}
         className="card w-96 bg-slate-500 text-neutral-content"

@@ -41,7 +41,7 @@ const page = async ({ searchParams }: dateProps) => {
             <CreatePost />
             <SearchByDate />
           </div>
-          <table className="table table-xs bg-secondary">
+          <table className="table table-xs bg-primary">
             <thead>
               <tr>
                 <th className="text-sm text-accent">Dato</th>
@@ -76,7 +76,7 @@ const page = async ({ searchParams }: dateProps) => {
                           <div className="avatar"></div>
                           <div>
                             <div className="text-xs text-neutral">
-                              {blade.type}
+                              {blade.type} {blade.side}
                             </div>
                           </div>
                         </div>

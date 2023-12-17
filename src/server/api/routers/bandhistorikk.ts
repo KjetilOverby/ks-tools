@@ -10,7 +10,7 @@ export const bandhistorikkRouter = createTRPCRouter({
 
     
       create: protectedProcedure
-      .input(z.object({ sagNr: z.string(), datoInn: z.date(), klInn: z.date(), klUt: z.date(), datoUt: z.date(),antTimer: z.number(), feilkode: z.string(), anmSag: z.string(), temperatur: z.number(), userId: z.string(),  handling: z.string(), sideklaring: z.number(), sgSag: z.string(), datoSrv: z.date(),createdById: z.string(), bladedata: z.string(), anmKS: z.string(), createdBy: z.string(), sagtid:z.number(), sgKS: z.string() }))
+      .input(z.object({ sagNr: z.string(), datoInn: z.date(), klInn: z.date(), klUt: z.date(), datoUt: z.date(),antTimer: z.number(), feilkode: z.string(), anmSag: z.string(), temperatur: z.number(), userId: z.string(),  handling: z.string(), sideklaring: z.number(), sgSag: z.string(), datoSrv: z.date(),createdById: z.string(), bladedata: z.string(), anmKS: z.string(), createdBy: z.string(), sagtid:z.number(), sgKS: z.string(), creatorImg: z.string(), side: z.string(), bladType: z.string() }))
       .mutation(({ ctx, input }) => {
         const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
     
@@ -36,6 +36,9 @@ export const bandhistorikkRouter = createTRPCRouter({
              sgKS: input.sgKS,
              createdBy: { connect: { id: ctx.session.user.id} },
              bladedata: { connect: { id: input.bladedata} },
+             creatorImg: input.creatorImg,
+             side: input.side,
+             bladType: input.bladType
              
 
          },
