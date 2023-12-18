@@ -60,6 +60,7 @@ enum UserRole {
     MO_ADMIN
     MM_ADMIN
     MS_ADMIN
+    KV_ADMIN
 }
 
 model User {
