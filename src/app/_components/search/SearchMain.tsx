@@ -12,6 +12,7 @@ interface Blade {
   deleted: boolean;
   creator: string;
   updatedAt: Date;
+  createdAt: Date;
   id: string;
   kunde: string;
   side: string;
@@ -114,7 +115,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           <div>
                             <div className="text-xs text-neutral">
                               {dateFormat(
-                                blade.updatedAt,
+                                blade.createdAt,
                                 "dd.mm.yyyy , HH:MM",
                               )}
                             </div>
