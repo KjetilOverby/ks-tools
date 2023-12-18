@@ -13,8 +13,8 @@ export default async function Home() {
   return (
     <main>
       {!session && <FrontpageSessionless session={session} />}
-      {(session && session?.user.role === "ADMIN") ??
-        (session?.user.role === "KV_ADMIN" && <AdminStartpage />)}
+      {session && session?.user.role === "ADMIN" && <AdminStartpage />}
+      {session && session?.user.role === "KV_ADMIN" && <AdminStartpage />}
       {session && session?.user.role === "LOGIN" && (
         <FirstLoginPage session={session} />
       )}

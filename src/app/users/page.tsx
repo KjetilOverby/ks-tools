@@ -1,16 +1,7 @@
 import { api } from "~/trpc/server";
 
-interface User {
-  id: string;
-  name: string | null;
-  email: string | null;
-  emailVerified: Date | null;
-  image: string | null;
-  role: "ADMIN" | "LOGIN" | "MO_ADMIN" | "KV_ADMIN"; // Define the possible role values
-}
-
-const page = async ({}: User) => {
-  const users = await api.users.getUsers.query({});
+const page = async ({}) => {
+  const users = await api.users.getUsers.query();
 
   return (
     <>
@@ -35,11 +26,14 @@ const page = async ({}: User) => {
           return (
             <div
               key={user.id}
-              className="mb-5 w-96 rounded-2xl bg-accent pb-5 pl-5"
+              className="mb-5 flex  rounded-2xl bg-accent pb-5 pl-5 pt-5"
             >
               <div className="avatar">
-                <div className="w-24 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
-                  <img src={user.image} />
+                <div className="mr-5 w-24 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
+                  <img
+                    alt="profile img"
+                    src={user.image ?? "/placeholder.jpg"}
+                  />
                 </div>
               </div>
               <div>
