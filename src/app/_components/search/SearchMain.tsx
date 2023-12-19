@@ -5,6 +5,7 @@ import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
 import DatePicker2 from "../reusable/Datepicker2";
+import DatepickerComponent from "../reusable/Datepicker";
 
 interface Blade {
   type: string;
@@ -51,40 +52,26 @@ interface BladeProps {
 const SearchMain = ({ sawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
-  console.log(sawblades);
-
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
 
-  /*   const [searchIdResult, setSearchIdResult] = useState(
-    sawblades.filter((item: Blade) => item.serial.includes("")),
-  ); */
-
   const [searchSerial, setSearchSerial] = useState<string>("");
-
-  /*   useEffect(() => {
-    setSearchIdResult(
-      sawblades.filter((item: Blade) => item.serial.includes(IdInput)),
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [IdInput, updateSearch]); */
-
-  // const getHistorikkdata = sawblades.map((item) => item.bandhistorikk);
-
-  // console.log(
-  //   getHistorikkdata.filter(
-  //     (item) => item.sagNr === "4" && item.feilkode === "Ingen anmerkning",
-  //   ).length,
-  // );
 
   return (
     <div className="m-5">
       <div>
         <div className="ml-5 rounded-xl py-5">
           <div className="flex ">
-            <DatePicker2
+            {/*  <DatePicker2
               link="/search"
               searchSerial={searchSerial}
               setSearchSerial={setSearchSerial}
+              idSearch={true}
+            /> */}
+            <DatepickerComponent
+              link="/search"
+              searchSerial={searchSerial}
+              setSearchSerial={setSearchSerial}
+              idSearch={true}
             />
           </div>
         </div>
