@@ -9,8 +9,8 @@ import Link from "next/link";
 
 interface DateProps {
   link: string;
-  setSearchSerial: React.Dispatch<React.SetStateAction<string>>;
   searchSerial: string;
+  setSearchSerial: React.Dispatch<React.SetStateAction<string>>;
   idSearch: boolean;
 }
 
@@ -21,8 +21,8 @@ const DatepickerComponent: React.FC = ({
   idSearch,
 }: DateProps) => {
   const [value, setValue] = useState({
-    startDate: "",
-    endDate: "",
+    startDate: "2023-12-01",
+    endDate: "2033-12-01",
   });
 
   const handleValueChange = (newValue: DateType | DateRangeType) => {

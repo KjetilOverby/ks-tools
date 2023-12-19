@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import HeaderComponent from "../HeaderComponent";
 import DatePicker2 from "../reusable/Datepicker2";
+import DatepickerComponent from "../reusable/Datepicker";
 
 interface statistikkProps {
   historikkData: {
@@ -56,14 +57,12 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
     setTableData(updatedTableData);
   }, [historikkData]);
 
-  console.log(tableData);
-
   return (
     <div className="">
       <HeaderComponent />
       <div className="mx-96 mt-5">
         <div>
-          <DatePicker2
+          {/* <DatePicker2
             idSearch={false}
             link="/statistikk"
             setSearchSerial={function (
@@ -72,6 +71,12 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
               throw new Error("Function not implemented.");
             }}
             searchSerial={""}
+          /> */}
+          <DatepickerComponent
+            link="/statistikk"
+            searchSerial={""}
+            setSearchSerial=""
+            idSearch={false}
           />
           <table className="table table-xs mt-20 bg-neutral">
             <thead>
