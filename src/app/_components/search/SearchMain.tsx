@@ -68,10 +68,10 @@ const SearchMain = ({ sawblades }: BladeProps) => {
               idSearch={true}
             /> */}
             <DatepickerComponent
-              link="/search"
-              searchSerial={searchSerial}
-              setSearchSerial={setSearchSerial}
               idSearch={true}
+              searchSerial={searchSerial}
+              link="/search"
+              setSearchSerial={setSearchSerial}
             />
           </div>
         </div>

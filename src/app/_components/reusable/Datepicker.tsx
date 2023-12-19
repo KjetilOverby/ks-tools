@@ -1,6 +1,6 @@
 // @ts-nocheck
 "use client";
-import React, { useState } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 import Datepicker, {
   DateRangeType,
   DateType,
@@ -10,16 +10,16 @@ import Link from "next/link";
 interface DateProps {
   link: string;
   searchSerial: string;
-  setSearchSerial: React.Dispatch<React.SetStateAction<string>>;
+  setSearchSerial: Dispatch<SetStateAction<string>>;
   idSearch: boolean;
 }
 
-const DatepickerComponent: React.FC = ({
+const DatepickerComponent: React.FC<DateProps> = ({
   link,
   setSearchSerial,
   searchSerial,
   idSearch,
-}: DateProps) => {
+}) => {
   const [value, setValue] = useState({
     startDate: "2023-12-01",
     endDate: "2033-12-01",
@@ -30,7 +30,7 @@ const DatepickerComponent: React.FC = ({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col rounded-2xl bg-accent p-5">
       <form
         onSubmit={(e) => {
           e.preventDefault();

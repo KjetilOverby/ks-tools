@@ -12,13 +12,8 @@ interface statistikkProps {
     sagNr: string;
   };
 }
-interface HistoricalData {
-  sagNr: string;
-  feilkode: string;
-}
 
 const StatistikkMain = ({ historikkData }: statistikkProps) => {
-  const [searchSerial, setSearchSerial] = useState<string>("");
   const feilkoder: string[] = [
     "Ingen anmerkning",
     "Bølger",
@@ -94,11 +89,16 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
             <tbody>
               {Object.entries(tableData).map(([sagNr, data]) => (
                 <tr className="bg-accent" key={sagNr}>
-                  <td className="border px-4 py-2">{sagNr}</td>
-                  <td className="border px-4 py-2">{data.total}</td>
+                  <td className="border border-primary px-4 py-2">{sagNr}</td>
+                  <td className="border border-primary px-4 py-2">
+                    {data.total}
+                  </td>
 
                   {feilkoder.map((feilkode) => (
-                    <td key={feilkode} className="border px-4 py-2">
+                    <td
+                      key={feilkode}
+                      className="border border-primary px-4 py-2"
+                    >
                       {data[feilkode] || 0}
                     </td>
                   ))}
@@ -115,7 +115,7 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                 <th className="text-sm text-accent">Sag Number</th>
                 {feilkoder.map((feilkode) => (
                   <th key={feilkode} className="text-sm text-accent">
-                    % {feilkode}
+                    {feilkode}
                   </th>
                 ))}
                 {/* Add more headers as needed */}
@@ -124,9 +124,12 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
             <tbody>
               {Object.entries(tableData).map(([sagNr, data]) => (
                 <tr className="bg-accent" key={sagNr}>
-                  <td className="border px-4 py-2">{sagNr}</td>
+                  <td className="border border-primary px-4 py-2">{sagNr}</td>
                   {feilkoder.map((feilkode) => (
-                    <td key={feilkode} className="border px-4 py-2">
+                    <td
+                      key={feilkode}
+                      className="border border-primary px-4 py-2"
+                    >
                       {data && data.total
                         ? (
                             ((data[feilkode] || 0) / data.total) * 100 || 0
