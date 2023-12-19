@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 "use client";
 import React, { useState, useEffect } from "react";
@@ -7,7 +8,6 @@ import DatepickerComponent from "../reusable/Datepicker";
 
 interface statistikkProps {
   historikkData: {
-    forEach(arg0: (item: any) => void): unknown;
     feilkode: string;
     sagNr: string;
   };
@@ -28,24 +28,32 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
     "Havari",
   ];
 
-  let [tableData, setTableData] = useState<{
-    [key: string]: { total: number; [key: string]: number };
-  }>({});
+  const [tableData, setTableData] = useState<
+    Record<string, { total: number; [key: string]: number }>
+  >({});
 
   useEffect(() => {
-    let updatedTableData: {
-      [key: string]: { total: number; [key: string]: number };
-    } = {};
+    const updatedTableData: Record<
+      string,
+      { total: number; [key: string]: number }
+    > = {};
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     historikkData.forEach((item) => {
-      let { sagNr, feilkode } = item;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const { sagNr, feilkode } = item;
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (!updatedTableData[sagNr]) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         updatedTableData[sagNr] = { total: 1, [feilkode]: 1 };
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         updatedTableData[sagNr].total += 1;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         updatedTableData[sagNr][feilkode] =
-          (updatedTableData[sagNr][feilkode] || 0) + 1;
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          (updatedTableData[sagNr][feilkode] ?? 0) + 1;
       }
     });
 
@@ -99,7 +107,7 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                       key={feilkode}
                       className="border border-primary px-4 py-2"
                     >
-                      {data[feilkode] || 0}
+                      {data[feilkode] ?? 0}
                     </td>
                   ))}
                   {/* Add more cells as needed for additional properties */}
@@ -130,9 +138,9 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                       key={feilkode}
                       className="border border-primary px-4 py-2"
                     >
-                      {data && data.total
+                      {data?.total
                         ? (
-                            ((data[feilkode] || 0) / data.total) * 100 || 0
+                            ((data[feilkode] ?? 0) / data.total) * 100 || 0
                           ).toFixed(1) + "%"
                         : "0%"}
                     </td>

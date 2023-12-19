@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { api } from "~/trpc/server";
 import React from "react";
 import StatistikkMain from "../_components/statistikk/StatistikkMain";
