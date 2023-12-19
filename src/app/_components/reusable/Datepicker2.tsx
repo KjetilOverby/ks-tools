@@ -7,6 +7,7 @@ interface DateProps {
   link: string;
   setSearchSerial: React.Dispatch<React.SetStateAction<string>>;
   searchSerial: string;
+  idSearch: boolean;
 }
 
 const year = new Date().getFullYear();
@@ -16,7 +17,12 @@ const day = new Date().getDate();
 /* const [value, setValue] = useState(`${year}-${month}-${day}`);
 const [value2, setValue2] = useState(`${year}-${month}-${day}`); */
 
-const DatePicker2 = ({ link, setSearchSerial, searchSerial }: DateProps) => {
+const DatePicker2 = ({
+  link,
+  setSearchSerial,
+  searchSerial,
+  idSearch,
+}: DateProps) => {
   const [value, setValue] = useState(`2033-12-01`);
   const [value2, setValue2] = useState(`2023-12-01`);
 
@@ -48,13 +54,17 @@ const DatePicker2 = ({ link, setSearchSerial, searchSerial }: DateProps) => {
                 e.preventDefault();
               }}
             >
-              <label>Id nummer</label>
-              <input
-                onChange={(e) => setSearchSerial(e.currentTarget.value)}
-                type="text"
-                placeholder="ID nummer"
-                className="input input-bordered input-xs mt-1 w-full max-w-xs text-xs"
-              />
+              {idSearch && (
+                <>
+                  <label>Id nummer</label>
+                  <input
+                    onChange={(e) => setSearchSerial(e.currentTarget.value)}
+                    type="text"
+                    placeholder="ID nummer"
+                    className="input input-bordered input-xs mt-1 w-full max-w-xs text-xs"
+                  />
+                </>
+              )}
               <Link
                 href={{
                   pathname: `${link}`,
