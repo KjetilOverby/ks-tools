@@ -1,1 +1,12 @@
 1. Må legge inn starnummer på id og Bruk på hver post i et blad
+2. Legge inn produsen på båndsagblader, Foreløpig bare "Munkfors" som skal lagres automatisk (bandhistorikk)
+3. Sawblades creatorImg
+4. Gi feilmelding når duplikasjoner av Id nummer blir forsøkt lagt inn. 
+5. Personal model:
+  * Navn
+  * createdAt
+  * Tittel
+  * msg
+  * img
+  
+
