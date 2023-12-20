@@ -28,6 +28,13 @@ export default {
           "neutral": "#c2c0c0",
           "base-100": "rgb(51, 51, 51)",
         },
+        // futurisk: {
+        //   "primary": "#7d7d7d",
+        //   "secondary": "#474646",
+        //   "accent": "#464d47",
+        //   "neutral": "#c2c0c0",
+        //   "base-100": "rgb(51, 51, 51)",
+        // },
       },
       "light",
       "dark",

@@ -226,10 +226,17 @@ const HistorikkInput = ({
               <option value="Tannbrudd">Tannbrudd</option>
               <option value="Sponpåliming">Sponpåliming</option>
               <option value="Sløv">Sløv</option>
-              <option value="River">River</option>
+              <option value="River">Riper</option>
               <option value="Ytre faktorer">Ytre faktorer</option>
               <option value="Reklamasjon">Reklamasjon</option>
               <option value="Havari">Havari</option>
+              <option value="Ikjøring">Ikjøring</option>
+              <option value="Riper/bølger">Riper/bølger</option>
+              <option value="Riper/sprekk">Riper/sprekk</option>
+              <option value="Riper/vandrer">Riper/vandrer</option>
+              <option value="Bølger/sprekk">Bølger/sprekk</option>
+              <option value="Bølger/vandrer">Bølger/vandrer</option>
+              <option value="Ikjøring/riper">Ikjøring/riper</option>
             </select>
           </div>
 

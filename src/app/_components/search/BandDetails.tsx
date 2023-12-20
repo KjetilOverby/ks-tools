@@ -44,9 +44,9 @@ const BandDetails = ({
   setOpenBandhistorikkData,
 }: bandProps) => {
   const [openInput, setOpenInput] = useState(false);
-  const [openMessage, setOpenMessage] = useState(false);
+  const [openMessage, setOpenMessage] = useState(null);
   const [openMessageKS, setOpenMessageKS] = useState(false);
-  const [openInputKS, setOpenInputKS] = useState(false);
+  const [openInputKS, setOpenInputKS] = useState(null);
   const [postId, setPostId] = useState("");
 
   const [historikkKs, setHistorikkKs] = useState({
@@ -56,8 +56,21 @@ const BandDetails = ({
     handling: "",
   });
 
+  const messageHander = (postID) => {
+    setOpenMessage(postID);
+  };
+  const closeMessageHandler = () => {
+    setOpenMessage(null);
+  };
+  const closeMessageKSHandler = () => {
+    setOpenMessageKS(null);
+  };
+  const messageKShandler = (postID) => {
+    setOpenMessageKS(postID);
+  };
+
   return (
-    <div className="z-50 w-full bg-base-100">
+    <div className="z-50 w-full bg-black">
       {openInput && (
         <HistorikkInput
           setOpenInput={setOpenInput}
@@ -76,8 +89,8 @@ const BandDetails = ({
           setHistorikkKs={setHistorikkKs}
         />
       )}
-      <div className="mb-12">
-        <h1 className="mt-5 text-lg text-orange-400">Historikk</h1>
+
+      <div className="">
         <div>
           <button
             onClick={() => setOpenInput(true)}
@@ -147,16 +160,32 @@ const BandDetails = ({
                     <td className="text-primary">{post.sideklaring}</td>
                     <td className="text-primary">{post.feilkode}</td>
 
-                    <td className="max-w-56  text-primary">
+                    <td className="max-w-56  relative text-primary">
                       {post.anmSag && (
+                        <button
+                          onClick={() => messageHander(post.id)}
+                          className="btn btn-xs bg-accent"
+                        >
+                          Vis
+                        </button>
+                      )}
+                      {openMessage === post.id && (
                         <>
-                          <button
-                            onClick={() => setOpenMessage(!openMessage)}
-                            className="btn btn-xs bg-accent"
-                          >
-                            Vis
-                          </button>
-                          {openMessage && <p>{post.anmSag}</p>}
+                          {openMessage && <p></p>}
+                          <div className="card absolute top-0 z-50 w-96 bg-primary text-primary-content">
+                            <div className="card-body">
+                              <h2 className="card-title">Melding fra sag</h2>
+                              <p>{post.anmSag}</p>
+                              <div className="card-actions justify-end">
+                                <button
+                                  onClick={closeMessageHandler}
+                                  className="btn btn-xs"
+                                >
+                                  Lukk
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </>
                       )}
                     </td>
@@ -167,16 +196,33 @@ const BandDetails = ({
                       </button>
                     </td>
                     <td className="text-primary">{post.handling}</td>
-                    <td className="max-w-56 text-primary">
+                    <td className="max-w-56 relative text-primary">
                       {post.anmKS && (
                         <>
                           <button
-                            onClick={() => setOpenMessageKS(!openMessageKS)}
+                            onClick={() => messageKShandler(post.id)}
                             className="btn btn-xs bg-accent"
                           >
                             Vis
                           </button>
-                          {openMessageKS && <p>{post.anmKS}</p>}
+                          {openMessageKS === post.id && (
+                            <div className="card absolute right-0 top-0 z-50 w-96 bg-primary text-primary-content">
+                              <div className="card-body">
+                                <h2 className="card-title">
+                                  Melding fra Stridbergs
+                                </h2>
+                                <p>{post.anmKS}</p>
+                                <div className="card-actions justify-end">
+                                  <button
+                                    onClick={closeMessageKSHandler}
+                                    className="btn btn-xs"
+                                  >
+                                    Lukk
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </>
                       )}
                     </td>

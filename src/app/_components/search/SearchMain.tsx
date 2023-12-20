@@ -56,8 +56,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
 
   const [searchSerial, setSearchSerial] = useState<string>("");
 
+  const [openStatus, setOpenStatus] = useState(null);
+  const [openHistorikk, setopenHistorikk] = useState(null);
+
   return (
     <div className="m-5">
+    
+      
       <div>
         <div className="ml-5 rounded-xl py-5">
           <div className="flex ">
@@ -81,6 +86,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
             <tr>
               <th className="text-sm text-accent">Dato</th>
               <th className="text-sm text-accent">Type</th>
+              <th className="text-sm text-accent">Status</th>
 
               <th className="text-sm text-accent">ID</th>
 
@@ -91,10 +97,33 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           </thead>
           <tbody>
             {sawblades.map((blade) => {
+              const statusHandler = (postId) => {
+                setOpenStatus(postId);
+              };
+
+              const handleCloseModal = () => {
+                setOpenStatus(null);
+              
+              };
+
+              const historikkHandler = (historikkId) => {
+                setopenHistorikk(historikkId);
+              };
+
+              const handleCloseHistorikk = () => {
+
+                setTimeout(() => {
+                  
+                  setopenHistorikk(null)
+                }, 100);
+              }
+
               return (
                 <>
+                
                   {!blade.deleted && (
-                    <tr className="bg-accent">
+                    <tr key={blade.id} className="bg-accent">
+                       
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
@@ -119,27 +148,79 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           </div>
                         </div>
                       </td>
+                      <th>
+                        <div>
+                          <div
+                            onClick={() => statusHandler(blade.id)}
+                            className="h-3 w-3 rounded-full bg-red-400"
+                          >
+                            {openStatus === blade.id && (
+                              <div className="card z-40 w-96 bg-neutral text-neutral-content">
+                                <div className="card-body items-center text-center">
+                                  <h2 className="card-title">
+                                    Sett Status på{" "}
+                                    <span className="text-orange-600">
+                                      {blade.IdNummer}
+                                    </span>
+                                  </h2>
+                                  <p>We are using cookies for no reason.</p>
+                                  <div className="card-actions justify-end">
+                                    <button className="btn btn-primary btn-xs">
+                                      Accept
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        setTimeout(() => {
+                                          handleCloseModal();
+                                        }, 100);
+                                      }}
+                                      className="btn btn-xs"
+                                    >
+                                      Avbryt
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </th>
                       <td className="font-bold text-neutral">
                         {blade.IdNummer}
                       </td>
                       <td className="text-primary">{blade.creator}</td>
                       <td>{blade._count.bandhistorikk}</td>
                       <td>
+                        <button onClick={() => historikkHandler(blade.id)}>
+                          Historikk
+                        </button>
+                      </td>
+                      <td>
                         <th className="text-red-400">
                           <DeleteComponent id={blade.id} />
                         </th>
                       </td>
+                    
                     </tr>
+                    
                   )}
+                       {openHistorikk ===
+                              blade.id && (
+                                <div className=" absolute w-full h-screen top-0 bg-black rounded-2xl p-5">
+                                  <div>
+                                  <h1 className="mt-5 text-lg text-orange-400">Historikk</h1>
+                                    <h1 className="text-orange-600">ID: {blade.IdNummer}</h1>
+                                  <p>Type: {blade.type}</p>
+                                  </div>
+                                  <BandDetails
+                                    bandhistorikkData={blade}
+                                    setOpenBandhistorikkData={setOpenBandhistorikkData}
+                                  />
 
-                  {sawblades.length === 1 && (
-                    <div className="absolute w-full">
-                      <BandDetails
-                        bandhistorikkData={blade}
-                        setOpenBandhistorikkData={setOpenBandhistorikkData}
-                      />
-                    </div>
-                  )}
+                                  <button onClick={handleCloseHistorikk} className="btn btn-primary btn-xs mt-5">Lukk historikk</button>
+                                </div>,
+                                )}
+   
                 </>
               );
             })}

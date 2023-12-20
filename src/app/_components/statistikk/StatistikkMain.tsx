@@ -3,7 +3,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import HeaderComponent from "../HeaderComponent";
-import DatePicker2 from "../reusable/Datepicker2";
 import DatepickerComponent from "../reusable/Datepicker";
 
 interface statistikkProps {
@@ -26,6 +25,13 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
     "Ytre faktorer",
     "Reklamasjon",
     "Havari",
+    "Ikjøring",
+    "Riper/bølger",
+    "Riper/sprekk",
+    "Riper/vandrer",
+    "Bølger/sprekk",
+    "Bølger/vandrer",
+    "Ikjøring/riper",
   ];
 
   const [tableData, setTableData] = useState<
@@ -63,7 +69,7 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
   return (
     <div className="">
       <HeaderComponent />
-      <div className="mx-96 mt-5">
+      <div className="mx-5 mt-5">
         <div>
           {/* <DatePicker2
             idSearch={false}
@@ -120,7 +126,8 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
           <table className="table table-xs mt-20 bg-neutral">
             <thead>
               <tr>
-                <th className="text-sm text-accent">Sag Number</th>
+                <th className="text-sm text-accent">Sag</th>
+                <th className="text-sm text-accent">Antall</th>
                 {feilkoder.map((feilkode) => (
                   <th key={feilkode} className="text-sm text-accent">
                     {feilkode}
@@ -133,6 +140,9 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
               {Object.entries(tableData).map(([sagNr, data]) => (
                 <tr className="bg-accent" key={sagNr}>
                   <td className="border border-primary px-4 py-2">{sagNr}</td>
+                  <td className="border border-primary px-4 py-2">
+                    {data.total}
+                  </td>
                   {feilkoder.map((feilkode) => (
                     <td
                       key={feilkode}
