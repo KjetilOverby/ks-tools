@@ -4,6 +4,7 @@ import dateFormat from "dateformat";
 import HistorikkInput from "./HistorikkInput";
 import Deletehistorikkpost from "./deletehistorikkpost";
 import HistorikkInputKS from "./HistorikkInputKS";
+import { CiEdit } from "react-icons/ci";
 
 interface bandProps {
   bandhistorikkData: {
@@ -65,12 +66,12 @@ const BandDetails = ({
   const closeMessageKSHandler = () => {
     setOpenMessageKS(null);
   };
-  const messageKShandler = (postID:string) => {
+  const messageKShandler = (postID: string) => {
     setOpenMessageKS(postID);
   };
 
   return (
-    <div className="z-50 w-full bg-black">
+    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-blue-500 to-green-300">
       {openInput && (
         <HistorikkInput
           setOpenInput={setOpenInput}
@@ -135,6 +136,11 @@ const BandDetails = ({
                 //   datoSrv: post.datoSrv,
                 // });
               };
+
+              const editHistorikkPost = () => {
+                setOpenInput(true);
+              };
+
               return (
                 <>
                   <tr className="bg-secondary">
@@ -191,6 +197,14 @@ const BandDetails = ({
                     </td>
                     <td className="text-primary">{post.sgSag}</td>
                     <td className="text-primary">
+                      <button
+                        onClick={editHistorikkPost}
+                        className="btn btn-xs mr-5 bg-base-100"
+                      >
+                        <CiEdit
+                          style={{ color: "orange", fontSize: ".8rem" }}
+                        />
+                      </button>
                       <button onClick={openKSinput} className="btn btn-xs">
                         KS
                       </button>
