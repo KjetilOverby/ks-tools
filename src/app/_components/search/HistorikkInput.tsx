@@ -88,6 +88,7 @@ const HistorikkInput = ({
                   sagNr: e.currentTarget.value,
                 })
               }
+              value={historikkData.sagNr}
               className="select select-bordered select-xs w-full max-w-xs bg-white"
             >
               <option value="">Velg</option>
