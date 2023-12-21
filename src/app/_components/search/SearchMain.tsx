@@ -6,6 +6,9 @@ import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
 import DatePicker2 from "../reusable/Datepicker2";
 import DatepickerComponent from "../reusable/Datepicker";
+import { useRouter } from "next/navigation";
+import { api } from "~/trpc/react";
+import { date } from "zod";
 
 interface Blade {
   type: string;
@@ -17,6 +20,7 @@ interface Blade {
   id: string;
   kunde: string;
   side: string;
+  active: boolean;
   _count: {
     bandhistorikk: number;
   };
@@ -58,6 +62,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
 
   const [openStatus, setOpenStatus] = useState<string | null>(null);
   const [openHistorikk, setopenHistorikk] = useState<string | null>(null);
+  const router = useRouter();
+  const createPost = api.bandhistorikk.create.useMutation({
+    onSuccess: () => {
+      router.refresh();
+      setOpenStatus(null);
+    },
+  });
 
   return (
     <div className="m-5">
@@ -84,7 +95,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
             <tr>
               <th className="text-sm text-accent">Dato</th>
               <th className="text-sm text-accent">Type</th>
-              <th className="text-sm text-accent">Status</th>
+              <th className="text-sm text-accent">Aktiv</th>
 
               <th className="text-sm text-accent">ID</th>
 
@@ -145,33 +156,88 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                         <div>
                           <div
                             onClick={() => statusHandler(blade.id)}
-                            className="h-3 w-3 rounded-full bg-red-400"
+                            className={`h-3 w-3 rounded-full ${
+                              blade.active ? "bg-emerald-400" : "bg-primary"
+                            }`}
                           >
                             {openStatus === blade.id && (
                               <div className="card z-40 w-96 bg-neutral text-neutral-content">
-                                <div className="card-body items-center text-center">
-                                  <h2 className="card-title">
-                                    Sett Status på{" "}
-                                    <span className="text-orange-600">
-                                      {blade.IdNummer}
-                                    </span>
-                                  </h2>
-                                  <p>We are using cookies for no reason.</p>
-                                  <div className="card-actions justify-end">
+                                <div>
+                                  <form
+                                    onSubmit={(e) => {
+                                      e.preventDefault();
+                                      createPost.mutate({
+                                        sagNr: "3",
+                                        activePost: true,
+                                        bladeRelationId: "",
+                                        bladType: "",
+                                        side: "",
+                                        creatorImg: "",
+                                        sgKS: "",
+                                        sagtid: 0,
+                                        createdBy: "",
+                                        anmKS: "",
+                                        createdById: "",
+                                        datoSrv: new Date(),
+                                        sgSag: "",
+                                        sideklaring: 0,
+                                        handling: "",
+                                        userId: "",
+                                        temperatur: 0,
+                                        anmSag: "",
+                                        feilkode: "test",
+                                        antTimer: 0,
+                                        datoUt: new Date(),
+                                        datoInn: new Date(),
+                                        klUt: new Date(),
+                                        klInn: new Date(),
+                                        bladedata: blade.id,
+                                      });
+                                    }}
+                                  >
+                                    <div className="card-body items-center text-center">
+                                      <h2 className="card-title">
+                                        <span className="text-orange-600">
+                                          {blade.IdNummer}
+                                        </span>
+                                      </h2>
+                                      <p>
+                                        {!blade.active
+                                          ? "Aktiver blad"
+                                          : "Deaktiver blad"}
+                                      </p>
+                                      {!blade.active && (
+                                        <select
+                                          className="bg-white"
+                                          name=""
+                                          id=""
+                                        >
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                        </select>
+                                      )}
+                                    </div>
                                     <button className="btn btn-primary btn-xs">
-                                      Accept
+                                      {blade.active ? "Deaktiver" : "Aktiver"}
                                     </button>
-                                    <button
-                                      onClick={() => {
-                                        setTimeout(() => {
-                                          handleCloseModal();
-                                        }, 100);
-                                      }}
-                                      className="btn btn-xs"
-                                    >
-                                      Avbryt
-                                    </button>
-                                  </div>
+                                  </form>
+                                </div>
+                                <div className="card-actions justify-end">
+                                  <button
+                                    onClick={() => {
+                                      setTimeout(() => {
+                                        handleCloseModal();
+                                      }, 100);
+                                    }}
+                                    className="btn btn-xs"
+                                  >
+                                    Avbryt
+                                  </button>
                                 </div>
                               </div>
                             )}

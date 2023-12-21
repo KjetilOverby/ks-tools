@@ -2,21 +2,13 @@
 2. Legge inn produsen på båndsagblader, Foreløpig bare "Munkfors" som skal lagres automatisk (bandhistorikk)
 3. Sawblades creatorImg
 4. Gi feilmelding når duplikasjoner av Id nummer blir forsøkt lagt inn.
-5. Personal model:
-
-- Navn
-- createdAt
-- Tittel
-- msg
-- img
-- viseaktive band (status)
-
-6. Sideklaring legges på KS og fjernes fra kundeinfo, da det er vi som måler det.
-7. BFS nr blir delt opp så vi får flere alternativer + å legge oversikten på siden
-8. Uthevet eller markert sidenavn på header ut i fra hviken side man er på.
-9. Et klikk for å få opp historikk på blad selv om man ikke har skrevet inn eksakt id nummer.
-10. Frem og tilbake navigasjon.
-11. Fritekst på nye blad. Det er allerede lagt inn en "note" post i databasen.
-12. Redigering av poster lagt inn av kunde.
+5. Sideklaring legges på KS og fjernes fra kundeinfo, da det er vi som måler det.
+6. BFS nr blir delt opp så vi får flere alternativer + å legge oversikten på siden
+7. Uthevet eller markert sidenavn på header ut i fra hviken side man er på.
+8. Et klikk for å få opp historikk på blad selv om man ikke har skrevet inn eksakt id nummer.
+9. Frem og tilbake navigasjon.
+10. Fritekst på nye blad. Det er allerede lagt inn en "note" post i databasen.
+11. Redigering av poster lagt inn av kunde.
+12. I statistikk farg ruter med 0 eller 0.0% med en annen farge for å letter se hvilke som ikke har verdi.
 
 Driver med punkt 12 og skal legge historikk update historikkKs??

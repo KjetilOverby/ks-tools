@@ -73,6 +73,8 @@ const HistorikkInput = ({
             side: side,
             creatorImg: "",
             bladType: bladType,
+            activePost: false,
+            bladeRelationId: "",
           });
         }}
         className="card w-96 bg-slate-500 text-neutral-content"

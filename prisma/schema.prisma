@@ -91,10 +91,10 @@ model VerificationToken {
 
 model personal {
     id        String    @id @default(cuid())
+    createdAt DateTime  @default(now())
     img       String
-    msg       String
+    name      String
     title     String
-    secret    String
     user      User      @relation(fields: [userId], references: [id])
     userId    String
     userBlade sawblades @relation(fields: [id], references: [id])
@@ -117,6 +117,7 @@ model sawblades {
     deleted     Boolean
     note        String
     side        String
+    active      Boolean
 
     personal      personal[]
     bandhistorikk bandhistorikk[]
@@ -126,34 +127,37 @@ model sawblades {
 }
 
 model bandhistorikk {
-    id          String    @id @default(cuid())
-    historikkId String
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
-    userId      String
-    createdBy   User      @relation(fields: [createdById], references: [id])
-    sagNr       String
-    datoInn     DateTime
-    klInn       DateTime  @db.Time()
-    datoUt      DateTime
-    klUt        DateTime  @db.Time()
-    sagtid      Float
-    feilkode    String
-    temperatur  Int
-    sideklaring Float
-    antTimer    Float
-    anmSag      String
-    createdById String
-    creator     String
-    creatorImg  String
-    anmKS       String
-    sgSag       String
-    sgKS        String
-    handling    String
-    side        String
-    bladType    String
-    datoSrv     DateTime
-    bladedata   sawblades @relation(fields: [historikkId], references: [id])
+    id              String   @id @default(cuid())
+    historikkId     String
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+    userId          String
+    createdBy       User     @relation(fields: [createdById], references: [id])
+    sagNr           String
+    datoInn         DateTime
+    klInn           DateTime @db.Time()
+    datoUt          DateTime
+    klUt            DateTime @db.Time()
+    sagtid          Float
+    feilkode        String
+    temperatur      Int
+    sideklaring     Float
+    antTimer        Float
+    anmSag          String
+    createdById     String
+    creator         String
+    creatorImg      String
+    anmKS           String
+    sgSag           String
+    sgKS            String
+    handling        String
+    side            String
+    bladType        String
+    datoSrv         DateTime
+    activePost      Boolean
+    bladeRelationId String
+
+    bladedata sawblades @relation(fields: [historikkId], references: [id])
 
     @@index([historikkId])
     @@index([createdById])

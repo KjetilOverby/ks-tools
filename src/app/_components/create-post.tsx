@@ -18,6 +18,7 @@ export function CreatePost() {
     deleted: false,
     kunde: "",
     side: "",
+    active: false,
   });
 
   const createPost = api.sawblades.create.useMutation({
@@ -59,6 +60,7 @@ export function CreatePost() {
               deleted: false,
               kunde: bladeData.kunde,
               side: bladeData.side,
+              active: false,
             });
             console.log(response);
           }
