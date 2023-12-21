@@ -44,9 +44,9 @@ const BandDetails = ({
   setOpenBandhistorikkData,
 }: bandProps) => {
   const [openInput, setOpenInput] = useState(false);
-  const [openMessage, setOpenMessage] = useState(null);
-  const [openMessageKS, setOpenMessageKS] = useState(false);
-  const [openInputKS, setOpenInputKS] = useState(null);
+  const [openMessage, setOpenMessage] = useState<string | null>(null);
+  const [openMessageKS, setOpenMessageKS] = useState<string | null>(null);
+  const [openInputKS, setOpenInputKS] = useState<boolean>(false);
   const [postId, setPostId] = useState("");
 
   const [historikkKs, setHistorikkKs] = useState({
@@ -56,7 +56,7 @@ const BandDetails = ({
     handling: "",
   });
 
-  const messageHander = (postID) => {
+  const messageHander = (postID: string) => {
     setOpenMessage(postID);
   };
   const closeMessageHandler = () => {
@@ -65,7 +65,7 @@ const BandDetails = ({
   const closeMessageKSHandler = () => {
     setOpenMessageKS(null);
   };
-  const messageKShandler = (postID) => {
+  const messageKShandler = (postID:string) => {
     setOpenMessageKS(postID);
   };
 

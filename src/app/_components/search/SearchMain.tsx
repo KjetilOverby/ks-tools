@@ -56,13 +56,11 @@ const SearchMain = ({ sawblades }: BladeProps) => {
 
   const [searchSerial, setSearchSerial] = useState<string>("");
 
-  const [openStatus, setOpenStatus] = useState(null);
-  const [openHistorikk, setopenHistorikk] = useState(null);
+  const [openStatus, setOpenStatus] = useState<string | null>(null);
+  const [openHistorikk, setopenHistorikk] = useState<string | null>(null);
 
   return (
     <div className="m-5">
-    
-      
       <div>
         <div className="ml-5 rounded-xl py-5">
           <div className="flex ">
@@ -97,33 +95,28 @@ const SearchMain = ({ sawblades }: BladeProps) => {
           </thead>
           <tbody>
             {sawblades.map((blade) => {
-              const statusHandler = (postId) => {
+              const statusHandler = (postId: string) => {
                 setOpenStatus(postId);
               };
 
               const handleCloseModal = () => {
                 setOpenStatus(null);
-              
               };
 
-              const historikkHandler = (historikkId) => {
+              const historikkHandler = (historikkId: string | null) => {
                 setopenHistorikk(historikkId);
               };
 
               const handleCloseHistorikk = () => {
-
                 setTimeout(() => {
-                  
-                  setopenHistorikk(null)
+                  setopenHistorikk(null);
                 }, 100);
-              }
+              };
 
               return (
                 <>
-                
                   {!blade.deleted && (
                     <tr key={blade.id} className="bg-accent">
-                       
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
@@ -200,27 +193,32 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           <DeleteComponent id={blade.id} />
                         </th>
                       </td>
-                    
                     </tr>
-                    
                   )}
-                       {openHistorikk ===
-                              blade.id && (
-                                <div className=" absolute w-full h-screen top-0 bg-black rounded-2xl p-5">
-                                  <div>
-                                  <h1 className="mt-5 text-lg text-orange-400">Historikk</h1>
-                                    <h1 className="text-orange-600">ID: {blade.IdNummer}</h1>
-                                  <p>Type: {blade.type}</p>
-                                  </div>
-                                  <BandDetails
-                                    bandhistorikkData={blade}
-                                    setOpenBandhistorikkData={setOpenBandhistorikkData}
-                                  />
+                  {openHistorikk === blade.id && (
+                    <div className=" absolute top-0 h-screen w-full rounded-2xl bg-black p-5">
+                      <div>
+                        <h1 className="mt-5 text-lg text-orange-400">
+                          Historikk
+                        </h1>
+                        <h1 className="text-orange-600">
+                          ID: {blade.IdNummer}
+                        </h1>
+                        <p>Type: {blade.type}</p>
+                      </div>
+                      <BandDetails
+                        bandhistorikkData={blade}
+                        setOpenBandhistorikkData={setOpenBandhistorikkData}
+                      />
 
-                                  <button onClick={handleCloseHistorikk} className="btn btn-primary btn-xs mt-5">Lukk historikk</button>
-                                </div>,
-                                )}
-   
+                      <button
+                        onClick={handleCloseHistorikk}
+                        className="btn btn-primary btn-xs mt-5"
+                      >
+                        Lukk historikk
+                      </button>
+                    </div>
+                  )}
                 </>
               );
             })}
