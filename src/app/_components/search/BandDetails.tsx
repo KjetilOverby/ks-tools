@@ -157,10 +157,14 @@ const BandDetails = ({
                       </div>
                     </td>
                     <td>
-                      <div className="text-xs text-neutral">
-                        {dateFormat(post.datoUt, "dd.mm.yyyy")},{" "}
-                        {dateFormat(post.klUt, "HH:MM")}
-                      </div>
+                      {!post.activePost ? (
+                        <div className="text-xs text-neutral">
+                          {dateFormat(post.datoUt, "dd.mm.yyyy")},{" "}
+                          {dateFormat(post.klUt, "HH:MM")}
+                        </div>
+                      ) : (
+                        "Aktiv"
+                      )}
                     </td>
                     <td className="font-bold text-neutral">{post.sagtid}</td>
 
@@ -208,6 +212,7 @@ const BandDetails = ({
                           style={{ color: "orange", fontSize: ".8rem" }}
                         />
                       </button>
+
                       <button onClick={openKSinput} className="btn btn-xs">
                         KS
                       </button>
