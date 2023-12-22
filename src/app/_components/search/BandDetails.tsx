@@ -34,6 +34,7 @@ interface bandProps {
       sgSag: string;
       datoSrv: Date;
       temperatur: number;
+      activePost: boolean;
     }[];
   };
 
@@ -143,7 +144,9 @@ const BandDetails = ({
 
               return (
                 <>
-                  <tr className="bg-secondary">
+                  <tr
+                    className={post.activePost ? "bg-teal-800" : "bg-secondary"}
+                  >
                     <td>
                       <div className="text-xs text-neutral">{post.sagNr}</div>
                     </td>

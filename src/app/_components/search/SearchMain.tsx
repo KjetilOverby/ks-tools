@@ -4,11 +4,9 @@ import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
 import BandDetails from "./BandDetails";
-import DatePicker2 from "../reusable/Datepicker2";
 import DatepickerComponent from "../reusable/Datepicker";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
-import { date } from "zod";
 
 interface Blade {
   type: string;
@@ -63,10 +61,17 @@ const SearchMain = ({ sawblades }: BladeProps) => {
   const [openStatus, setOpenStatus] = useState<string | null>(null);
   const [openHistorikk, setopenHistorikk] = useState<string | null>(null);
   const router = useRouter();
+
   const createPost = api.bandhistorikk.create.useMutation({
     onSuccess: () => {
       router.refresh();
       setOpenStatus(null);
+    },
+  });
+
+  const updateStatus = api.sawblades.updateStatus.useMutation({
+    onSuccess: () => {
+      router.refresh();
     },
   });
 
@@ -75,12 +80,6 @@ const SearchMain = ({ sawblades }: BladeProps) => {
       <div>
         <div className="ml-5 rounded-xl py-5">
           <div className="flex ">
-            {/*  <DatePicker2
-              link="/search"
-              searchSerial={searchSerial}
-              setSearchSerial={setSearchSerial}
-              idSearch={true}
-            /> */}
             <DatepickerComponent
               idSearch={true}
               searchSerial={searchSerial}
@@ -122,6 +121,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                 setTimeout(() => {
                   setopenHistorikk(null);
                 }, 100);
+              };
+
+              const updateStatusHandler = () => {
+                void updateStatus.mutate({
+                  id: blade.id,
+                  active: true,
+                });
               };
 
               return (
@@ -185,7 +191,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                                         userId: "",
                                         temperatur: 0,
                                         anmSag: "",
-                                        feilkode: "test",
+                                        feilkode: "Aktivt blad",
                                         antTimer: 0,
                                         datoUt: new Date(),
                                         datoInn: new Date(),
@@ -193,6 +199,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                                         klInn: new Date(),
                                         bladedata: blade.id,
                                       });
+                                      updateStatusHandler();
                                     }}
                                   >
                                     <div className="card-body items-center text-center">

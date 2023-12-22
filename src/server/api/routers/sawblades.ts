@@ -129,6 +129,20 @@ export const sawbladesRouter = createTRPCRouter({
   }),
 
 
+  updateStatus: protectedProcedure.input(z.object({active: z.boolean(), id: z.string()}))
+  .mutation(async ({ctx, input}) => {
+      return ctx.db.sawblades.update({
+          where: {
+              id: input.id
+          },
+          data: {
+              active: input.active,
+          
+          }
+      });
+  }),
+
+
 })
 
 
