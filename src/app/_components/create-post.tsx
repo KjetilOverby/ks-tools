@@ -61,6 +61,7 @@ export function CreatePost() {
               kunde: bladeData.kunde,
               side: bladeData.side,
               active: false,
+              deleteReason: "",
             });
             console.log(response);
           }

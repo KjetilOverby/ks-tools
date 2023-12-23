@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
@@ -7,6 +7,8 @@ import BandDetails from "./BandDetails";
 import DatepickerComponent from "../reusable/Datepicker";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
+import DeactivateBlade from "./DeactivateBlade";
+import ActivateBlade from "./ActivateBlade";
 
 interface Blade {
   type: string;
@@ -19,6 +21,7 @@ interface Blade {
   kunde: string;
   side: string;
   active: boolean;
+  deleteReason: string;
   _count: {
     bandhistorikk: number;
   };
@@ -44,6 +47,7 @@ interface Blade {
     sgSag: string;
     sgKS: string;
     datoSrv: Date;
+    activePost: boolean;
   }[];
 }
 
@@ -70,6 +74,12 @@ const SearchMain = ({ sawblades }: BladeProps) => {
   });
 
   const updateStatus = api.sawblades.updateStatus.useMutation({
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
+
+  const updatePost = api.bandhistorikk.update.useMutation({
     onSuccess: () => {
       router.refresh();
     },
@@ -129,6 +139,12 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                   active: true,
                 });
               };
+              const deactivateStatusHandler = () => {
+                void updateStatus.mutate({
+                  id: blade.id,
+                  active: false,
+                });
+              };
 
               return (
                 <>
@@ -166,87 +182,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                               blade.active ? "bg-emerald-400" : "bg-primary"
                             }`}
                           >
-                            {openStatus === blade.id && (
-                              <div className="card z-40 w-96 bg-neutral text-neutral-content">
-                                <div>
-                                  <form
-                                    onSubmit={(e) => {
-                                      e.preventDefault();
-                                      createPost.mutate({
-                                        sagNr: "3",
-                                        activePost: true,
-                                        bladeRelationId: "",
-                                        bladType: "",
-                                        side: "",
-                                        creatorImg: "",
-                                        sgKS: "",
-                                        sagtid: 0,
-                                        createdBy: "",
-                                        anmKS: "",
-                                        createdById: "",
-                                        datoSrv: new Date(),
-                                        sgSag: "",
-                                        sideklaring: 0,
-                                        handling: "",
-                                        userId: "",
-                                        temperatur: 0,
-                                        anmSag: "",
-                                        feilkode: "Aktivt blad",
-                                        antTimer: 0,
-                                        datoUt: new Date(),
-                                        datoInn: new Date(),
-                                        klUt: new Date(),
-                                        klInn: new Date(),
-                                        bladedata: blade.id,
-                                      });
-                                      updateStatusHandler();
-                                    }}
-                                  >
-                                    <div className="card-body items-center text-center">
-                                      <h2 className="card-title">
-                                        <span className="text-orange-600">
-                                          {blade.IdNummer}
-                                        </span>
-                                      </h2>
-                                      <p>
-                                        {!blade.active
-                                          ? "Aktiver blad"
-                                          : "Deaktiver blad"}
-                                      </p>
-                                      {!blade.active && (
-                                        <select
-                                          className="bg-white"
-                                          name=""
-                                          id=""
-                                        >
-                                          <option value="1">1</option>
-                                          <option value="2">2</option>
-                                          <option value="3">3</option>
-                                          <option value="4">4</option>
-                                          <option value="5">5</option>
-                                          <option value="6">6</option>
-                                          <option value="7">7</option>
-                                        </select>
-                                      )}
-                                    </div>
-                                    <button className="btn btn-primary btn-xs">
-                                      {blade.active ? "Deaktiver" : "Aktiver"}
-                                    </button>
-                                  </form>
-                                </div>
-                                <div className="card-actions justify-end">
-                                  <button
-                                    onClick={() => {
-                                      setTimeout(() => {
-                                        handleCloseModal();
-                                      }, 100);
-                                    }}
-                                    className="btn btn-xs"
-                                  >
-                                    Avbryt
-                                  </button>
-                                </div>
-                              </div>
+                            {openStatus === blade.id && !blade.active && (
+                              <ActivateBlade
+                                blade={blade}
+                                createPost={createPost}
+                                updateStatusHandler={updateStatusHandler}
+                                handleCloseModal={handleCloseModal}
+                              />
                             )}
                           </div>
                         </div>
@@ -282,6 +224,10 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                       <BandDetails
                         bandhistorikkData={blade}
                         setOpenBandhistorikkData={setOpenBandhistorikkData}
+                        blade={blade}
+                        updatePost={updatePost}
+                        updateStatusHandler={updateStatusHandler}
+                        handleCloseModal={handleCloseModal}
                       />
 
                       <button

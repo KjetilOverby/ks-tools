@@ -104,20 +104,21 @@ model personal {
 }
 
 model sawblades {
-    id          String   @id @default(cuid())
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    kunde       String
-    type        String
-    IdNummer    String   @unique
-    createdBy   User     @relation(fields: [createdById], references: [id])
-    createdById String
-    userId      String
-    creator     String
-    deleted     Boolean
-    note        String
-    side        String
-    active      Boolean
+    id           String   @id @default(cuid())
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+    kunde        String
+    type         String
+    IdNummer     String   @unique
+    createdBy    User     @relation(fields: [createdById], references: [id])
+    createdById  String
+    userId       String
+    creator      String
+    deleted      Boolean
+    note         String
+    side         String
+    active       Boolean
+    deleteReason String
 
     personal      personal[]
     bandhistorikk bandhistorikk[]

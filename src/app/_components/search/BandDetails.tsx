@@ -5,6 +5,7 @@ import HistorikkInput from "./HistorikkInput";
 import Deletehistorikkpost from "./deletehistorikkpost";
 import HistorikkInputKS from "./HistorikkInputKS";
 import { CiEdit } from "react-icons/ci";
+import DeactivateBlade from "./DeactivateBlade";
 
 interface bandProps {
   bandhistorikkData: {
@@ -44,12 +45,18 @@ interface bandProps {
 const BandDetails = ({
   bandhistorikkData,
   setOpenBandhistorikkData,
+  blade,
+  updatePost,
+  deactivateStatusHandler,
+  handleCloseModal,
 }: bandProps) => {
   const [openInput, setOpenInput] = useState(false);
   const [openMessage, setOpenMessage] = useState<string | null>(null);
   const [openMessageKS, setOpenMessageKS] = useState<string | null>(null);
   const [openInputKS, setOpenInputKS] = useState<boolean>(false);
   const [postId, setPostId] = useState("");
+
+  const [openDeactivateModal, setOpenDeactivateModal] = useState(false);
 
   const [historikkKs, setHistorikkKs] = useState({
     anmKS: "",
@@ -203,6 +210,29 @@ const BandDetails = ({
                       )}
                     </td>
                     <td className="text-primary">{post.sgSag}</td>
+                    <td className="text-primary">
+                      {post.activePost && (
+                        <div className="h-3 w-3 rounded-full bg-green-400">
+                          {openDeactivateModal && (
+                            <DeactivateBlade
+                              blade={blade}
+                              updatePost={updatePost}
+                              updateStatusHandler={deactivateStatusHandler}
+                              handleCloseModal={handleCloseModal}
+                            />
+                          )}
+                        </div>
+                      )}
+                      {/* 
+                      {openStatus === blade.id && blade.active && (
+                        <DeactivateBlade
+                          blade={blade}
+                          updatePost={updatePost}
+                          updateStatusHandler={deactivateStatusHandler}
+                          handleCloseModal={handleCloseModal}
+                        />
+                      )} */}
+                    </td>
                     <td className="text-primary">
                       <button
                         onClick={editHistorikkPost}

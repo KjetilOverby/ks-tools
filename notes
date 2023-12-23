@@ -10,6 +10,7 @@
 10. Fritekst på nye blad. Det er allerede lagt inn en "note" post i databasen.
 11. Redigering av poster lagt inn av kunde.
 12. I statistikk farg ruter med 0 eller 0.0% med en annen farge for å letter se hvilke som ikke har verdi.
+13. Sett opp en modal ved sletting av blader med en input om årsaken til sletting.
 
 sett active false når det slettes.
 
