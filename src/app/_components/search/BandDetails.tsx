@@ -212,7 +212,10 @@ const BandDetails = ({
                     <td className="text-primary">{post.sgSag}</td>
                     <td className="text-primary">
                       {post.activePost && (
-                        <div className="h-3 w-3 rounded-full bg-green-400">
+                        <div
+                          onClick={() => setOpenDeactivateModal(true)}
+                          className="h-3 w-3 rounded-full bg-green-400"
+                        >
                           {openDeactivateModal && (
                             <DeactivateBlade
                               blade={blade}

@@ -60,7 +60,7 @@ export const bandhistorikkRouter = createTRPCRouter({
           },
       });
   }),
-  update: protectedProcedure.input(z.object({anmKS: z.string(), id: z.string(), handling: z.string(), sgKS: z.string(), datoSrv: z.date()}))
+  update: protectedProcedure.input(z.object({anmKS: z.string(), id: z.string(), handling: z.string(), sgKS: z.string(), datoSrv: z.date(), activePost: z.boolean()}))
   .mutation(async ({ctx, input}) => {
       return ctx.db.bandhistorikk.update({
           where: {
@@ -71,7 +71,8 @@ export const bandhistorikkRouter = createTRPCRouter({
               updatedAt: new Date(),
               handling: input.handling,
               sgKS: input.sgKS,
-              datoSrv: input.datoSrv
+              datoSrv: input.datoSrv,
+              activePost: input.activePost
             
             
           

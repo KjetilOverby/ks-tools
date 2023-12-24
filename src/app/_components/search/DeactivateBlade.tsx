@@ -68,7 +68,7 @@ const ActivateBlade = ({
                 sgKS: "",
                 sagtid: 0,
                 createdBy: "",
-                anmKS: "",
+                anmKS: "treste",
                 createdById: "",
                 datoSrv: new Date(),
                 sgSag: "",

@@ -48,6 +48,7 @@ const HistorikkInputKS = ({
             handling: historikkKs.handling,
             sgKS: historikkKs.sgKS,
             datoSrv: historikkKs.datoSrv,
+            activatePost: false,
           });
         }}
         className="card w-96 bg-slate-500 text-neutral-content"
