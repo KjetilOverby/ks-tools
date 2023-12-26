@@ -222,6 +222,7 @@ const BandDetails = ({
                               updatePost={updatePost}
                               updateStatusHandler={deactivateStatusHandler}
                               handleCloseModal={handleCloseModal}
+                              post={post}
                             />
                           )}
                         </div>

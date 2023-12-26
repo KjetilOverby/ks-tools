@@ -1,4 +1,6 @@
 import React from "react";
+import { api } from "~/trpc/react";
+import { useRouter } from "next/navigation";
 
 interface Blade {
   type: string;
@@ -50,7 +52,15 @@ const ActivateBlade = ({
   blade,
   updateStatusHandler,
   handleCloseModal,
+  post,
 }: BladeProps) => {
+  const router = useRouter();
+  const updateBladeStatus = api.sawblades.updateStatus.useMutation({
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
+
   return (
     <div>
       <div className="card z-40 w-96 bg-neutral text-neutral-content">
@@ -68,7 +78,7 @@ const ActivateBlade = ({
                 sgKS: "",
                 sagtid: 0,
                 createdBy: "",
-                anmKS: "treste",
+                anmKS: "",
                 createdById: "",
                 datoSrv: new Date(),
                 sgSag: "",
@@ -80,13 +90,18 @@ const ActivateBlade = ({
                 feilkode: "Deactivated",
                 antTimer: 0,
                 datoUt: new Date(),
-                datoInn: new Date(),
+                datoInn: null,
                 klUt: new Date(),
-                klInn: new Date(),
-                bladedata: "clqhqqaln000z1p8ufx2gnqdq",
-                id: "clqhqqaln000z1p8ufx2gnqdq",
+                klInn: null,
+                bladedata: "",
+                id: post.id,
               });
               //   updateStatusHandler();
+
+              updateBladeStatus.mutate({
+                id: blade.id,
+                active: false,
+              });
             }}
           >
             <div className="card-body items-center text-center">
