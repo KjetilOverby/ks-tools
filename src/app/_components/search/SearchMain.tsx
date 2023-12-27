@@ -7,7 +7,6 @@ import BandDetails from "./BandDetails";
 import DatepickerComponent from "../reusable/Datepicker";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
-import DeactivateBlade from "./DeactivateBlade";
 import ActivateBlade from "./ActivateBlade";
 
 interface Blade {

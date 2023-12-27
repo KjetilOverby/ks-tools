@@ -60,7 +60,26 @@ export const bandhistorikkRouter = createTRPCRouter({
           },
       });
   }),
-  update: protectedProcedure.input(z.object({anmKS: z.string(), id: z.string(), handling: z.string(), sgKS: z.string(), datoSrv: z.date(), activePost: z.boolean(), klUt: z.date(), feilkode: z.string()}))
+  update: protectedProcedure.input(z.object({ id: z.string(), activePost: z.boolean(), klUt: z.date(), datoUt: z.date(), feilkode: z.string()}))
+  .mutation(async ({ctx, input}) => {
+      return ctx.db.bandhistorikk.update({
+          where: {
+              id: input.id
+          },
+          data: {
+             
+              activePost: input.activePost,
+              klUt: input.klUt,
+              datoUt: input.datoUt,
+              feilkode: input.feilkode
+            
+            
+          
+          }
+      });
+  }),
+
+  updateKS: protectedProcedure.input(z.object({anmKS: z.string(), id: z.string(), handling: z.string(), sgKS: z.string(), datoSrv: z.date()}))
   .mutation(async ({ctx, input}) => {
       return ctx.db.bandhistorikk.update({
           where: {
@@ -72,9 +91,6 @@ export const bandhistorikkRouter = createTRPCRouter({
               handling: input.handling,
               sgKS: input.sgKS,
               datoSrv: input.datoSrv,
-              activePost: input.activePost,
-              klUt: input.klUt,
-              feilkode: input.feilkode
             
             
           

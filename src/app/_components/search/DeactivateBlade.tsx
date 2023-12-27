@@ -45,12 +45,31 @@ interface Blade {
 
 interface BladeProps {
   sawblades: Blade[];
+  blade: {
+    type: string;
+    IdNummer: string;
+    deleted: boolean;
+    creator: string;
+    updatedAt: Date;
+    createdAt: Date;
+    id: string;
+    kunde: string;
+    side: string;
+    active: boolean;
+    deleteReason: string;
+    _count: {
+      bandhistorikk: number;
+    };
+  };
+  post: Blade[];
+  updatePost: () => void;
+  handleCloseModal: () => void;
+  createPost: () => void;
 }
 
 const ActivateBlade = ({
   updatePost,
   blade,
-  updateStatusHandler,
   handleCloseModal,
   post,
 }: BladeProps) => {
@@ -75,15 +94,11 @@ const ActivateBlade = ({
                 bladType: "",
                 side: "",
                 creatorImg: "",
-                sgKS: "",
                 sagtid: 0,
                 createdBy: "",
-                anmKS: "",
                 createdById: "",
-                datoSrv: new Date(),
                 sgSag: "",
                 sideklaring: 0,
-                handling: "",
                 userId: "",
                 temperatur: 0,
                 anmSag: "",
@@ -94,7 +109,7 @@ const ActivateBlade = ({
                 klUt: new Date(),
                 klInn: null,
                 bladedata: "",
-                id: post.id,
+                id: post.id as string,
               });
               //   updateStatusHandler();
 

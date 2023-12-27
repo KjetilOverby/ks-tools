@@ -8,6 +8,22 @@ import { CiEdit } from "react-icons/ci";
 import DeactivateBlade from "./DeactivateBlade";
 
 interface bandProps {
+  blade: {
+    type: string;
+    IdNummer: string;
+    deleted: boolean;
+    creator: string;
+    updatedAt: Date;
+    createdAt: Date;
+    id: string;
+    kunde: string;
+    side: string;
+    active: boolean;
+    deleteReason: string;
+    _count: {
+      bandhistorikk: number;
+    };
+  };
   bandhistorikkData: {
     side: string;
     id: string;
@@ -40,6 +56,9 @@ interface bandProps {
   };
 
   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
+  updatePost: () => void;
+  deactivateStatusHandler: () => void;
+  handleCloseModal: () => void;
 }
 
 const BandDetails = ({
@@ -227,15 +246,6 @@ const BandDetails = ({
                           )}
                         </div>
                       )}
-                      {/* 
-                      {openStatus === blade.id && blade.active && (
-                        <DeactivateBlade
-                          blade={blade}
-                          updatePost={updatePost}
-                          updateStatusHandler={deactivateStatusHandler}
-                          handleCloseModal={handleCloseModal}
-                        />
-                      )} */}
                     </td>
                     <td className="text-primary">
                       <button

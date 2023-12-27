@@ -1,4 +1,5 @@
 import React from "react";
+import { date } from "zod";
 
 interface Blade {
   type: string;
@@ -38,11 +39,53 @@ interface Blade {
     sgKS: string;
     datoSrv: Date;
     activePost: boolean;
+    bladedata: string;
   }[];
 }
 
 interface BladeProps {
   sawblades: Blade[];
+  blade: {
+    type: string;
+    IdNummer: string;
+    deleted: boolean;
+    creator: string;
+    updatedAt: Date;
+    createdAt: Date;
+    id: string;
+    kunde: string;
+    side: string;
+    active: boolean;
+    deleteReason: string;
+    _count: {
+      bandhistorikk: number;
+    };
+  };
+  updateStatusHandler: () => void;
+  handleCloseModal: () => void;
+  createPost: (bandhistorikk: {
+    creator: string;
+
+    feilkode: string;
+    handling: string;
+    historikkId: string;
+    id: string;
+    datoInn: Date;
+    klInn: Date;
+    datoUt: Date;
+    klUt: Date;
+    sagNr: string;
+    sagtid: number;
+    sideklaring: number;
+    anmSag: string;
+    updatedAt: Date;
+    anmKS: string;
+    temperatur: number;
+    sgSag: string;
+    sgKS: string;
+    datoSrv: Date;
+    activePost: boolean;
+  }) => void;
 }
 
 const ActivateBlade = ({
