@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 
 interface Blade {
+  id: string;
   type: string;
   IdNummer: string;
   deleted: boolean;
   creator: string;
   updatedAt: Date;
   createdAt: Date;
-  id: string;
   kunde: string;
   side: string;
   active: boolean;
@@ -57,11 +57,28 @@ interface BladeProps {
     side: string;
     active: boolean;
     deleteReason: string;
+
     _count: {
       bandhistorikk: number;
     };
   };
-  post: Blade[];
+
+  post: {
+    id: string;
+    type: string;
+    IdNummer: string;
+    deleted: boolean;
+    creator: string;
+    updatedAt: Date;
+    createdAt: Date;
+    kunde: string;
+    side: string;
+    active: boolean;
+    deleteReason: string;
+    _count: {
+      bandhistorikk: number;
+    };
+  };
   updatePost: () => void;
   handleCloseModal: () => void;
   createPost: () => void;
@@ -80,6 +97,16 @@ const ActivateBlade = ({
     },
   });
 
+  const [inputValues, setInputValues] = useState({
+    sagtid: 10,
+    temperatur: 20,
+    anmSag: "",
+    feilkode: "Ingen anmerkning",
+    antTimer: 40,
+    sgSag: "",
+    ampere: "",
+  });
+
   return (
     <div>
       <div className="card z-40 w-96 bg-neutral text-neutral-content">
@@ -88,28 +115,17 @@ const ActivateBlade = ({
             onSubmit={(e) => {
               e.preventDefault();
               updatePost.mutate({
-                sagNr: "3",
                 activePost: false,
-                bladeRelationId: "",
-                bladType: "",
-                side: "",
-                creatorImg: "",
-                sagtid: 0,
-                createdBy: "",
-                createdById: "",
-                sgSag: "",
-                sideklaring: 0,
-                userId: "",
-                temperatur: 0,
-                anmSag: "",
-                feilkode: "Deactivated",
-                antTimer: 0,
+                sagtid: inputValues.sagtid,
+                sgSag: inputValues.sgSag,
+                temperatur: inputValues.temperatur,
+                anmSag: inputValues.anmSag,
+                feilkode: inputValues.feilkode,
+                antTimer: inputValues.antTimer,
+                ampere: "ampere",
                 datoUt: new Date(),
-                datoInn: null,
                 klUt: new Date(),
-                klInn: null,
-                bladedata: "",
-                id: post.id as string,
+                id: post.id,
               });
               //   updateStatusHandler();
 
@@ -128,6 +144,12 @@ const ActivateBlade = ({
                 <div>
                   <p>Antall timer:</p>
                   <input
+                    onChange={(e) =>
+                      setInputValues({
+                        ...inputValues,
+                        sagtid: Number(e.currentTarget.value),
+                      })
+                    }
                     type="number"
                     className="input input-bordered input-xs w-full max-w-xs bg-white"
                   />
@@ -135,6 +157,12 @@ const ActivateBlade = ({
                 <div>
                   <p>Temperatur:</p>
                   <input
+                    onChange={(e) =>
+                      setInputValues({
+                        ...inputValues,
+                        temperatur: Number(e.currentTarget.value),
+                      })
+                    }
                     type="number"
                     className="input input-bordered input-xs w-full max-w-xs bg-white"
                   />
@@ -148,15 +176,30 @@ const ActivateBlade = ({
                 </div>
                 <div>
                   <p>Anm sag:</p>
+
                   <input
+                    onChange={(e) =>
+                      setInputValues({
+                        ...inputValues,
+                        anmSag: e.currentTarget.value,
+                      })
+                    }
                     type="text"
                     className="input input-bordered input-xs w-full max-w-xs bg-white"
                   />
                 </div>
                 <div>
                   <p>Feilkode:</p>
-                  <select className="select select-bordered select-xs w-full max-w-xs bg-white">
-                    <option value="Ingen anmerkning">Ingen anmerkning</option>
+                  <select
+                    onChange={(e) =>
+                      setInputValues({
+                        ...inputValues,
+                        feilkode: e.currentTarget.value,
+                      })
+                    }
+                    className="select select-bordered select-xs w-full max-w-xs bg-white"
+                  >
+                    <option value="">Ingen anmerkning</option>
                     <option value="Bølger">Bølger</option>
                     <option value="Vandrer på hjul">Vandrer på hjul</option>
                     <option value="Sprekk">Sprekk</option>
@@ -176,8 +219,22 @@ const ActivateBlade = ({
                     <option value="Ikjøring/riper">Ikjøring/riper</option>
                   </select>
                 </div>
-
                 <div>
+                  <p>Anm sag:</p>
+
+                  <input
+                    onChange={(e) =>
+                      setInputValues({
+                        ...inputValues,
+                        sgSag: e.currentTarget.value,
+                      })
+                    }
+                    type="text"
+                    className="input input-bordered input-xs w-full max-w-xs bg-white"
+                  />
+                </div>
+
+                {/* <div>
                   <p>Sideklaring:</p>
                   <select className="select select-bordered select-xs w-full max-w-xs bg-white">
                     <option value={0}>Velg</option>
@@ -189,7 +246,7 @@ const ActivateBlade = ({
                     <option value={0.65}>0.65</option>
                     <option value={0.7}>0.7</option>
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
             <button className="btn btn-primary btn-xs">Deaktiver</button>
