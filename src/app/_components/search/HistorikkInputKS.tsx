@@ -95,6 +95,7 @@ const HistorikkInputKS = ({
               }
               className="select select-bordered select-xs w-full max-w-xs bg-white"
             >
+              <option value="">Velg</option>
               <option value="BFS423 EKSTRA RETTING BÅND">
                 BFS423 EKSTRA RETTING BÅND
               </option>

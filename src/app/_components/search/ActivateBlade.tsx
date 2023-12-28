@@ -1,5 +1,4 @@
-import React from "react";
-import { date } from "zod";
+import React, { useState } from "react";
 
 interface Blade {
   type: string;
@@ -94,6 +93,7 @@ const ActivateBlade = ({
   updateStatusHandler,
   handleCloseModal,
 }: BladeProps) => {
+  const [sagNrInput, setsagNrInput] = useState("");
   return (
     <div>
       <div className="card z-40 w-96 bg-neutral text-neutral-content">
@@ -102,7 +102,7 @@ const ActivateBlade = ({
             onSubmit={(e) => {
               e.preventDefault();
               createPost.mutate({
-                sagNr: "3",
+                sagNr: sagNrInput,
                 activePost: true,
                 bladeRelationId: "",
                 bladType: "",
@@ -137,7 +137,12 @@ const ActivateBlade = ({
               </h2>
               <p>Aktiver blad</p>
 
-              <select className="bg-white" name="" id="">
+              <select
+                onChange={(e) => setsagNrInput(e.currentTarget.value)}
+                className="bg-white"
+                name=""
+                id=""
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

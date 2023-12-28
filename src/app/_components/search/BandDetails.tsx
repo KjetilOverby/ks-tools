@@ -6,6 +6,7 @@ import Deletehistorikkpost from "./deletehistorikkpost";
 import HistorikkInputKS from "./HistorikkInputKS";
 import { CiEdit } from "react-icons/ci";
 import DeactivateBlade from "./DeactivateBlade";
+import EditBandDetails from "./EditBandDetails";
 
 interface bandProps {
   blade: {
@@ -76,6 +77,7 @@ const BandDetails = ({
   const [postId, setPostId] = useState("");
 
   const [openDeactivateModal, setOpenDeactivateModal] = useState(false);
+  const [openEditBandDetails, setOpenEditBandDetails] = useState(false);
 
   const [historikkKs, setHistorikkKs] = useState({
     anmKS: "",
@@ -96,6 +98,21 @@ const BandDetails = ({
   const messageKShandler = (postID: string) => {
     setOpenMessageKS(postID);
   };
+  const [historikkData, setHistorikkData] = useState({
+    datoInn: new Date(),
+    klInn: new Date(),
+    datoUt: new Date(),
+    klUt: new Date(),
+    sagtid: 0,
+    feilkode: "",
+    bladedata: "",
+    anmSag: "",
+    anTimer: 0,
+    temperatur: 0,
+    sgSag: "",
+    activePost: false,
+    sagNr: "",
+  });
 
   return (
     <div className="z-50 w-full bg-gradient-to-r from-base-100 via-blue-500 to-green-300">
@@ -115,6 +132,15 @@ const BandDetails = ({
           postId={postId}
           historikkKs={historikkKs}
           setHistorikkKs={setHistorikkKs}
+        />
+      )}
+
+      {openEditBandDetails && (
+        <EditBandDetails
+          setOpenEditBandDetails={setOpenEditBandDetails}
+          postId={postId}
+          historikkData={historikkData}
+          setHistorikkData={setHistorikkData}
         />
       )}
 
@@ -145,6 +171,7 @@ const BandDetails = ({
               <th className="text-sm text-accent">Anm</th>
               <th className="text-sm text-accent">Sign</th>
               <th className="text-sm text-blue-500"></th>
+              <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500">Service</th>
               <th className="text-sm text-blue-500">Anm KS</th>
               <th className="text-sm text-blue-500">SG</th>
@@ -156,16 +183,30 @@ const BandDetails = ({
               const openKSinput = () => {
                 setOpenInputKS(true);
                 setPostId(post.id);
-                // setHistorikkKs({
-                //   anmKS: post.anmKS,
-                //   handling: post.handling,
-                //   sgKS: post.sgKS,
-                //   datoSrv: post.datoSrv,
-                // });
+                setHistorikkKs({
+                  anmKS: post.anmKS,
+                  handling: post.handling,
+                  sgKS: post.sgKS,
+                  datoSrv: post.datoSrv,
+                });
               };
 
-              const editHistorikkPost = () => {
-                setOpenInput(true);
+              const editHistorikkPostHandler = () => {
+                setOpenEditBandDetails(true);
+                setPostId(post.id);
+                setHistorikkData({
+                  activePost: post.activePost,
+                  datoInn: post.datoInn,
+                  klInn: post.klInn,
+                  klUt: post.klUt,
+                  datoUt: post.datoUt,
+                  feilkode: post.feilkode,
+                  temperatur: post.temperatur,
+                  anmSag: post.anmSag,
+                  sgSag: post.sgSag,
+                  sagtid: post.sagtid,
+                  sagNr: post.sagNr,
+                });
               };
 
               return (
@@ -195,7 +236,7 @@ const BandDetails = ({
                     <td className="font-bold text-neutral">{post.sagtid}</td>
 
                     <td className="text-primary">{post.temperatur}</td>
-                    <td className="text-primary">Rutine</td>
+                    <td className="text-primary">-</td>
                     <td className="text-primary">{post.sideklaring}</td>
                     <td className="text-primary">{post.feilkode}</td>
 
@@ -249,7 +290,7 @@ const BandDetails = ({
                     </td>
                     <td className="text-primary">
                       <button
-                        onClick={editHistorikkPost}
+                        onClick={editHistorikkPostHandler}
                         className="btn btn-xs mr-5 bg-base-100"
                       >
                         <CiEdit
@@ -257,9 +298,11 @@ const BandDetails = ({
                         />
                       </button>
 
-                      <button onClick={openKSinput} className="btn btn-xs">
-                        KS
-                      </button>
+                      {!post.activePost && (
+                        <button onClick={openKSinput} className="btn btn-xs">
+                          KS
+                        </button>
+                      )}
                     </td>
                     <td className="text-primary">{post.handling}</td>
                     <td className="max-w-56 relative text-primary">

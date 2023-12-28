@@ -122,10 +122,13 @@ const ActivateBlade = ({
                 anmSag: inputValues.anmSag,
                 feilkode: inputValues.feilkode,
                 antTimer: inputValues.antTimer,
-                ampere: "ampere",
+                ampere: "",
                 datoUt: new Date(),
                 klUt: new Date(),
                 id: post.id,
+                datoInn: new Date(),
+                klInn: new Date(),
+                sagNr: post.sagNr,
               });
               //   updateStatusHandler();
 
