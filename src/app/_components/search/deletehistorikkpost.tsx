@@ -2,6 +2,7 @@
 import React from "react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
+import { RiDeleteBinFill } from "react-icons/ri";
 
 interface PostProps {
   post: string;
@@ -24,7 +25,9 @@ const Deletehistorikkpost = ({ post, setOpenBandhistorikkData }: PostProps) => {
   return (
     <>
       <div>
-        <button onClick={deletePost}>SLETT</button>
+        <button onClick={deletePost}>
+          <RiDeleteBinFill style={{ fontSize: "1rem", color: "indianred" }} />
+        </button>
       </div>
       <div></div>
     </>

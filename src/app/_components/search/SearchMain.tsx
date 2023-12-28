@@ -210,15 +210,58 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                     </tr>
                   )}
                   {openHistorikk === blade.id && (
-                    <div className=" absolute top-0 h-screen w-full rounded-2xl  bg-gradient-to-r from-base-100 via-blue-500 to-green-300 p-5">
-                      <div>
-                        <h1 className="mt-5 text-lg text-orange-400">
-                          Historikk
-                        </h1>
-                        <h1 className="text-orange-600">
-                          ID: {blade.IdNummer}
-                        </h1>
-                        <p>Type: {blade.type}</p>
+                    <div className=" absolute top-0 h-screen w-full rounded-2xl  bg-gradient-to-r from-base-100 via-gray-500 to-gray-600 p-5">
+                      <div className="flex">
+                        <div>
+                          <h1 className=" text-lg text-orange-400">
+                            Historikk
+                          </h1>
+                          <h1 className="text-2xl text-orange-600">
+                            ID: {blade.IdNummer}
+                          </h1>
+                          <p>
+                            Type: {blade.type} {blade.side}
+                          </p>
+                        </div>
+                        <div>
+                          <table className="table table-xs ml-5 w-full bg-accent">
+                            <thead>
+                              <tr>
+                                <th>Kode</th>
+                                <th>Beskrivelse</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th>BFS423</th>
+                                <th>EKSTRA RETTING BÅND</th>
+                              </tr>
+                              <tr>
+                                <th>BFS426</th>
+                                <th>BUNNSTUK BÅND</th>
+                              </tr>
+                              <tr>
+                                <th>BFS427</th>
+                                <th>BRETTING-STREKKING-SLIPING METER</th>
+                              </tr>
+                              <tr>
+                                <th>BFS429</th>
+                                <th>
+                                  STELL.FERDIG SLIP OG RETT f.o.m 100mm bredde
+                                  TANN
+                                </th>
+                              </tr>
+                              <tr>
+                                <th>BSF438</th>
+                                <th>REP.SVEIST STELLIT TANN</th>
+                              </tr>
+                              <tr>
+                                <th>BFS442</th>
+                                <th>SLIPESERVICE AV REP.TENNER METER</th>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                       <BandDetails
                         bandhistorikkData={blade}

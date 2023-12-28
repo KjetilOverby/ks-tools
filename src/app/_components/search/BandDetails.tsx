@@ -115,7 +115,7 @@ const BandDetails = ({
   });
 
   return (
-    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-blue-500 to-green-300">
+    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-gray-500 to-gray-600">
       {openInput && (
         <HistorikkInput
           setOpenInput={setOpenInput}
@@ -173,6 +173,7 @@ const BandDetails = ({
               <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500">Service</th>
+              <th className="text-sm text-blue-500">SK</th>
               <th className="text-sm text-blue-500">Anm KS</th>
               <th className="text-sm text-blue-500">SG</th>
               <th className="text-sm text-blue-500">Dato srv</th>
@@ -305,6 +306,7 @@ const BandDetails = ({
                       )}
                     </td>
                     <td className="text-primary">{post.handling}</td>
+                    <td className="text-primary">{post.sideklaring}</td>
                     <td className="max-w-56 relative text-primary">
                       {post.anmKS && (
                         <>

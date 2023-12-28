@@ -12,6 +12,7 @@ interface historikkInputProps {
     handling: string;
     sgKS: string;
     datoSrv: Date;
+    sideklaring: number;
   };
   setOpenInputKS: React.Dispatch<React.SetStateAction<boolean>>;
   setHistorikkKs: React.Dispatch<
@@ -20,6 +21,7 @@ interface historikkInputProps {
       sgKS: string;
       datoSrv: Date;
       handling: string;
+      sideklaring: number;
     }>
   >;
 }
@@ -70,6 +72,7 @@ const HistorikkInputKS = ({
             handling: concatenatedString,
             sgKS: historikkKs.sgKS,
             datoSrv: historikkKs.datoSrv,
+            sideklaring: historikkKs.sideklaring,
           });
         }}
         className="card w-96 bg-slate-500 text-neutral-content"
@@ -104,10 +107,31 @@ const HistorikkInputKS = ({
               className="input input-bordered input-xs w-full max-w-xs bg-white"
             />
           </div>
-
+          <div>
+            <p>Sideklaring:</p>
+            <select
+              onChange={(e) =>
+                setHistorikkKs({
+                  ...historikkKs,
+                  sideklaring: Number(e.currentTarget.value),
+                })
+              }
+              className="select select-bordered select-xs w-full max-w-xs bg-white"
+            >
+              <option value={0}>Velg</option>
+              <option value={0.4}>0.4</option>
+              <option value={0.45}>0.45</option>
+              <option value={0.5}>0.5</option>
+              <option value={0.55}>0.55</option>
+              <option value={0.6}>0.6</option>
+              <option value={0.65}>0.65</option>
+              <option value={0.7}>0.7</option>
+            </select>
+          </div>
+          <p>BFS koder</p>
           <div className="rounded-xl border p-1">
             <label className="label cursor-pointer">
-              <span className="label-text">BFS423 EKSTRA RETTING BÅND</span>
+              <span className="label-text">BFS423</span>
               <input
                 onChange={(e) =>
                   setBfsValue({
@@ -121,7 +145,7 @@ const HistorikkInputKS = ({
               />
             </label>
             <label className="label cursor-pointer">
-              <span className="label-text">BFS426 BUNNSTUK BÅND</span>
+              <span className="label-text">BFS426</span>
               <input
                 onChange={(e) =>
                   setBfsValue({
@@ -135,9 +159,7 @@ const HistorikkInputKS = ({
               />
             </label>
             <label className="label cursor-pointer">
-              <span className="label-text">
-                BFS427 RETTING-STREKKING-SLIPING METER
-              </span>
+              <span className="label-text">BFS427</span>
               <input
                 onChange={(e) =>
                   setBfsValue({
@@ -151,9 +173,7 @@ const HistorikkInputKS = ({
               />
             </label>
             <label className="label cursor-pointer">
-              <span className="label-text">
-                BFS429 STELL.FERDIG SLIP OG RETT f.o.m 100mm bredde TANN
-              </span>
+              <span className="label-text">BFS429</span>
               <input
                 onChange={(e) =>
                   setBfsValue({
@@ -167,7 +187,7 @@ const HistorikkInputKS = ({
               />
             </label>
             <label className="label cursor-pointer">
-              <span className="label-text">BSF438 REP.SVEIST STELLIT TANN</span>
+              <span className="label-text">BSF438</span>
               <input
                 onChange={(e) =>
                   setBfsValue({
@@ -181,9 +201,7 @@ const HistorikkInputKS = ({
               />
             </label>
             <label className="label cursor-pointer">
-              <span className="label-text">
-                BFS442 SLIPESERVICE AV REP.TENNER METER
-              </span>
+              <span className="label-text">BFS442</span>
               <input
                 onChange={(e) =>
                   setBfsValue({
@@ -197,38 +215,7 @@ const HistorikkInputKS = ({
               />
             </label>
           </div>
-          {/* 
-          <div>
-            <p>Service:</p>
-            <select
-              value={historikkKs.handling}
-              onChange={(e) =>
-                setHistorikkKs({
-                  ...historikkKs,
-                  handling: e.currentTarget.value,
-                })
-              }
-              className="select select-bordered select-xs w-full max-w-xs bg-white"
-            >
-              <option value="">Velg</option>
-              <option value="BFS423 EKSTRA RETTING BÅND">
-                BFS423 EKSTRA RETTING BÅND
-              </option>
-              <option value="BFS426 BUNNSTUK BÅND">BFS426 BUNNSTUK BÅND</option>
-              <option value="BFS427 RETTING-STREKKING-SLIPING METER">
-                BFS427 RETTING-STREKKING-SLIPING METER
-              </option>
-              <option value="BFS429 STELL.FERDIG SLIP OG RETT f.o.m 100mm bredde TANN">
-                BFS429 STELL.FERDIG SLIP OG RETT f.o.m 100mm bredde TANN
-              </option>
-              <option value="BSF438 REP.SVEIST STELLIT TANN">
-                BSF438 REP.SVEIST STELLIT TANN
-              </option>
-              <option value="BFS442 SLIPESERVICE AV REP.TENNER METER">
-                BFS442 SLIPESERVICE AV REP.TENNER METER
-              </option>
-            </select>
-          </div> */}
+
           <div>
             <p>Sign:</p>
             <input

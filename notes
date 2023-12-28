@@ -2,16 +2,17 @@
 2. Legge inn produsen på båndsagblader, Foreløpig bare "Munkfors" som skal lagres automatisk (bandhistorikk)
 3. Sawblades creatorImg
 4. Gi feilmelding når duplikasjoner av Id nummer blir forsøkt lagt inn.
-5. Sideklaring legges på KS og fjernes fra kundeinfo, da det er vi som måler det.
-6. BFS nr blir delt opp så vi får flere alternativer + å legge oversikten på siden
+5.
+6.
 7. Uthevet eller markert sidenavn på header ut i fra hviken side man er på.
-8. Et klikk for å få opp historikk på blad selv om man ikke har skrevet inn eksakt id nummer.
+8.
 9. Frem og tilbake navigasjon.
 10. Fritekst på nye blad. Det er allerede lagt inn en "note" post i databasen.
 11.
 12. I statistikk farg ruter med 0 eller 0.0% med en annen farge for å letter se hvilke som ikke har verdi.
 13. Sett opp en modal ved sletting av blader med en input om årsaken til sletting.
+14. sortering av poster og sagblad etter dato eller id nummer
+15. Modal for sletting av blad med input for å legge inn årsak til sletting.
+16. Modal for å slette sagblader i create modus.
 
 sett active false når det slettes.
-
-
