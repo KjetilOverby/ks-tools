@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface Blade {
   type: string;
@@ -94,6 +94,7 @@ const ActivateBlade = ({
   handleCloseModal,
 }: BladeProps) => {
   const [sagNrInput, setsagNrInput] = useState("");
+
   return (
     <div>
       <div className="card z-40 w-96 bg-neutral text-neutral-content">
@@ -101,34 +102,39 @@ const ActivateBlade = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              createPost.mutate({
-                sagNr: sagNrInput,
-                activePost: true,
-                bladeRelationId: "",
-                bladType: "",
-                side: "",
-                creatorImg: "",
-                sgKS: "",
-                sagtid: 0,
-                createdBy: "",
-                anmKS: "",
-                createdById: "",
-                datoSrv: new Date(),
-                sgSag: "",
-                sideklaring: 0,
-                handling: "",
-                userId: "",
-                temperatur: 0,
-                anmSag: "",
-                feilkode: "Aktivt blad",
-                antTimer: 0,
-                datoUt: new Date(),
-                datoInn: new Date(),
-                klUt: new Date(),
-                klInn: new Date(),
-                bladedata: blade.id,
-              });
-              updateStatusHandler();
+
+              if (sagNrInput === "") {
+                alert("Sagnummer er påkrevd");
+              } else {
+                createPost.mutate({
+                  sagNr: sagNrInput,
+                  activePost: true,
+                  bladeRelationId: "",
+                  bladType: "",
+                  side: "",
+                  creatorImg: "",
+                  sgKS: "",
+                  sagtid: 0,
+                  createdBy: "",
+                  anmKS: "",
+                  createdById: "",
+                  datoSrv: new Date(),
+                  sgSag: "",
+                  sideklaring: 0,
+                  handling: "",
+                  userId: "",
+                  temperatur: 0,
+                  anmSag: "",
+                  feilkode: "Aktivt blad",
+                  antTimer: 0,
+                  datoUt: new Date(),
+                  datoInn: new Date(),
+                  klUt: new Date(),
+                  klInn: new Date(),
+                  bladedata: blade.id,
+                });
+                updateStatusHandler();
+              }
             }}
           >
             <div className="card-body items-center text-center">
@@ -143,6 +149,7 @@ const ActivateBlade = ({
                 name=""
                 id=""
               >
+                <option value="">Velg sag</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

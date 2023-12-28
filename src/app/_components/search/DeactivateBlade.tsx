@@ -223,7 +223,7 @@ const ActivateBlade = ({
                   </select>
                 </div>
                 <div>
-                  <p>Anm sag:</p>
+                  <p>Signatur:</p>
 
                   <input
                     onChange={(e) =>

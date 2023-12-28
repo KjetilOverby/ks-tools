@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 
@@ -37,6 +38,27 @@ const HistorikkInputKS = ({
     },
   });
 
+  const [bfs, setBfs] = useState([]);
+
+  const [bfsValue, setBfsValue] = useState({
+    bfs1: "",
+    bfs2: "",
+    bfs3: "",
+    bfs4: "",
+    bfs5: "",
+    bfs6: "",
+  });
+  useEffect(() => {
+    setBfs([bfsValue]);
+  }, [bfsValue]);
+
+  const nonEmptyValues = Object.values(bfsValue).filter(
+    (value) => value !== "",
+  );
+  const concatenatedString = nonEmptyValues.join(", ");
+
+  console.log(concatenatedString);
+
   return (
     <div className="absolute z-40">
       <form
@@ -45,7 +67,7 @@ const HistorikkInputKS = ({
           void updatePost.mutate({
             id: postId,
             anmKS: historikkKs.anmKS,
-            handling: historikkKs.handling,
+            handling: concatenatedString,
             sgKS: historikkKs.sgKS,
             datoSrv: historikkKs.datoSrv,
           });
@@ -83,6 +105,99 @@ const HistorikkInputKS = ({
             />
           </div>
 
+          <div className="rounded-xl border p-1">
+            <label className="label cursor-pointer">
+              <span className="label-text">BFS423 EKSTRA RETTING BÅND</span>
+              <input
+                onChange={(e) =>
+                  setBfsValue({
+                    ...bfsValue,
+                    bfs1: e.currentTarget.value,
+                  })
+                }
+                type="checkbox"
+                className="checkbox"
+                value="BFS423"
+              />
+            </label>
+            <label className="label cursor-pointer">
+              <span className="label-text">BFS426 BUNNSTUK BÅND</span>
+              <input
+                onChange={(e) =>
+                  setBfsValue({
+                    ...bfsValue,
+                    bfs2: e.currentTarget.value,
+                  })
+                }
+                type="checkbox"
+                className="checkbox"
+                value="BFS426"
+              />
+            </label>
+            <label className="label cursor-pointer">
+              <span className="label-text">
+                BFS427 RETTING-STREKKING-SLIPING METER
+              </span>
+              <input
+                onChange={(e) =>
+                  setBfsValue({
+                    ...bfsValue,
+                    bfs3: e.currentTarget.value,
+                  })
+                }
+                value="BFS427"
+                type="checkbox"
+                className="checkbox"
+              />
+            </label>
+            <label className="label cursor-pointer">
+              <span className="label-text">
+                BFS429 STELL.FERDIG SLIP OG RETT f.o.m 100mm bredde TANN
+              </span>
+              <input
+                onChange={(e) =>
+                  setBfsValue({
+                    ...bfsValue,
+                    bfs4: e.currentTarget.value,
+                  })
+                }
+                value="BFS429"
+                type="checkbox"
+                className="checkbox"
+              />
+            </label>
+            <label className="label cursor-pointer">
+              <span className="label-text">BSF438 REP.SVEIST STELLIT TANN</span>
+              <input
+                onChange={(e) =>
+                  setBfsValue({
+                    ...bfsValue,
+                    bfs5: e.currentTarget.value,
+                  })
+                }
+                value="BSF438"
+                type="checkbox"
+                className="checkbox"
+              />
+            </label>
+            <label className="label cursor-pointer">
+              <span className="label-text">
+                BFS442 SLIPESERVICE AV REP.TENNER METER
+              </span>
+              <input
+                onChange={(e) =>
+                  setBfsValue({
+                    ...bfsValue,
+                    bfs6: e.currentTarget.value,
+                  })
+                }
+                value="BFS442"
+                type="checkbox"
+                className="checkbox"
+              />
+            </label>
+          </div>
+          {/* 
           <div>
             <p>Service:</p>
             <select
@@ -113,7 +228,7 @@ const HistorikkInputKS = ({
                 BFS442 SLIPESERVICE AV REP.TENNER METER
               </option>
             </select>
-          </div>
+          </div> */}
           <div>
             <p>Sign:</p>
             <input
