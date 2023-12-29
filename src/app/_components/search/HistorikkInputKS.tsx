@@ -40,8 +40,6 @@ const HistorikkInputKS = ({
     },
   });
 
-  const [bfs, setBfs] = useState([]);
-
   const [bfsValue, setBfsValue] = useState({
     bfs1: "",
     bfs2: "",
@@ -50,16 +48,11 @@ const HistorikkInputKS = ({
     bfs5: "",
     bfs6: "",
   });
-  useEffect(() => {
-    setBfs([bfsValue]);
-  }, [bfsValue]);
 
   const nonEmptyValues = Object.values(bfsValue).filter(
     (value) => value !== "",
   );
   const concatenatedString = nonEmptyValues.join(", ");
-
-  console.log(concatenatedString);
 
   return (
     <div className="absolute z-40">

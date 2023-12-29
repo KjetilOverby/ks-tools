@@ -71,16 +71,6 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
       <HeaderComponent />
       <div className="mx-5 mt-5">
         <div>
-          {/* <DatePicker2
-            idSearch={false}
-            link="/statistikk"
-            setSearchSerial={function (
-              value: React.SetStateAction<string>,
-            ): void {
-              throw new Error("Function not implemented.");
-            }}
-            searchSerial={""}
-          /> */}
           <DatepickerComponent
             link="/statistikk"
             searchSerial={""}
@@ -97,13 +87,14 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                     {feilkode}
                   </th>
                 ))}
-                {/* Add more headers as needed */}
               </tr>
             </thead>
             <tbody>
               {Object.entries(tableData).map(([sagNr, data]) => (
                 <tr className="bg-accent" key={sagNr}>
-                  <td className="border border-primary px-4 py-2">{sagNr}</td>
+                  <td className="border border-primary bg-teal-700 px-4 py-2">
+                    {sagNr}
+                  </td>
                   <td className="border border-primary px-4 py-2">
                     {data.total}
                   </td>
@@ -111,12 +102,13 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                   {feilkoder.map((feilkode) => (
                     <td
                       key={feilkode}
-                      className="border border-primary px-4 py-2"
+                      className={`border border-primary px-4 py-2 ${
+                        data[feilkode] ? "bg-cyan-800" : ""
+                      }`}
                     >
                       {data[feilkode] ?? 0}
                     </td>
                   ))}
-                  {/* Add more cells as needed for additional properties */}
                 </tr>
               ))}
             </tbody>
@@ -133,20 +125,23 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                     {feilkode}
                   </th>
                 ))}
-                {/* Add more headers as needed */}
               </tr>
             </thead>
             <tbody>
               {Object.entries(tableData).map(([sagNr, data]) => (
                 <tr className="bg-accent" key={sagNr}>
-                  <td className="border border-primary px-4 py-2">{sagNr}</td>
+                  <td className="border border-primary bg-teal-700 px-4 py-2">
+                    {sagNr}
+                  </td>
                   <td className="border border-primary px-4 py-2">
                     {data.total}
                   </td>
                   {feilkoder.map((feilkode) => (
                     <td
                       key={feilkode}
-                      className="border border-primary px-4 py-2"
+                      className={`border border-primary px-4 py-2 ${
+                        data[feilkode] ? "bg-cyan-800" : ""
+                      }`}
                     >
                       {data?.total
                         ? (
@@ -155,7 +150,6 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                         : "0%"}
                     </td>
                   ))}
-                  {/* Add more cells as needed for additional properties */}
                 </tr>
               ))}
             </tbody>

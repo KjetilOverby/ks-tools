@@ -84,6 +84,7 @@ const BandDetails = ({
     sgKS: "",
     datoSrv: new Date(),
     handling: "",
+    sideklaring: 0,
   });
 
   const messageHander = (postID: string) => {
