@@ -1,6 +1,7 @@
 "use client";
 
 import { PrismaClient, Prisma } from "@prisma/client";
+import { Console } from "console";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -29,6 +30,9 @@ export function CreatePost() {
 
   const [inputID, setInputID] = useState("");
   const [kundeID, setKundeID] = useState("");
+
+  const [duplicateError, setDuplicateError] = useState("");
+  console.log(duplicateError);
 
   useEffect(() => {
     if (bladeData.kunde === "Moelven Soknabruket") {
@@ -68,10 +72,12 @@ export function CreatePost() {
             console.log(response);
           }
         } catch (e) {
+          alert("Dette ID nummeret eksisterer allerde.");
+
           if (e instanceof Prisma.PrismaClientKnownRequestError) {
             // The .code property can be accessed in a type-safe manner
-            if (e.code === "P2002") {
-              alert(
+            if (e) {
+              setDuplicateError(
                 "There is a unique constraint violation, a new user cannot be created with this email",
               );
             }

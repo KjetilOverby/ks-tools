@@ -1,7 +1,7 @@
 1.
 2. Legge inn produsen på båndsagblader, Foreløpig bare "Munkfors" som skal lagres automatisk (bandhistorikk)
 3. Sawblades creatorImg
-4. Gi feilmelding når duplikasjoner av Id nummer blir forsøkt lagt inn.
+4.
 5.
 6.
 7. Uthevet eller markert sidenavn på header ut i fra hviken side man er på.
@@ -14,5 +14,4 @@
 14.
 15. Modal for sletting av blad med input for å legge inn årsak til sletting.
 16. Modal for å slette sagblader i create modus.
-
-sett active false når det slettes.
+17. sett active false når det slettes.
