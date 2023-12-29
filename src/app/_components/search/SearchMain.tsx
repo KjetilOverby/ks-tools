@@ -21,6 +21,7 @@ interface Blade {
   side: string;
   active: boolean;
   deleteReason: string;
+  note: string;
   _count: {
     bandhistorikk: number;
   };
@@ -193,7 +194,12 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                         </div>
                       </th>
                       <td className="font-bold text-neutral">
-                        {blade.IdNummer}
+                        {blade.IdNummer}{" "}
+                        {blade.note && (
+                          <span className="text-xs font-normal text-orange-200">
+                            ({blade.note})
+                          </span>
+                        )}
                       </td>
                       <td className="text-primary">{blade.creator}</td>
                       <td>{blade._count.bandhistorikk}</td>
@@ -337,7 +343,12 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           </div>
                         </td>
                         <td className="font-bold text-neutral">
-                          {blade.IdNummer}
+                          {blade.IdNummer}{" "}
+                          {blade.note && (
+                            <span className="text-xs font-normal text-orange-200">
+                              ({blade.note})
+                            </span>
+                          )}
                         </td>
 
                         <td className="text-primary">{blade.creator}</td>

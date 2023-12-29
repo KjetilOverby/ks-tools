@@ -52,6 +52,8 @@ export function CreatePost() {
             alert("Du må legge inn bladtype.");
           } else if (inputID === "") {
             alert("Du må legge inn ID nummer.");
+          } else if (bladeData.side === "") {
+            alert("Side er påkrevd");
           } else {
             const response = await createPost.mutateAsync({
               IdNummer: `${kundeID}-${inputID}`,
@@ -97,6 +99,14 @@ export function CreatePost() {
         <option value="Venstre">Venstre</option>
       </select>
 
+      <input
+        type="text"
+        placeholder={"Notat (optional)"}
+        onChange={(e) =>
+          setBladeData({ ...bladeData, note: e.currentTarget.value })
+        }
+        className="w-full rounded-xl bg-gray-800 px-4 py-2 text-sm text-neutral"
+      />
       <div className="flex">
         <div className="flex items-center justify-center">{kundeID}-</div>
         <input

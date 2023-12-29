@@ -1,4 +1,4 @@
-1. Må legge inn starnummer på id og Bruk på hver post i et blad
+1.
 2. Legge inn produsen på båndsagblader, Foreløpig bare "Munkfors" som skal lagres automatisk (bandhistorikk)
 3. Sawblades creatorImg
 4. Gi feilmelding når duplikasjoner av Id nummer blir forsøkt lagt inn.
@@ -7,11 +7,11 @@
 7. Uthevet eller markert sidenavn på header ut i fra hviken side man er på.
 8.
 9. Frem og tilbake navigasjon.
-10. Fritekst på nye blad. Det er allerede lagt inn en "note" post i databasen.
+10.
 11.
 12. I statistikk farg ruter med 0 eller 0.0% med en annen farge for å letter se hvilke som ikke har verdi.
 13. Sett opp en modal ved sletting av blader med en input om årsaken til sletting.
-14. sortering av poster og sagblad etter dato eller id nummer
+14.
 15. Modal for sletting av blad med input for å legge inn årsak til sletting.
 16. Modal for å slette sagblader i create modus.
 

@@ -5,6 +5,7 @@ import { api } from "~/trpc/server";
 import { CreatePost } from "../_components/create-post";
 import Deleteblades from "../_components/deleteblades";
 import { SearchByDate } from "../_components/search/SearchByDate";
+import { Span } from "next/dist/trace";
 
 interface dateProps {
   searchParams: {
@@ -82,7 +83,12 @@ const page = async ({ searchParams }: dateProps) => {
                         </div>
                       </td>
                       <td className="font-bold text-neutral">
-                        {blade.IdNummer}
+                        {blade.IdNummer}{" "}
+                        {blade.note && (
+                          <span className="text-xs font-normal text-orange-200">
+                            ({blade.note})
+                          </span>
+                        )}
                       </td>
 
                       <td className="text-neutral">{blade.creator}</td>

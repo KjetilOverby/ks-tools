@@ -22,17 +22,26 @@ export const sawbladesRouter = createTRPCRouter({
                lte: new Date(input.date),
                gte: new Date(input.date2),
               },
+             
               IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined},
            
             }]
           },
+          orderBy: {
+            IdNummer: 'asc'
+                          },
             include: {
               _count: {
                 select: {
                   bandhistorikk: true,
                 },
               },
-              bandhistorikk: true,
+              bandhistorikk: {
+                orderBy: {
+                  createdAt: 'asc'
+                }
+              },
+             
             },
          })
       }),
