@@ -190,6 +190,7 @@ const BandDetails = ({
                   handling: post.handling,
                   sgKS: post.sgKS,
                   datoSrv: post.datoSrv,
+                  sideklaring: post.sideklaring,
                 });
               };
 

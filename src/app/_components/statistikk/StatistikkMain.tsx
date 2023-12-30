@@ -2,7 +2,6 @@
 // @ts-nocheck
 "use client";
 import React, { useState, useEffect } from "react";
-import HeaderComponent from "../HeaderComponent";
 import DatepickerComponent from "../reusable/Datepicker";
 
 interface statistikkProps {
@@ -68,7 +67,6 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
 
   return (
     <div className="">
-      <HeaderComponent />
       <div className="mx-5 mt-5">
         <div>
           <DatepickerComponent

@@ -1,5 +1,3 @@
-"use client";
-
 // interface sessionProps {
 //   session: {
 //     user: {
@@ -11,8 +9,11 @@
 //     };
 //   };
 // }
+import Link from "next/link";
+import { getServerAuthSession } from "~/server/auth";
 
-const HeaderComponent = () => {
+const HeaderComponent = async () => {
+  const session = await getServerAuthSession();
   return (
     // <div className="text-scondary flex h-16 items-center border border-x-0 border-t-0 border-b-primary bg-base-100 px-96">
     //   <div className="mr-5 w-52">
@@ -56,7 +57,7 @@ const HeaderComponent = () => {
             </span>
           </a>
           <div className="flex items-center lg:order-2">
-            {/* <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
+            <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
               <div className="h-10 w-10">
                 <img
                   className="w-full  rounded-full"
@@ -67,7 +68,8 @@ const HeaderComponent = () => {
             </Link>
             <div className="ml-5">
               <p>{session?.user.name}</p>
-            </div> */}
+            </div>
+
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"

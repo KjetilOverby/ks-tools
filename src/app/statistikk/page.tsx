@@ -3,6 +3,7 @@
 import { api } from "~/trpc/server";
 import React from "react";
 import StatistikkMain from "../_components/statistikk/StatistikkMain";
+import HeaderComponent from "../_components/HeaderComponent";
 
 interface dateProps {
   searchParams: {
@@ -28,7 +29,12 @@ const page = async ({ searchParams }: dateProps) => {
     IdNummer: serial,
   });
 
-  return <div>{<StatistikkMain historikkData={statistikkData} />}</div>;
+  return (
+    <div>
+      <HeaderComponent />
+      <StatistikkMain historikkData={statistikkData} />
+    </div>
+  );
 };
 
 export default page;

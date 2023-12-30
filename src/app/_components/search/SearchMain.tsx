@@ -85,6 +85,8 @@ const SearchMain = ({ sawblades }: BladeProps) => {
     },
   });
 
+  console.log(sawblades);
+
   return (
     <div className="m-5">
       <div>

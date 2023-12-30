@@ -11,6 +11,8 @@ interface bladeDataProps {
     kunde: string;
     side: string;
     active: boolean;
+    deleteReason: string;
+    produsent: string;
   };
   setBladeData: Dispatch<
     SetStateAction<{
@@ -21,6 +23,8 @@ interface bladeDataProps {
       kunde: string;
       side: string;
       active: boolean;
+      deleteReason: string;
+      produsent: string;
     }>
   >;
 }

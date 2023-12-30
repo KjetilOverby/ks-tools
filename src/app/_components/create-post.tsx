@@ -1,7 +1,6 @@
 "use client";
 
-import { PrismaClient, Prisma } from "@prisma/client";
-import { Console } from "console";
+import { Prisma } from "@prisma/client";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -20,6 +19,8 @@ export function CreatePost() {
     kunde: "",
     side: "",
     active: false,
+    deleteReason: "",
+    produsent: "",
   });
 
   const createPost = api.sawblades.create.useMutation({
@@ -68,11 +69,12 @@ export function CreatePost() {
               side: bladeData.side,
               active: false,
               deleteReason: "",
+              produsent: "Munkfors",
             });
             console.log(response);
           }
         } catch (e) {
-          alert("Dette ID nummeret eksisterer allerde.");
+          alert("Dette ID nummeret finnes allerde.");
 
           if (e instanceof Prisma.PrismaClientKnownRequestError) {
             // The .code property can be accessed in a type-safe manner

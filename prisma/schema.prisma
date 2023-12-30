@@ -119,6 +119,7 @@ model sawblades {
     side         String
     active       Boolean
     deleteReason String
+    produsent    String
 
     personal      personal[]
     bandhistorikk bandhistorikk[]
@@ -143,7 +144,7 @@ model bandhistorikk {
     feilkode        String
     temperatur      Int
     sideklaring     Float
-    antTimer        Float
+    ampere          Float
     anmSag          String
     createdById     String
     creator         String
@@ -157,6 +158,7 @@ model bandhistorikk {
     datoSrv         DateTime
     activePost      Boolean
     bladeRelationId String
+    alt             String
 
     bladedata sawblades @relation(fields: [historikkId], references: [id])
 

@@ -10,7 +10,7 @@ export const bandhistorikkRouter = createTRPCRouter({
 
     
       create: protectedProcedure
-      .input(z.object({ sagNr: z.string(), datoInn: z.date(), klInn: z.date(), klUt: z.date(), datoUt: z.date(),antTimer: z.number(), feilkode: z.string(), anmSag: z.string(), temperatur: z.number(), userId: z.string(),  handling: z.string(), sideklaring: z.number(), sgSag: z.string(), datoSrv: z.date(),createdById: z.string(), bladedata: z.string(), anmKS: z.string(), createdBy: z.string(), sagtid:z.number(), sgKS: z.string(), creatorImg: z.string(), side: z.string(), bladType: z.string(), activePost: z.boolean(), bladeRelationId: z.string() }))
+      .input(z.object({ sagNr: z.string(), datoInn: z.date(), klInn: z.date(), klUt: z.date(), datoUt: z.date(),ampere: z.number(), feilkode: z.string(), anmSag: z.string(), temperatur: z.number(), userId: z.string(),  handling: z.string(), sideklaring: z.number(), sgSag: z.string(), datoSrv: z.date(),createdById: z.string(), bladedata: z.string(), anmKS: z.string(), createdBy: z.string(), sagtid:z.number(), sgKS: z.string(), creatorImg: z.string(), side: z.string(), bladType: z.string(), activePost: z.boolean(), bladeRelationId: z.string(), alt: z.string() }))
       .mutation(({ ctx, input }) => {
         const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
     
@@ -21,7 +21,7 @@ export const bandhistorikkRouter = createTRPCRouter({
              datoUt: input.datoUt,
              klInn: input.klInn,
              klUt: input.klUt,
-             antTimer: input.antTimer,
+             ampere: input.ampere,
              feilkode: input.feilkode,
              sideklaring: input.sideklaring,
              anmSag: input.anmSag,
@@ -40,7 +40,8 @@ export const bandhistorikkRouter = createTRPCRouter({
              side: input.side,
              bladType: input.bladType,
              activePost: input.activePost,
-             bladeRelationId: input.bladeRelationId
+             bladeRelationId: input.bladeRelationId,
+             alt: input.alt
 
              
 

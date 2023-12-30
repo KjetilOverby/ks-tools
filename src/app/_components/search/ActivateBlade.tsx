@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 interface Blade {
   type: string;
@@ -39,6 +39,8 @@ interface Blade {
     datoSrv: Date;
     activePost: boolean;
     bladedata: string;
+    ampere: number;
+    alt: string;
   }[];
 }
 
@@ -84,6 +86,8 @@ interface BladeProps {
     sgKS: string;
     datoSrv: Date;
     activePost: boolean;
+    ampere: number;
+    alt: string;
   }) => void;
 }
 
@@ -126,12 +130,13 @@ const ActivateBlade = ({
                   temperatur: 0,
                   anmSag: "",
                   feilkode: "Aktivt blad",
-                  antTimer: 0,
+                  ampere: 0,
                   datoUt: new Date(),
                   datoInn: new Date(),
                   klUt: new Date(),
                   klInn: new Date(),
                   bladedata: blade.id,
+                  alt: "",
                 });
                 updateStatusHandler();
               }
