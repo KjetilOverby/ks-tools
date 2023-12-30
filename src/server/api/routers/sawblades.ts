@@ -89,9 +89,10 @@ export const sawbladesRouter = createTRPCRouter({
 
     
       create: protectedProcedure
-      .input(z.object({ IdNummer: z.string(), type: z.string(), deleted: z.boolean(), note: z.string(), kunde: z.string(), side: z.string(), active: z.boolean(), deleteReason: z.string(), produsent: z.string() }))
+      .input(z.object({ IdNummer: z.string(), type: z.string(), deleted: z.boolean(), note: z.string(), kunde: z.string(), side: z.string(), active: z.boolean(), deleteReason: z.string(), produsent: z.string(), creatorImg: z.string() }))
       .mutation(({ ctx, input }) => {
         const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
+        const creatorImg: string = ctx.session.user.image ?? "DefaultCreator";
     
      return ctx.db.sawblades.create({
          data: {
@@ -101,6 +102,7 @@ export const sawbladesRouter = createTRPCRouter({
              note: input.note,
              userId: ctx.session.user.id,
              creator: creatorName,
+             creatorImg: creatorImg,
              kunde: input.kunde,
              createdBy: { connect: { id: ctx.session.user.id} },
              side: input.side,

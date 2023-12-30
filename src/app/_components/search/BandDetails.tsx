@@ -7,6 +7,7 @@ import HistorikkInputKS from "./HistorikkInputKS";
 import { CiEdit } from "react-icons/ci";
 import DeactivateBlade from "./DeactivateBlade";
 import EditBandDetails from "./EditBandDetails";
+import Image from "next/image";
 
 interface bandProps {
   blade: {
@@ -170,7 +171,8 @@ const BandDetails = ({
               <th className="text-sm text-accent">SK</th>
               <th className="text-sm text-accent">Feilkode</th>
               <th className="text-sm text-accent">Anm</th>
-              <th className="text-sm text-accent">Sign</th>
+              <th className="text-sm text-accent">Innpost</th>
+              <th className="text-sm text-accent">Utpost</th>
               <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500">Service</th>
@@ -272,7 +274,30 @@ const BandDetails = ({
                         </>
                       )}
                     </td>
-                    <td className="text-primary">{post.sgSag}</td>
+                    <td className="text-primary">
+                      <div className="flex items-center">
+                        <div className="mr-2 h-5 w-5">
+                          <img
+                            className="w-full rounded-full"
+                            src={post.creatorImg}
+                            alt=""
+                          />
+                        </div>
+                        {post.creator}
+                      </div>
+                    </td>
+                    <td className="text-primary">
+                      <div className="flex items-center">
+                        <div className="mr-2 h-5 w-5">
+                          <img
+                            className="w-full rounded-full"
+                            src={post.creatorImg2}
+                            alt=""
+                          />
+                        </div>
+                        {post.creator2}
+                      </div>
+                    </td>
                     <td className="text-primary">
                       {post.activePost && (
                         <div
@@ -339,7 +364,18 @@ const BandDetails = ({
                         </>
                       )}
                     </td>
-                    <td className="text-primary">{post.sgKS}</td>
+                    <td className="text-primary">
+                      <div className="flex items-center">
+                        <div className="mr-2 h-5 w-5">
+                          <img
+                            className="w-full rounded-full"
+                            src={post.creatorImg3}
+                            alt=""
+                          />
+                        </div>
+                        {post.creator3}
+                      </div>
+                    </td>
                     <td className="text-primary">
                       {dateFormat(post.datoSrv, "dd.mm.yyyy")}
                     </td>

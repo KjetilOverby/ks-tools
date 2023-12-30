@@ -129,6 +129,8 @@ const ActivateBlade = ({
                 datoInn: new Date(),
                 klInn: new Date(),
                 sagNr: post.sagNr,
+                creator2: "",
+                creatorImg2: "",
               });
               //   updateStatusHandler();
 

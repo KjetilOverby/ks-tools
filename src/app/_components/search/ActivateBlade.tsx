@@ -99,6 +99,8 @@ const ActivateBlade = ({
 }: BladeProps) => {
   const [sagNrInput, setsagNrInput] = useState("");
 
+  console.log(blade);
+
   return (
     <div>
       <div className="card z-40 w-96 bg-neutral text-neutral-content">
@@ -137,6 +139,11 @@ const ActivateBlade = ({
                   klInn: new Date(),
                   bladedata: blade.id,
                   alt: "",
+                  creator: "",
+                  creator2: "",
+                  creatorImg2: "",
+                  creator3: "",
+                  creatorImg3: "",
                 });
                 updateStatusHandler();
               }

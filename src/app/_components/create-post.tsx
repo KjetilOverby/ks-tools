@@ -21,6 +21,7 @@ export function CreatePost() {
     active: false,
     deleteReason: "",
     produsent: "",
+    creatorImg: "",
   });
 
   const createPost = api.sawblades.create.useMutation({
@@ -70,6 +71,7 @@ export function CreatePost() {
               active: false,
               deleteReason: "",
               produsent: "Munkfors",
+              creatorImg: "",
             });
             console.log(response);
           }

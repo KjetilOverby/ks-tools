@@ -203,7 +203,16 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           </span>
                         )}
                       </td>
-                      <td className="text-primary">{blade.creator}</td>
+                      <td className="flex items-center">
+                        <div className="mr-2 h-5 w-5">
+                          <img
+                            className="rounded-full"
+                            src={blade.creatorImg}
+                            alt=""
+                          />
+                        </div>
+                        {blade.creator}
+                      </td>
                       <td>{blade._count.bandhistorikk}</td>
                       <td>
                         <button onClick={() => historikkHandler(blade.id)}>

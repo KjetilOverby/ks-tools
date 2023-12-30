@@ -90,7 +90,18 @@ const page = async ({ searchParams }: dateProps) => {
                         )}
                       </td>
 
-                      <td className="text-neutral">{blade.creator}</td>
+                      <td className="text-neutral">
+                        <td className="flex items-center">
+                          <div className="mr-2 h-5 w-5">
+                            <img
+                              className="rounded-full"
+                              src={blade.creatorImg}
+                              alt=""
+                            />
+                          </div>
+                          {blade.creator}
+                        </td>
+                      </td>
 
                       <td>
                         <th className="text-red-400">

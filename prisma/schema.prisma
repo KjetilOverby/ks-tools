@@ -114,6 +114,7 @@ model sawblades {
     createdById  String
     userId       String
     creator      String
+    creatorImg   String
     deleted      Boolean
     note         String
     side         String
@@ -159,6 +160,10 @@ model bandhistorikk {
     activePost      Boolean
     bladeRelationId String
     alt             String
+    creator2        String
+    creatorImg2     String
+    creator3        String
+    creatorImg3     String
 
     bladedata sawblades @relation(fields: [historikkId], references: [id])
 
