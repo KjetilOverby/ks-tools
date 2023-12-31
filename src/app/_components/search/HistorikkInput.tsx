@@ -39,10 +39,10 @@ const HistorikkInput = ({
     creator: "",
     bladedata: "",
     anmSag: "",
-    antTimer: 0,
     temperatur: 0,
     sgSag: "",
     sgKS: "",
+    alt: "",
   });
   return (
     <div className="absolute z-40">
@@ -63,7 +63,6 @@ const HistorikkInput = ({
             bladedata: bandId,
             anmSag: historikkData.anmSag,
             anmKS: "",
-            antTimer: historikkData.antTimer,
             datoSrv: new Date(),
             temperatur: historikkData.temperatur,
             userId: "",
@@ -75,6 +74,13 @@ const HistorikkInput = ({
             bladType: bladType,
             activePost: false,
             bladeRelationId: "",
+            alt: "",
+            creator: "",
+            ampere: 0,
+            creator2: "",
+            creatorImg2: "",
+            creator3: "",
+            creatorImg3: "",
           });
         }}
         className="card w-96 bg-slate-500 text-neutral-content"

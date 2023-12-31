@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React, { useState } from "react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
@@ -114,6 +116,7 @@ const ActivateBlade = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-call
               updatePost.mutate({
                 activePost: false,
                 sagtid: inputValues.sagtid,
@@ -128,6 +131,7 @@ const ActivateBlade = ({
                 id: post.id,
                 datoInn: new Date(),
                 klInn: new Date(),
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 sagNr: post.sagNr,
                 creator2: "",
                 creatorImg2: "",

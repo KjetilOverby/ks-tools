@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 
@@ -18,6 +22,23 @@ interface detailProps {
     activatePost: boolean;
     id: string;
   };
+  setHistorikkData: React.Dispatch<
+    React.SetStateAction<{
+      datoInn: Date;
+      klInn: Date;
+      datoUt: Date;
+      klUt: Date;
+      sagtid: number;
+      feilkode: string;
+      bladedata: string;
+      anmSag: string;
+      anTimer: number;
+      temperatur: number;
+      sgSag: string;
+      activePost: boolean;
+      sagNr: string;
+    }>
+  >;
   postId: string;
 }
 
@@ -31,6 +52,8 @@ const EditBandDetails = ({
   const updateBandhistorikk = api.bandhistorikk.update.useMutation({
     onSuccess: () => {
       router.refresh();
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       setOpenEditBandDetails(false);
     },
   });
@@ -49,11 +72,13 @@ const EditBandDetails = ({
             klUt: historikkData.klUt,
             sagtid: historikkData.sagtid,
             feilkode: historikkData.feilkode,
-
             anmSag: historikkData.anmSag,
             temperatur: historikkData.temperatur,
             sgSag: historikkData.sgSag,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             activePost: historikkData.activePost,
+            creator2: "",
+            creatorImg2: "",
           });
         }}
         className="card w-96 bg-slate-500 text-neutral-content"

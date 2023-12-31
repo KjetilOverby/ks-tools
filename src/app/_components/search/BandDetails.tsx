@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import dateFormat from "dateformat";
@@ -7,7 +10,6 @@ import HistorikkInputKS from "./HistorikkInputKS";
 import { CiEdit } from "react-icons/ci";
 import DeactivateBlade from "./DeactivateBlade";
 import EditBandDetails from "./EditBandDetails";
-import Image from "next/image";
 
 interface bandProps {
   blade: {
@@ -279,6 +281,7 @@ const BandDetails = ({
                         <div className="mr-2 h-5 w-5">
                           <img
                             className="w-full rounded-full"
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             src={post.creatorImg}
                             alt=""
                           />
@@ -291,6 +294,7 @@ const BandDetails = ({
                         <div className="mr-2 h-5 w-5">
                           <img
                             className="w-full rounded-full"
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             src={post.creatorImg2}
                             alt=""
                           />
@@ -369,6 +373,7 @@ const BandDetails = ({
                         <div className="mr-2 h-5 w-5">
                           <img
                             className="w-full rounded-full"
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             src={post.creatorImg3}
                             alt=""
                           />

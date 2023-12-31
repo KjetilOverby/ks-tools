@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 
 interface AnyProps {
   id: string;
+  deleteReason: string;
+  wasteReasonInput: string;
 }
 
 export const DeleteComponent = ({ id, wasteReasonInput }: AnyProps) => {
