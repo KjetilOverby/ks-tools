@@ -3,10 +3,10 @@ import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 
 interface IdProps {
-    id: string
+  id: string;
 }
 
-export const RestoreComponent = ({ id }:IdProps) => {
+export const RestoreComponent = ({ id }: IdProps) => {
   const router = useRouter();
   const updateBlade = api.sawblades.update.useMutation({
     onSuccess: () => {
@@ -19,6 +19,7 @@ export const RestoreComponent = ({ id }:IdProps) => {
         void updateBlade.mutate({
           id: id,
           deleted: false,
+          deleteReason: "",
         })
       }
     >

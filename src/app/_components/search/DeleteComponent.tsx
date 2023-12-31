@@ -6,7 +6,7 @@ interface AnyProps {
   id: string;
 }
 
-export const DeleteComponent = ({ id }: AnyProps) => {
+export const DeleteComponent = ({ id, wasteReasonInput }: AnyProps) => {
   const router = useRouter();
   const updateBlade = api.sawblades.update.useMutation({
     onSuccess: () => {
@@ -19,6 +19,7 @@ export const DeleteComponent = ({ id }: AnyProps) => {
         void updateBlade.mutate({
           id: id,
           deleted: true,
+          deleteReason: wasteReasonInput,
         })
       }
     >

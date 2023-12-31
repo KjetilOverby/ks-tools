@@ -89,7 +89,7 @@ export const sawbladesRouter = createTRPCRouter({
 
     
       create: protectedProcedure
-      .input(z.object({ IdNummer: z.string(), type: z.string(), deleted: z.boolean(), note: z.string(), kunde: z.string(), side: z.string(), active: z.boolean(), deleteReason: z.string(), produsent: z.string(), creatorImg: z.string() }))
+      .input(z.object({ IdNummer: z.string(), type: z.string(), deleted: z.boolean(), note: z.string(), kunde: z.string(), side: z.string(), active: z.boolean(), deleteReason: z.string(), produsent: z.string(), creatorImg: z.string(), deleter: z.string(), deleterImg: z.string() }))
       .mutation(({ ctx, input }) => {
         const creatorName: string = ctx.session.user.name ?? "DefaultCreator";
         const creatorImg: string = ctx.session.user.image ?? "DefaultCreator";
@@ -108,7 +108,9 @@ export const sawbladesRouter = createTRPCRouter({
              side: input.side,
              active: input.active,
              deleteReason: input.deleteReason,
-             produsent: input.produsent
+             produsent: input.produsent,
+             deleter: '',
+             deleterImg: ''
          },
        
      })
@@ -128,14 +130,19 @@ export const sawbladesRouter = createTRPCRouter({
   //       },
   //     });
   //   }),
-  update: protectedProcedure.input(z.object({deleted: z.boolean(), id: z.string()}))
+  update: protectedProcedure.input(z.object({deleted: z.boolean(), id: z.string(), deleteReason: z.string()}))
   .mutation(async ({ctx, input}) => {
+    const deleterName: string = ctx.session.user.name ?? "DefaultCreator";
+    const deleterImg: string = ctx.session.user.image ?? "DefaultCreator";
       return ctx.db.sawblades.update({
           where: {
               id: input.id
           },
           data: {
               deleted: input.deleted,
+              deleteReason: input.deleteReason,
+              deleter: deleterName,
+              deleterImg: deleterImg
           
           }
       });

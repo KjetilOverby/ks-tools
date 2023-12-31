@@ -8,6 +8,7 @@ import DatepickerComponent from "../reusable/Datepicker";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
 import ActivateBlade from "./ActivateBlade";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 interface Blade {
   type: string;
@@ -64,7 +65,13 @@ const SearchMain = ({ sawblades }: BladeProps) => {
 
   const [openStatus, setOpenStatus] = useState<string | null>(null);
   const [openHistorikk, setopenHistorikk] = useState<string | null>(null);
+  const [wasteReasonInput, setWasteReasonInput] = useState("");
+  const [openDeleteID, setOpenDeleteID] = useState<string | null>(null);
   const router = useRouter();
+
+  const deleteHandler = (postID: string) => {
+    setOpenDeleteID(postID);
+  };
 
   const createPost = api.bandhistorikk.create.useMutation({
     onSuccess: () => {
@@ -141,6 +148,9 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                   active: true,
                 });
               };
+
+            
+
               const deactivateStatusHandler = () => {
                 void updateStatus.mutate({
                   id: blade.id,
@@ -219,10 +229,55 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           Historikk
                         </button>
                       </td>
-                      <td>
-                        <th className="text-red-400">
-                          <DeleteComponent id={blade.id} />
-                        </th>
+                      <td className="relative">
+                        <RiDeleteBinLine
+                          style={{
+                            color: "indianred",
+                            fontSize: "1rem",
+                          }}
+                          onClick={() => deleteHandler(blade.id)}
+                        />
+                        {openDeleteID === blade.id && (
+                          <div className="card absolute right-24 w-96 bg-primary text-primary-content">
+                            <div className="card-body">
+                              <h2 className="card-title">
+                                Slett blad: {blade.IdNummer}
+                              </h2>
+                              <p>Velg årsaken til vrak?</p>
+                              <select
+                                onChange={(e) =>
+                                  setWasteReasonInput(e.currentTarget.value)
+                                }
+                                className="select select-bordered select-xs w-full max-w-xs"
+                              >
+                                <option disabled selected>
+                                  Velg
+                                </option>
+                                <option value="Normal slitasje">
+                                  Normal slitasje
+                                </option>
+                                <option value="Ikjøring">Ikjøring</option>
+                                <option className="Røk av">Røk av</option>
+                                <option className="Sprekk">Sprekk</option>
+                              </select>
+                              <div className="card-actions justify-end">
+                                <button
+                                  onClick={() => setOpenDeleteID(null)}
+                                  className="btn btn-xs"
+                                >
+                                  Avbryt
+                                </button>
+                              </div>
+
+                              <th className="text-red-400">
+                                <DeleteComponent
+                                  wasteReasonInput={wasteReasonInput}
+                                  id={blade.id}
+                                />
+                              </th>
+                            </div>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   )}
@@ -321,6 +376,8 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                 <th className="text-sm text-accent">ID</th>
 
                 <th className="text-sm text-accent">Opprettet av</th>
+                <th className="text-sm text-accent">Årsak</th>
+                <th className="text-sm text-accent">Slettet av</th>
                 <th className="text-sm text-accent"></th>
               </tr>
             </thead>
@@ -362,8 +419,27 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           )}
                         </td>
 
-                        <td className="text-primary">{blade.creator}</td>
-
+                        <td className="flex items-center">
+                          <div className="mr-2 h-5 w-5">
+                            <img
+                              className="rounded-full"
+                              src={blade.creatorImg}
+                              alt=""
+                            />
+                          </div>
+                          {blade.creator}
+                        </td>
+                        <td>{blade.deleteReason}</td>
+                        <td className="flex items-center">
+                          <div className="mr-2 h-5 w-5">
+                            <img
+                              className="rounded-full"
+                              src={blade.deleterImg}
+                              alt=""
+                            />
+                          </div>
+                          {blade.deleter}
+                        </td>
                         <td>
                           <th className="text-neutral">
                             <RestoreComponent id={blade.id} />

@@ -1,6 +1,6 @@
 1.
-2. Legge inn produsen på båndsagblader, Foreløpig bare "Munkfors" som skal lagres automatisk (bandhistorikk)
-3. Sawblades creatorImg
+2.
+3.
 4.
 5.
 6.
@@ -10,9 +10,9 @@
 10.
 11.
 12.
-13. Sett opp en modal ved sletting av blader med en input om årsaken til sletting.
+13.
 14.
-15. Modal for sletting av blad med input for å legge inn årsak til sletting.
+15.
 16. Modal for å slette sagblader i create modus.
 17. sett active false når det slettes.
-18.
+18. Kalkuler antall timer et sagblad har gått.

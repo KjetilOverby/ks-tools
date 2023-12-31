@@ -117,7 +117,7 @@ const BandDetails = ({
   });
 
   return (
-    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-gray-500 to-gray-600">
+    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-gray-500 to-gray-600 ">
       {openInput && (
         <HistorikkInput
           setOpenInput={setOpenInput}

@@ -121,6 +121,8 @@ model sawblades {
     active       Boolean
     deleteReason String
     produsent    String
+    deleter      String
+    deleterImg   String
 
     personal      personal[]
     bandhistorikk bandhistorikk[]
