@@ -164,7 +164,9 @@ const BandDetails = ({
             <tr>
               <th className="text-sm text-accent">Sag</th>
               <th className="text-sm text-accent">Innpostet</th>
+              <th className="text-sm text-accent">Signatur</th>
               <th className="text-sm text-accent">Utpostet</th>
+              <th className="text-sm text-accent">Signatur</th>
 
               <th className="text-sm text-accent">T</th>
 
@@ -172,8 +174,6 @@ const BandDetails = ({
               <th className="text-sm text-accent">Ampere</th>
               <th className="text-sm text-accent">Feilkode</th>
               <th className="text-sm text-accent">Anm</th>
-              <th className="text-sm text-accent">Innpost</th>
-              <th className="text-sm text-accent">Utpost</th>
               <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500"></th>
               <th className="text-sm text-blue-500">Service</th>
@@ -229,6 +229,19 @@ const BandDetails = ({
                         {dateFormat(post.klInn, "HH:MM")}
                       </div>
                     </td>
+                    <td className="text-primary">
+                      <div className="flex items-center">
+                        <div className="mr-2 h-5 w-5">
+                          <img
+                            className="w-full rounded-full"
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                            src={post.creatorImg}
+                            alt=""
+                          />
+                        </div>
+                        {post.creator}
+                      </div>
+                    </td>
                     <td>
                       {!post.activePost ? (
                         <div className="text-xs text-neutral">
@@ -238,6 +251,19 @@ const BandDetails = ({
                       ) : (
                         "Aktiv"
                       )}
+                    </td>
+                    <td className="text-primary">
+                      <div className="flex items-center">
+                        <div className="mr-2 h-5 w-5">
+                          <img
+                            className="w-full rounded-full"
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                            src={post.creatorImg2}
+                            alt=""
+                          />
+                        </div>
+                        {post.creator2}
+                      </div>
                     </td>
                     <td className="font-bold text-neutral">{post.sagtid}</td>
 
@@ -274,32 +300,7 @@ const BandDetails = ({
                         </>
                       )}
                     </td>
-                    <td className="text-primary">
-                      <div className="flex items-center">
-                        <div className="mr-2 h-5 w-5">
-                          <img
-                            className="w-full rounded-full"
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                            src={post.creatorImg}
-                            alt=""
-                          />
-                        </div>
-                        {post.creator}
-                      </div>
-                    </td>
-                    <td className="text-primary">
-                      <div className="flex items-center">
-                        <div className="mr-2 h-5 w-5">
-                          <img
-                            className="w-full rounded-full"
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                            src={post.creatorImg2}
-                            alt=""
-                          />
-                        </div>
-                        {post.creator2}
-                      </div>
-                    </td>
+
                     <td className="text-primary">
                       {post.activePost && (
                         <div

@@ -308,16 +308,23 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                   )}
                   {openHistorikk === blade.id && (
                     <div className="absolute top-0 z-50 h-screen w-full rounded-2xl  border border-primary bg-gradient-to-r from-base-100 via-gray-500 to-gray-600 p-5">
-                      <div className="flex">
+                      <div className="mr-5 flex justify-between">
                         <div>
                           <h1 className=" text-lg text-orange-400">
                             Historikk
                           </h1>
-                          <h1 className="text-2xl text-orange-600">
+                          <h1 className="text-2xl font-semibold text-orange-600">
                             ID: {blade.IdNummer}
                           </h1>
-                          <p>
+                          <p className="text-xl">
                             Type: {blade.type} {blade.side}
+                          </p>
+                          <p className="italic">
+                            Registrert:
+                            {dateFormat(blade.createdAt, "dd.mm.yyyy")}
+                          </p>
+                          <p className="italic">
+                            Registrert av: {blade.creator}
                           </p>
                         </div>
                         <div>

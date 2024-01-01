@@ -18,34 +18,6 @@ import { getServerAuthSession } from "~/server/auth";
 const HeaderComponent = async () => {
   const session = await getServerAuthSession();
   return (
-    // <div className="text-scondary flex h-16 items-center border border-x-0 border-t-0 border-b-primary bg-base-100 px-96">
-    //   <div className="mr-5 w-52">
-    //     <Link href="/">
-    //       <h1 className="text-2xl">KS TOOLS</h1>
-    //     </Link>
-    //   </div>
-    //   <div className="flex">
-    //     <Link href="/newtools">
-    //       <p className="mr-3 text-xs font-bold">Create</p>
-    //     </Link>
-    //     <p className="mr-3 text-xs font-bold">Overview</p>
-    //   </div>
-    //   <div className="flex items-center last-of-type:ml-auto">
-    //     {/* <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
-    //       <div className="h-10 w-10">
-    //         <img
-    //           className="w-full  rounded-full"
-    //           src={session && session.user.image}
-    //           alt=""
-    //         />
-    //       </div>
-    //     </Link> */}
-    //     {/* <div className="ml-5">
-    //       <p>{session?.user.name}</p>
-    //     </div> */}
-    //   </div>
-    // </div>
-
     <header>
       <nav className="border border-x-0 border-t-0 border-gray-200 border-b-primary bg-base-100 px-4 py-2.5  lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
