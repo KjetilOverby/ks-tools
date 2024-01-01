@@ -152,7 +152,7 @@ const BandDetails = ({
         <div>
           <button
             onClick={() => setOpenInput(true)}
-            className="btn btn-xs mt-5"
+            className="btn btn-xs mb-5 mt-5 bg-primary"
           >
             Ny post
           </button>
@@ -170,7 +170,6 @@ const BandDetails = ({
 
               <th className="text-sm text-accent">Temp</th>
               <th className="text-sm text-accent">Ampere</th>
-              <th className="text-sm text-accent">SK</th>
               <th className="text-sm text-accent">Feilkode</th>
               <th className="text-sm text-accent">Anm</th>
               <th className="text-sm text-accent">Innpost</th>
@@ -180,7 +179,7 @@ const BandDetails = ({
               <th className="text-sm text-blue-500">Service</th>
               <th className="text-sm text-blue-500">SK</th>
               <th className="text-sm text-blue-500">Anm KS</th>
-              <th className="text-sm text-blue-500">SG</th>
+              <th className="text-sm text-blue-500">Signatur</th>
               <th className="text-sm text-blue-500">Dato srv</th>
             </tr>
           </thead>
@@ -244,7 +243,6 @@ const BandDetails = ({
 
                     <td className="text-primary">{post.temperatur}</td>
                     <td className="text-primary">-</td>
-                    <td className="text-primary">{post.sideklaring}</td>
                     <td className="text-primary">{post.feilkode}</td>
 
                     <td className="max-w-56  relative text-primary">

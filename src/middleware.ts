@@ -22,6 +22,6 @@ export default function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/newtools']
+  matcher: ['/nopage']
 }
 

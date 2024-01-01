@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
 import ActivateBlade from "./ActivateBlade";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { BsClipboardData } from "react-icons/bs";
 
 interface Blade {
   creatorImg: string | undefined;
@@ -74,6 +75,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
   const [wasteReasonInput, setWasteReasonInput] = useState("");
   const [openDeleteID, setOpenDeleteID] = useState<string | null>(null);
   const router = useRouter();
+  const [closeSearchComponent, setCloseSearchComponent] = useState(false);
 
   const deleteHandler = (postID: string) => {
     setOpenDeleteID(postID);
@@ -98,34 +100,38 @@ const SearchMain = ({ sawblades }: BladeProps) => {
     },
   });
 
-  console.log(sawblades);
-
   return (
     <div className="m-5">
       <div>
-        <div className="ml-5 rounded-xl py-5">
-          <div className="flex ">
-            <DatepickerComponent
-              idSearch={true}
-              searchSerial={searchSerial}
-              link="/search"
-              setSearchSerial={setSearchSerial}
-            />
+        {!closeSearchComponent ? (
+          <div>
+            <div className=" rounded-xl py-5">
+              <div className="flex ">
+                <DatepickerComponent
+                  idSearch={true}
+                  searchSerial={searchSerial}
+                  link="/search"
+                  setSearchSerial={setSearchSerial}
+                />
+              </div>
+            </div>
+            <h1 className="text-xl text-orange-300">Registrerte blad</h1>
           </div>
-        </div>
-        <h1 className="text-xl text-orange-300">Registrerte blad</h1>
+        ) : (
+          ""
+        )}
         <table className="table table-xs bg-neutral">
           <thead>
             <tr>
-              <th className="text-sm text-accent">Dato</th>
+              <th className="text-sm text-accent">Dato opprettet</th>
               <th className="text-sm text-accent">Type</th>
               <th className="text-sm text-accent">Aktiv</th>
 
               <th className="text-sm text-accent">ID</th>
 
               <th className="text-sm text-accent">Opprettet av</th>
-              <th className="text-sm text-accent">Bandhistorikk</th>
-              <th className="text-sm text-accent"></th>
+              <th className="text-sm text-accent">Historikk</th>
+              <th className="text-sm text-accent">Slett</th>
             </tr>
           </thead>
           <tbody>
@@ -145,6 +151,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
               const handleCloseHistorikk = () => {
                 setTimeout(() => {
                   setopenHistorikk(null);
+                  setCloseSearchComponent(false);
                 }, 100);
               };
 
@@ -160,6 +167,11 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                   id: blade.id,
                   active: false,
                 });
+              };
+
+              const openHistorikkDataHandler = () => {
+                setCloseSearchComponent(true);
+                historikkHandler(blade.id);
               };
 
               return (
@@ -228,12 +240,20 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                         </div>
                         {blade.creator}
                       </td>
-                      <td>{blade._count.bandhistorikk}</td>
                       <td>
-                        <button onClick={() => historikkHandler(blade.id)}>
-                          Historikk
-                        </button>
+                        <div className="flex items-center">
+                          <p className="w-5">{blade._count.bandhistorikk}</p>
+                          <BsClipboardData
+                            style={{
+                              marginLeft: ".5rem",
+                              color: "orange",
+                              fontSize: ".9rem",
+                            }}
+                            onClick={openHistorikkDataHandler}
+                          />
+                        </div>
                       </td>
+
                       <td className="relative">
                         <RiDeleteBinLine
                           style={{
@@ -287,7 +307,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                     </tr>
                   )}
                   {openHistorikk === blade.id && (
-                    <div className=" absolute top-0 h-screen w-full rounded-2xl  bg-gradient-to-r from-base-100 via-gray-500 to-gray-600 p-5">
+                    <div className="absolute top-0 z-50 h-screen w-full rounded-2xl  border border-primary bg-gradient-to-r from-base-100 via-gray-500 to-gray-600 p-5">
                       <div className="flex">
                         <div>
                           <h1 className=" text-lg text-orange-400">
