@@ -119,7 +119,7 @@ const BandDetails = ({
   });
 
   return (
-    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-gray-500 to-gray-600 ">
+    <div className="z-50 w-full overflow-x-auto bg-gradient-to-r from-base-100 via-gray-500 to-gray-600">
       {openInput && (
         <HistorikkInput
           setOpenInput={setOpenInput}
@@ -224,7 +224,7 @@ const BandDetails = ({
                       <div className="text-xs text-neutral">{post.sagNr}</div>
                     </td>
                     <td>
-                      <div className="text-xs text-neutral">
+                      <div className="text-xs text-neutral ">
                         {dateFormat(post.datoInn, "dd.mm.yyyy")},{" "}
                         {dateFormat(post.klInn, "HH:MM")}
                       </div>
