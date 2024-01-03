@@ -129,8 +129,8 @@ const ActivateBlade = ({
                 datoUt: new Date(),
                 klUt: new Date(),
                 id: post.id,
-                datoInn: new Date(),
-                klInn: new Date(),
+                datoInn: post.datoInn,
+                klInn: post.klInn,
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 sagNr: post.sagNr,
                 creator2: "",
