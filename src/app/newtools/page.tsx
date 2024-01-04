@@ -41,6 +41,9 @@ const page = async ({ searchParams }: dateProps) => {
             <CreatePost />
             <SearchByDate />
           </div>
+          <h1 className="mb-3 text-orange-400">
+            Registrerte blad i perioden: {sawblades.length}
+          </h1>
           <table className="table table-xs bg-primary">
             <thead>
               <tr>

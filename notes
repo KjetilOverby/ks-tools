@@ -16,3 +16,5 @@
 16. Modal for å slette sagblader i create modus.
 17. sett active false når det slettes.
 18. Kalkuler antall timer et sagblad har gått For alle, høyre, venstre, type, og for enkeltblad
+19. Pagination
+20. statistikk søyler for deleteReasons

@@ -6,7 +6,7 @@ import DatepickerComponent from "../reusable/Datepicker";
 export const SearchByDate: React.FC = () => {
   const [searchSerial, setSearchSerial] = useState<string>("");
   return (
-    <div className="ml-5">
+    <div className="ml-5 rounded-xl bg-accent p-5">
       <p>Søk </p>
       <DatepickerComponent
         searchSerial={searchSerial}

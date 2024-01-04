@@ -22,9 +22,7 @@ export const sawbladesRouter = createTRPCRouter({
                lte: new Date(input.date),
                gte: new Date(input.date2),
               },
-             
               IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined},
-           
             }]
           },
           orderBy: {
@@ -41,10 +39,46 @@ export const sawbladesRouter = createTRPCRouter({
                   createdAt: 'asc'
                 }
               },
-             
             },
          })
       }),
+
+
+    getAllDeleted: protectedProcedure
+    .input(z.object({date: z.string(), date2: z.string(), IdNummer: z.string(),}))
+        .query(({ ctx, input }) => {
+         return ctx.db.sawblades.findMany({
+          where: {
+            AND: [{
+              updatedAt: {
+               lte: new Date(input.date),
+               gte: new Date(input.date2),
+              },
+              deleted: true,
+              IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined},
+            }]
+          },
+          orderBy: {
+            updatedAt: 'asc'
+                          },
+                          include: {
+                            _count: {
+                              select: {
+                                bandhistorikk: true,
+                              },
+                            },
+                            bandhistorikk: {
+                              orderBy: {
+                                createdAt: 'asc'
+                              }
+                            },
+                          },
+         })
+      }),
+
+  
+
+
    
     getCustomer: protectedProcedure
     .input(z.object({date: z.string(), date2: z.string(), IdNummer: z.string(), init: z.string()}))
@@ -57,11 +91,8 @@ export const sawbladesRouter = createTRPCRouter({
                gte: new Date(input.date2),
               },
               IdNummer: {contains: input.IdNummer ? input.IdNummer : undefined, startsWith: input.init},
-             
             }]
-        
           },
-          
             include: {
               _count: {
                 select: {
@@ -69,10 +100,7 @@ export const sawbladesRouter = createTRPCRouter({
                 },
               },
               bandhistorikk: true,
-           
-        
             },
-          
          })
       }),
  
@@ -80,7 +108,6 @@ export const sawbladesRouter = createTRPCRouter({
    delete: protectedProcedure.input(z.object({id: z.string()}))
     .mutation(async ({ctx, input}) => {
         return ctx.db.sawblades.delete({
-            
             where: {
                 id: input.id
             },
@@ -112,9 +139,7 @@ export const sawbladesRouter = createTRPCRouter({
              deleter: '',
              deleterImg: ''
          },
-       
      })
- 
   }),
 
   // create: protectedProcedure

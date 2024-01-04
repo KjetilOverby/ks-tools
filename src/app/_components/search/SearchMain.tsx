@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dateFormat from "dateformat";
 import { DeleteComponent } from "./DeleteComponent";
 import { RestoreComponent } from "./RestoreComponent";
@@ -61,9 +61,10 @@ interface Blade {
 
 interface BladeProps {
   sawblades: Blade[];
+  deletedSawblades: Blade[];
 }
 
-const SearchMain = ({ sawblades }: BladeProps) => {
+const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
@@ -76,6 +77,10 @@ const SearchMain = ({ sawblades }: BladeProps) => {
   const [openDeleteID, setOpenDeleteID] = useState<string | null>(null);
   const router = useRouter();
   const [closeSearchComponent, setCloseSearchComponent] = useState(false);
+
+  const [countBlades, setCountBlades] = useState();
+
+  const [newBladesCount, setNewBladesCount] = useState();
 
   const deleteHandler = (postID: string) => {
     setOpenDeleteID(postID);
@@ -100,6 +105,12 @@ const SearchMain = ({ sawblades }: BladeProps) => {
     },
   });
 
+  useEffect(() => {
+    setCountBlades(sawblades.filter((item) => item.deleted === false).length);
+
+    setNewBladesCount(sawblades.length);
+  }, [sawblades]);
+
   return (
     <div className="m-5">
       <div>
@@ -115,7 +126,10 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                 />
               </div>
             </div>
-            <h1 className="text-xl text-orange-300">Registrerte blad</h1>
+            <h1 className="text-xl text-orange-300">
+              Blad i bruk ({countBlades})
+            </h1>
+            <p>Nye registrerte blad denne perioden: {newBladesCount}</p>
           </div>
         ) : (
           ""
@@ -264,7 +278,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                           onClick={() => deleteHandler(blade.id)}
                         />
                         {openDeleteID === blade.id && (
-                          <div className="card absolute right-24 w-96 bg-primary text-primary-content">
+                          <div className="card absolute right-24 z-40 w-96 bg-primary text-primary-content">
                             <div className="card-body">
                               <h2 className="card-title">
                                 Slett blad: {blade.IdNummer}
@@ -411,7 +425,9 @@ const SearchMain = ({ sawblades }: BladeProps) => {
       </button>
       {showDeletedBlades && (
         <div>
-          <h1 className="text-xl text-orange-300">Slettede blad</h1>
+          <h1 className="text-xl text-orange-300">
+            Slettede blad ({deletedSawblades.length})
+          </h1>
           <table className="table table-xs bg-neutral">
             <thead>
               <tr>
@@ -426,7 +442,7 @@ const SearchMain = ({ sawblades }: BladeProps) => {
               </tr>
             </thead>
             <tbody>
-              {sawblades.map((blade) => {
+              {deletedSawblades.map((blade) => {
                 return (
                   <>
                     {blade.deleted && (
@@ -469,14 +485,11 @@ const SearchMain = ({ sawblades }: BladeProps) => {
                         </td>
                         <td>
                           <div className="flex items-center space-x-3">
-                            <div className="avatar"></div>
-                            <div>
-                              <div className="text-xs text-neutral">
-                                {dateFormat(
-                                  blade.updatedAt,
-                                  "dd.mm.yyyy , HH:MM",
-                                )}
-                              </div>
+                            <div className="text-xs text-neutral">
+                              {dateFormat(
+                                blade.updatedAt,
+                                "dd.mm.yyyy , HH:MM",
+                              )}
                             </div>
                           </div>
                         </td>

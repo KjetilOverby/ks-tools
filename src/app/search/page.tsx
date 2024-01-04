@@ -25,6 +25,13 @@ const page = async ({ searchParams }: dateProps) => {
     date2: date2,
     IdNummer: serial,
   });
+
+  const deletedSawblades = await api.sawblades.getAllDeleted.query({
+    date: date1,
+    date2: date2,
+    IdNummer: serial,
+  });
+
   const sawbladeCustomer = await api.sawblades.getCustomer.query({
     date: date1,
     date2: date2,
@@ -36,7 +43,7 @@ const page = async ({ searchParams }: dateProps) => {
     <div>
       <HeaderComponent />
       <div className="m-5">
-        <SearchMain sawblades={sawblades} />
+        <SearchMain sawblades={sawblades} deletedSawblades={deletedSawblades} />
       </div>
     </div>
   );
