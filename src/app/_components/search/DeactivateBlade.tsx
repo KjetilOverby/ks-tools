@@ -91,7 +91,6 @@ const ActivateBlade = ({
   blade,
   handleCloseModal,
   post,
-  setDeactivateModal,
 }: BladeProps) => {
   const router = useRouter();
   const updateBladeStatus = api.sawblades.updateStatus.useMutation({
@@ -111,8 +110,8 @@ const ActivateBlade = ({
   });
 
   return (
-    <div className="">
-      <div className="card z-40  w-96 bg-neutral text-neutral-content">
+    <div>
+      <div className="card z-40 w-96 bg-neutral text-neutral-content">
         <div>
           <form
             onSubmit={(e) => {
@@ -130,9 +129,7 @@ const ActivateBlade = ({
                 datoUt: new Date(),
                 klUt: new Date(),
                 id: post.id,
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 datoInn: post.datoInn,
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 klInn: post.klInn,
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 sagNr: post.sagNr,
@@ -269,8 +266,6 @@ const ActivateBlade = ({
             onClick={() => {
               setTimeout(() => {
                 handleCloseModal();
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                setDeactivateModal(false);
               }, 100);
             }}
             className="btn btn-xs"
