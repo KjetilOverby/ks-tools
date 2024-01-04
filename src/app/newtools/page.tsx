@@ -44,10 +44,9 @@ const page = async ({ searchParams }: dateProps) => {
           <table className="table table-xs bg-primary">
             <thead>
               <tr>
-                <th className="text-sm text-accent">Dato</th>
-                <th className="text-sm text-accent">Type</th>
-
                 <th className="text-sm text-accent">Serienummer</th>
+                <th className="text-sm text-accent">Type</th>
+                <th className="text-sm text-accent">Dato</th>
 
                 <th className="text-sm text-accent">Opprettet av</th>
                 <th className="text-sm text-accent"></th>
@@ -58,6 +57,24 @@ const page = async ({ searchParams }: dateProps) => {
                 return (
                   <>
                     <tr className="bg-accent">
+                      <td className="font-bold text-neutral">
+                        {blade.IdNummer}{" "}
+                        {blade.note && (
+                          <span className="text-xs font-normal text-orange-200">
+                            ({blade.note})
+                          </span>
+                        )}
+                      </td>
+                      <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar"></div>
+                          <div>
+                            <div className="text-xs text-neutral">
+                              {blade.type} {blade.side}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar"></div>
@@ -70,24 +87,6 @@ const page = async ({ searchParams }: dateProps) => {
                             </div>
                           </div>
                         </div>
-                      </td>
-                      <td>
-                        <div className="flex items-center space-x-3">
-                          <div className="avatar"></div>
-                          <div>
-                            <div className="text-xs text-neutral">
-                              {blade.type} {blade.side}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="font-bold text-neutral">
-                        {blade.IdNummer}{" "}
-                        {blade.note && (
-                          <span className="text-xs font-normal text-orange-200">
-                            ({blade.note})
-                          </span>
-                        )}
                       </td>
 
                       <td className="text-neutral">
