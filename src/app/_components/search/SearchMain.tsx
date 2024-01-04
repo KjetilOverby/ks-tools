@@ -298,6 +298,18 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
                                 <option value="Ikjøring">Ikjøring</option>
                                 <option className="Røk av">Røk av</option>
                                 <option className="Sprekk">Sprekk</option>
+                                <option className="Dårlig stamme">
+                                  Dårlig stamme
+                                </option>
+                                <option className="Varmekjørt">
+                                  Varmekjørt
+                                </option>
+                                <option className="Store tannskader">
+                                  Store tannskader
+                                </option>
+                                <option className="Oppspenningsfeil i sag">
+                                  Oppspenningsfeil i sag
+                                </option>
                               </select>
                               <div className="card-actions justify-end">
                                 <button
