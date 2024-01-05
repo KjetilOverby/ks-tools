@@ -91,6 +91,7 @@ const ActivateBlade = ({
   blade,
   handleCloseModal,
   post,
+  setOpenDeactivateModal,
 }: BladeProps) => {
   const router = useRouter();
   const updateBladeStatus = api.sawblades.updateStatus.useMutation({
@@ -266,6 +267,7 @@ const ActivateBlade = ({
             onClick={() => {
               setTimeout(() => {
                 handleCloseModal();
+                setOpenDeactivateModal(false);
               }, 100);
             }}
             className="btn btn-xs"
