@@ -106,8 +106,9 @@ const ActivateBlade = ({
   return (
     <div>
       <div className="card z-40 w-96 bg-neutral text-neutral-content">
-        <div>
+        <div className="flex flex-col">
           <form
+            className="flex flex-col items-center"
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -160,7 +161,7 @@ const ActivateBlade = ({
 
               <select
                 onChange={(e) => setsagNrInput(e.currentTarget.value)}
-                className="bg-white"
+                className="rounded-xl bg-white p-1"
                 name=""
                 id=""
               >
@@ -174,10 +175,12 @@ const ActivateBlade = ({
                 <option value="7">7</option>
               </select>
             </div>
-            <button className="btn btn-primary btn-xs">Aktiver</button>
+            <button className="btn btn-primary btn-xs w-1/4 bg-accent">
+              Aktiver
+            </button>
           </form>
         </div>
-        <div className="card-actions justify-end">
+        <div className="card-actions my-5 justify-center">
           <button
             onClick={() => {
               setTimeout(() => {

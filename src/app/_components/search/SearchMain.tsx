@@ -187,6 +187,11 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
                 historikkHandler(blade.id);
               };
 
+              const closeDeleteHandler = () => {
+                setOpenDeleteID(null);
+                setWasteReasonInput("");
+              };
+
               return (
                 <>
                   {!blade.deleted && (
@@ -277,7 +282,7 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
                           onClick={() => deleteHandler(blade.id)}
                         />
                         {openDeleteID === blade.id && (
-                          <div className="card absolute right-24 z-40 w-96 bg-primary text-primary-content">
+                          <div className="card absolute right-24 z-40 flex w-96 flex-col items-center bg-primary text-primary-content">
                             <div className="card-body">
                               <h2 className="card-title">
                                 Slett blad: {blade.IdNummer}
@@ -311,21 +316,25 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
                                   Oppspenningsfeil i sag
                                 </option>
                               </select>
-                              <div className="card-actions justify-end">
-                                <button
-                                  onClick={() => setOpenDeleteID(null)}
-                                  className="btn btn-xs"
-                                >
-                                  Avbryt
-                                </button>
-                              </div>
 
-                              <th className="text-red-400">
-                                <DeleteComponent
-                                  wasteReasonInput={wasteReasonInput}
-                                  id={blade.id}
-                                />
-                              </th>
+                              {wasteReasonInput && (
+                                <th>
+                                  <button className="btn btn-xs bg-red-600">
+                                    <DeleteComponent
+                                      wasteReasonInput={wasteReasonInput}
+                                      id={blade.id}
+                                    />
+                                  </button>
+                                </th>
+                              )}
+                            </div>
+                            <div className="card-actions my-5 justify-end">
+                              <button
+                                onClick={closeDeleteHandler}
+                                className="btn btn-xs"
+                              >
+                                Avbryt
+                              </button>
                             </div>
                           </div>
                         )}
