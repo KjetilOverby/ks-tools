@@ -101,7 +101,7 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                     <td
                       key={feilkode}
                       className={`border border-primary px-4 py-2 ${
-                        data[feilkode] ? "bg-cyan-800" : ""
+                        data[feilkode] ? "bg-secondary" : ""
                       }`}
                     >
                       {data[feilkode] ?? 0}
@@ -138,7 +138,7 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
                     <td
                       key={feilkode}
                       className={`border border-primary px-4 py-2 ${
-                        data[feilkode] ? "bg-cyan-800" : ""
+                        data[feilkode] ? "bg-secondary" : ""
                       }`}
                     >
                       {data?.total

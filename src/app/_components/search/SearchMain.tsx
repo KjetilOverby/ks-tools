@@ -195,7 +195,7 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
               return (
                 <>
                   {!blade.deleted && (
-                    <tr key={blade.id} className="bg-accent">
+                    <tr key={blade.id} className="bg-accent even:bg-secondary">
                       <td className="font-bold text-neutral">
                         {blade.IdNummer}{" "}
                         {blade.note && (
@@ -381,7 +381,7 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
                               </tr>
                               <tr>
                                 <th>BFS427</th>
-                                <th>BRETTING-STREKKING-SLIPING METER</th>
+                                <th>RETTING-STREKKING-SLIPING METER</th>
                               </tr>
                               <tr>
                                 <th>BFS429</th>

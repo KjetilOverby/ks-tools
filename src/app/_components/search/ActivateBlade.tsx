@@ -101,8 +101,6 @@ const ActivateBlade = ({
 }: BladeProps) => {
   const [sagNrInput, setsagNrInput] = useState("");
 
-  console.log(blade);
-
   return (
     <div>
       <div className="card z-40 w-96 bg-neutral text-neutral-content">
@@ -155,9 +153,9 @@ const ActivateBlade = ({
           >
             <div className="card-body items-center text-center">
               <h2 className="card-title">
-                <span className="text-orange-600">{blade.IdNummer}</span>
+                <span className="text-accent">{blade.IdNummer}</span>
               </h2>
-              <p>Aktiver blad</p>
+              <p className="text-accent">Aktiver blad</p>
 
               <select
                 onChange={(e) => setsagNrInput(e.currentTarget.value)}

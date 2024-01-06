@@ -112,9 +112,10 @@ const ActivateBlade = ({
 
   return (
     <div>
-      <div className="card z-40 w-96 bg-neutral text-neutral-content">
+      <div className="card z-40 flex w-96 items-center  bg-neutral text-neutral-content">
         <div>
           <form
+            className="flex flex-col"
             onSubmit={(e) => {
               e.preventDefault();
               // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -130,7 +131,9 @@ const ActivateBlade = ({
                 datoUt: new Date(),
                 klUt: new Date(),
                 id: post.id,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 datoInn: post.datoInn,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 klInn: post.klInn,
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 sagNr: post.sagNr,
@@ -243,23 +246,11 @@ const ActivateBlade = ({
                     className="input input-bordered input-xs w-full max-w-xs bg-white"
                   />
                 </div>
-
-                {/* <div>
-                  <p>Sideklaring:</p>
-                  <select className="select select-bordered select-xs w-full max-w-xs bg-white">
-                    <option value={0}>Velg</option>
-                    <option value={0.4}>0.4</option>
-                    <option value={0.45}>0.45</option>
-                    <option value={0.5}>0.5</option>
-                    <option value={0.55}>0.55</option>
-                    <option value={0.6}>0.6</option>
-                    <option value={0.65}>0.65</option>
-                    <option value={0.7}>0.7</option>
-                  </select>
-                </div> */}
               </div>
             </div>
-            <button className="btn btn-primary btn-xs">Deaktiver</button>
+            <button className="btn btn-primary btn-xs bg-accent">
+              Deaktiver
+            </button>
           </form>
         </div>
         <div className="card-actions justify-end">
@@ -267,10 +258,11 @@ const ActivateBlade = ({
             onClick={() => {
               setTimeout(() => {
                 handleCloseModal();
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                 setOpenDeactivateModal(false);
               }, 100);
             }}
-            className="btn btn-xs"
+            className="btn btn-xs my-3"
           >
             Avbryt
           </button>

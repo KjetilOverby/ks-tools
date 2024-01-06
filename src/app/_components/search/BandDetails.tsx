@@ -229,7 +229,7 @@ const BandDetails = ({
                         {dateFormat(post.klInn, "HH:MM")}
                       </div>
                     </td>
-                    <td className="text-primary">
+                    <td className="text-neutral">
                       <div className="flex items-center">
                         <div className="mr-2 h-5 w-5">
                           <img
@@ -252,7 +252,7 @@ const BandDetails = ({
                         "Aktiv"
                       )}
                     </td>
-                    <td className="text-primary">
+                    <td className="text-neutral">
                       <div className="flex items-center">
                         <div className="mr-2 h-5 w-5">
                           <img
@@ -262,16 +262,16 @@ const BandDetails = ({
                             alt=""
                           />
                         </div>
-                        {post.creator2}
+                        {post.sgSag ? post.sgSag : post.creator2}
                       </div>
                     </td>
                     <td className="font-bold text-neutral">{post.sagtid}</td>
 
-                    <td className="text-primary">{post.temperatur}</td>
-                    <td className="text-primary">-</td>
-                    <td className="text-primary">{post.feilkode}</td>
+                    <td className="text-neutral">{post.temperatur}</td>
+                    <td className="text-neutral">-</td>
+                    <td className="text-neutral">{post.feilkode}</td>
 
-                    <td className="max-w-56  relative text-primary">
+                    <td className="max-w-56  relative text-neutral">
                       {post.anmSag && (
                         <button
                           onClick={() => messageHander(post.id)}
@@ -283,7 +283,7 @@ const BandDetails = ({
                       {openMessage === post.id && (
                         <>
                           {openMessage && <p></p>}
-                          <div className="card absolute top-0 z-50 w-96 bg-primary text-primary-content">
+                          <div className="card absolute top-0 z-50 w-96 bg-neutral text-accent">
                             <div className="card-body">
                               <h2 className="card-title">Melding fra sag</h2>
                               <p>{post.anmSag}</p>
@@ -320,7 +320,7 @@ const BandDetails = ({
                         </div>
                       )}
                     </td>
-                    <td className="text-primary">
+                    <td className="text-neutral">
                       <button
                         onClick={editHistorikkPostHandler}
                         className="btn btn-xs mr-5 bg-base-100"
@@ -336,9 +336,9 @@ const BandDetails = ({
                         </button>
                       )}
                     </td>
-                    <td className="text-primary">{post.handling}</td>
-                    <td className="text-primary">{post.sideklaring}</td>
-                    <td className="max-w-56 relative text-primary">
+                    <td className="text-neutral">{post.handling}</td>
+                    <td className="text-neutral">{post.sideklaring}</td>
+                    <td className="max-w-56 relative text-neutral">
                       {post.anmKS && (
                         <>
                           <button
@@ -348,10 +348,10 @@ const BandDetails = ({
                             Vis
                           </button>
                           {openMessageKS === post.id && (
-                            <div className="card absolute right-0 top-0 z-50 w-96 bg-primary text-primary-content">
+                            <div className="card absolute right-0 top-0 z-50 w-96 bg-neutral text-accent">
                               <div className="card-body">
                                 <h2 className="card-title">
-                                  Melding fra Stridbergs
+                                  Melding fra Stridsbergs
                                 </h2>
                                 <p>{post.anmKS}</p>
                                 <div className="card-actions justify-end">
@@ -368,7 +368,7 @@ const BandDetails = ({
                         </>
                       )}
                     </td>
-                    <td className="text-primary">
+                    <td className="text-neutral">
                       <div className="flex items-center">
                         <div className="mr-2 h-5 w-5">
                           <img
@@ -381,10 +381,10 @@ const BandDetails = ({
                         {post.creator3}
                       </div>
                     </td>
-                    <td className="text-primary">
+                    <td className="text-neutral">
                       {dateFormat(post.datoSrv, "dd.mm.yyyy")}
                     </td>
-                    <td className="text-primary">
+                    <td className="text-neutral">
                       <Deletehistorikkpost
                         post={post.id}
                         setOpenBandhistorikkData={setOpenBandhistorikkData}
