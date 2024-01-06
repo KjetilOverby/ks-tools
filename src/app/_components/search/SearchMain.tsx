@@ -342,7 +342,7 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
                     </tr>
                   )}
                   {openHistorikk === blade.id && (
-                    <div className="absolute top-0 z-50 h-screen w-full rounded-2xl  border border-primary bg-gradient-to-r from-base-100 via-gray-500 to-gray-600 p-5">
+                    <div className="absolute top-0 z-50 h-screen w-full rounded-2xl  border border-primary bg-gradient-to-r from-base-100 via-accent to-base-100 p-5">
                       <div className="mr-5 flex justify-between">
                         <div>
                           <h1 className=" text-lg text-orange-400">

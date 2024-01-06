@@ -119,7 +119,7 @@ const BandDetails = ({
   });
 
   return (
-    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-gray-500 to-gray-600">
+    <div className="z-50 w-full bg-gradient-to-r from-base-100 via-accent to-base-100">
       {openInput && (
         <HistorikkInput
           setOpenInput={setOpenInput}
@@ -218,7 +218,7 @@ const BandDetails = ({
               return (
                 <>
                   <tr
-                    className={post.activePost ? "bg-teal-800" : "bg-secondary"}
+                    className={post.activePost ? "bg-primary" : "bg-secondary"}
                   >
                     <td>
                       <div className="text-xs text-neutral">{post.sagNr}</div>
