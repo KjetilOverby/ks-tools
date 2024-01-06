@@ -8,26 +8,16 @@ interface userProps {
 
 const FrontpageSessionless = ({ session }: userProps) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div>
-        <h1>KS TOOLS</h1>
-        <h1 className="mb-4 text-3xl">Velkommen til KS tools</h1>
-        <div className="w-96">
-          <p className="text-xs">
-            Denne appen er privat og du må logge inn med en google konto. Etter
-            innlogging må du kontakte utvikler for å få tilgang. Kontaktinfo
-            kommer etter at du er logget inn. Dersom du ikke skal ha tilgang til
-            denne appen så vil din konto bli slettet.
-          </p>
-        </div>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[url('https://static.albertafarmexpress.ca/wp-content/uploads/2016/11/WoodLogs_ThinkstockPhotos-8.jpg')] bg-cover bg-no-repeat text-white">
+      <div className="flex flex-col rounded-full   p-20 text-center">
+        <h1 className="mb-5 text-8xl font-bold text-yellow-400">KS TOOLS</h1>
+
         <div className="flex flex-col items-center gap-2">
           <div className="flex flex-col items-center justify-center gap-4">
-            <p className="text-center text-2xl text-white">
-              {session && <span>Logged in as </span>}
-            </p>
+            <p className="text-center text-2xl text-white"></p>
             <Link
               href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+              className="w-96 rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
             >
               {session ? "Sign out" : "Sign in"}
             </Link>
