@@ -3,6 +3,7 @@ import HeaderComponent from "../_components/HeaderComponent";
 import SearchMain from "../_components/search/SearchMain";
 import { getServerAuthSession } from "~/server/auth";
 import OsterdalMain from "../_components/search/customers/osterdal/OsterdalMain";
+import MjosMain from "../_components/search/customers/mjos/MjosMain";
 
 interface dateProps {
   searchParams: {
@@ -49,6 +50,30 @@ const page = async ({ searchParams }: dateProps) => {
       IdNummer: serial,
       init: "MØ",
     });
+  const sawbladeOsterdalActive = await api.sawblades.getCustomerActive.query({
+    date: date1,
+    date2: date2,
+    IdNummer: serial,
+    init: "MØ",
+  });
+  const sawbladeMjos = await api.sawblades.getCustomer.query({
+    date: date1,
+    date2: date2,
+    IdNummer: serial,
+    init: "MM",
+  });
+  const sawbladeMjosDeleted = await api.sawblades.getCustomerAllDeleted.query({
+    date: date1,
+    date2: date2,
+    IdNummer: serial,
+    init: "MM",
+  });
+  const sawbladeMjosActive = await api.sawblades.getCustomerActive.query({
+    date: date1,
+    date2: date2,
+    IdNummer: serial,
+    init: "MM",
+  });
 
   return (
     <div>
@@ -64,6 +89,14 @@ const page = async ({ searchParams }: dateProps) => {
           <OsterdalMain
             sawblades={sawbladeOsterdal}
             deletedSawblades={sawbladeOsterdalDeleted}
+            activeBlades={sawbladeOsterdalActive}
+          />
+        )}
+        {session && session?.user.role === "MM_ADMIN" && (
+          <MjosMain
+            sawblades={sawbladeMjos}
+            deletedSawblades={sawbladeMjosDeleted}
+            activeBlades={sawbladeMjosActive}
           />
         )}
       </div>

@@ -66,7 +66,7 @@ interface BladeProps {
   activeBlades: Blade[];
 }
 
-const OsterdalsMain = ({
+const MjosMain = ({
   sawblades,
   deletedSawblades,
   sawbladeOsterdal,
@@ -552,4 +552,4 @@ const OsterdalsMain = ({
   );
 };
 
-export default OsterdalsMain;
+export default MjosMain;

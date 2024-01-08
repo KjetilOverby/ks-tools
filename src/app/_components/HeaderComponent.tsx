@@ -21,16 +21,20 @@ const HeaderComponent = async () => {
     <header>
       <nav className="border border-x-0 border-t-0 border-gray-200 border-b-primary bg-base-100 px-4 py-2.5  lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
-          <a href="/" className="flex items-center">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/9615/9615380.png"
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
-            />
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-              KS-TOOLS
-            </span>
-          </a>
+          <div className="flex">
+            <div>
+              <a href="/" className="flex items-center">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/9615/9615380.png"
+                  className="mr-3 h-6 sm:h-9"
+                  alt="Flowbite Logo"
+                />
+                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+                  KS-TOOLS
+                </span>
+              </a>
+            </div>
+          </div>
           <div className="flex items-center lg:order-2">
             <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
               <div className="h-10 w-10">
@@ -43,6 +47,14 @@ const HeaderComponent = async () => {
             </Link>
             <div className="ml-5">
               <p>{session?.user.name}</p>
+              <div>
+                {session && session?.user.role === "MO_ADMIN" && (
+                  <p>Østerdalsbruket</p>
+                )}
+                {session && session?.user.role === "MM_ADMIN" && (
+                  <p>Mjøsbruket</p>
+                )}
+              </div>
             </div>
 
             <button
@@ -109,15 +121,17 @@ const HeaderComponent = async () => {
                 </a>
               </li>
 
-              <li>
-                <a
-                  href="/newtools"
-                  className="bg-primary-700 lg:text-primary-700 block rounded py-2 pl-3 pr-4 text-sm text-neutral lg:bg-transparent lg:p-0"
-                  aria-current="page"
-                >
-                  Opprett
-                </a>
-              </li>
+              {session && session?.user.role === "ADMIN" && (
+                <li>
+                  <a
+                    href="/newtools"
+                    className="bg-primary-700 lg:text-primary-700 block rounded py-2 pl-3 pr-4 text-sm text-neutral lg:bg-transparent lg:p-0"
+                    aria-current="page"
+                  >
+                    Opprett
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

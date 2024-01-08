@@ -38,6 +38,13 @@ const page = async ({ searchParams }: dateProps) => {
       bladeRelationId: "",
       init: "MØ",
     });
+  const statistikkDataMm =
+    await api.statistikkBladeData.getAllCustomerHistorikk.query({
+      date: date1,
+      date2: date2,
+      bladeRelationId: "",
+      init: "MM",
+    });
 
   return (
     <div>
@@ -47,6 +54,9 @@ const page = async ({ searchParams }: dateProps) => {
       )}
       {session && session?.user.role === "MO_ADMIN" && (
         <StatistikkMain historikkData={statistikkDataMo} />
+      )}
+      {session && session?.user.role === "MM_ADMIN" && (
+        <StatistikkMain historikkData={statistikkDataMm} />
       )}
     </div>
   );
