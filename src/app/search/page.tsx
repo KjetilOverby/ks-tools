@@ -42,6 +42,13 @@ const page = async ({ searchParams }: dateProps) => {
     IdNummer: serial,
     init: "MØ",
   });
+  const sawbladeOsterdalDeleted =
+    await api.sawblades.getCustomerAllDeleted.query({
+      date: date1,
+      date2: date2,
+      IdNummer: serial,
+      init: "MØ",
+    });
 
   return (
     <div>
@@ -56,7 +63,7 @@ const page = async ({ searchParams }: dateProps) => {
         {session && session?.user.role === "MO_ADMIN" && (
           <OsterdalMain
             sawblades={sawbladeOsterdal}
-            deletedSawblades={deletedSawblades}
+            deletedSawblades={sawbladeOsterdalDeleted}
           />
         )}
       </div>

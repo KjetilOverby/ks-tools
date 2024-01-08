@@ -117,9 +117,9 @@ const ActivateBlade = ({
                 createPost.mutate({
                   sagNr: sagNrInput,
                   activePost: true,
-                  bladeRelationId: "",
-                  bladType: "",
-                  side: "",
+                  bladeRelationId: blade.IdNummer,
+                  bladType: blade.type,
+                  side: blade.side,
                   creatorImg: "",
                   sgKS: "",
                   sagtid: 0,

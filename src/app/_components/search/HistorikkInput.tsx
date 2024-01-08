@@ -10,6 +10,7 @@ interface historikkInputProps {
   setOpenBandhistorikkData: React.Dispatch<React.SetStateAction<boolean>>;
   side: string;
   bladType: string;
+  bladID: string;
 }
 
 const HistorikkInput = ({
@@ -17,6 +18,7 @@ const HistorikkInput = ({
   bandId,
   side,
   bladType,
+  bladID,
 }: historikkInputProps) => {
   const router = useRouter();
   const createPost = api.bandhistorikk.create.useMutation({
@@ -43,6 +45,9 @@ const HistorikkInput = ({
     sgSag: "",
     sgKS: "",
     alt: "",
+    bladType: "",
+    side: side,
+    bladeRelationId: "",
   });
   return (
     <div className="absolute z-40">
@@ -73,7 +78,7 @@ const HistorikkInput = ({
             creatorImg: "",
             bladType: bladType,
             activePost: false,
-            bladeRelationId: "",
+            bladeRelationId: "bladID",
             alt: "",
             creator: "",
             ampere: 0,

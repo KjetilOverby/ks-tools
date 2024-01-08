@@ -10,6 +10,7 @@ import HistorikkInputKS from "./HistorikkInputKS";
 import { CiEdit } from "react-icons/ci";
 import DeactivateBlade from "./DeactivateBlade";
 import EditBandDetails from "./EditBandDetails";
+import { log } from "console";
 
 interface bandProps {
   blade: {
@@ -127,6 +128,7 @@ const BandDetails = ({
           setOpenBandhistorikkData={setOpenBandhistorikkData}
           side={bandhistorikkData.side}
           bladType={bandhistorikkData.type}
+          bladID={bandhistorikkData.IdNummer}
         />
       )}
       {openInputKS && (
