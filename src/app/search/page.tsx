@@ -1,6 +1,8 @@
 import { api } from "~/trpc/server";
 import HeaderComponent from "../_components/HeaderComponent";
 import SearchMain from "../_components/search/SearchMain";
+import { getServerAuthSession } from "~/server/auth";
+import OsterdalMain from "../_components/search/customers/osterdal/OsterdalMain";
 
 interface dateProps {
   searchParams: {
@@ -9,7 +11,9 @@ interface dateProps {
     serial: string;
   };
 }
+
 const page = async ({ searchParams }: dateProps) => {
+  const session = await getServerAuthSession();
   let date1 = "2035-12-12";
   let date2 = "2023-12-05";
   let serial = "";
@@ -32,7 +36,7 @@ const page = async ({ searchParams }: dateProps) => {
     IdNummer: serial,
   });
 
-  const sawbladeCustomer = await api.sawblades.getCustomer.query({
+  const sawbladeOsterdal = await api.sawblades.getCustomer.query({
     date: date1,
     date2: date2,
     IdNummer: serial,
@@ -43,7 +47,18 @@ const page = async ({ searchParams }: dateProps) => {
     <div>
       <HeaderComponent />
       <div className="m-5">
-        <SearchMain sawblades={sawblades} deletedSawblades={deletedSawblades} />
+        {session && session?.user.role === "ADMIN" && (
+          <SearchMain
+            sawblades={sawblades}
+            deletedSawblades={deletedSawblades}
+          />
+        )}
+        {session && session?.user.role === "MO_ADMIN" && (
+          <OsterdalMain
+            sawblades={sawbladeOsterdal}
+            deletedSawblades={deletedSawblades}
+          />
+        )}
       </div>
     </div>
   );

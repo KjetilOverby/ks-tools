@@ -4,13 +4,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import dateFormat from "dateformat";
-import { DeleteComponent } from "./DeleteComponent";
-import { RestoreComponent } from "./RestoreComponent";
-import BandDetails from "./BandDetails";
-import DatepickerComponent from "../reusable/Datepicker";
+import { DeleteComponent } from "../../DeleteComponent";
+import { RestoreComponent } from "../../RestoreComponent";
+import BandDetails from "../../BandDetails";
+import DatepickerComponent from "../../../reusable/Datepicker";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
-import ActivateBlade from "./ActivateBlade";
+import ActivateBlade from "../../ActivateBlade";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { BsClipboardData } from "react-icons/bs";
 
@@ -64,7 +64,7 @@ interface BladeProps {
   deletedSawblades: Blade[];
 }
 
-const SearchMain = ({
+const OsterdalsMain = ({
   sawblades,
   deletedSawblades,
   sawbladeOsterdal,
@@ -85,7 +85,6 @@ const SearchMain = ({
   const [countBlades, setCountBlades] = useState();
 
   const [newBladesCount, setNewBladesCount] = useState();
- 
 
   const deleteHandler = (postID: string) => {
     setOpenDeleteID(postID);
@@ -528,4 +527,4 @@ const SearchMain = ({
   );
 };
 
-export default SearchMain;
+export default OsterdalsMain;
