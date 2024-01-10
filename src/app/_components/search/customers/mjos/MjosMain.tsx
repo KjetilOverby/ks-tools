@@ -13,7 +13,6 @@ import { api } from "~/trpc/react";
 import ActivateBlade from "../../ActivateBlade";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { BsClipboardData } from "react-icons/bs";
-import { log } from "console";
 
 interface Blade {
   creatorImg: string | undefined;
@@ -69,7 +68,6 @@ interface BladeProps {
 const MjosMain = ({
   sawblades,
   deletedSawblades,
-  sawbladeOsterdal,
   activeBlades,
 }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
@@ -88,8 +86,8 @@ const MjosMain = ({
   const [countBlades, setCountBlades] = useState();
 
   const [newBladesCount, setNewBladesCount] = useState();
-  let [bladeDisplayStatus, setBladeDisplayStatus] = useState(sawblades);
-  let [activeBladeDisplay, setActiveBladeDisplay] = useState(false);
+  const [bladeDisplayStatus, setBladeDisplayStatus] = useState(sawblades);
+  const [activeBladeDisplay, setActiveBladeDisplay] = useState(false);
 
   const deleteHandler = (postID: string) => {
     setOpenDeleteID(postID);

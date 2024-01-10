@@ -64,11 +64,7 @@ interface BladeProps {
   deletedSawblades: Blade[];
 }
 
-const SearchMain = ({
-  sawblades,
-  deletedSawblades,
-  sawbladeOsterdal,
-}: BladeProps) => {
+const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
@@ -85,7 +81,6 @@ const SearchMain = ({
   const [countBlades, setCountBlades] = useState();
 
   const [newBladesCount, setNewBladesCount] = useState();
- 
 
   const deleteHandler = (postID: string) => {
     setOpenDeleteID(postID);

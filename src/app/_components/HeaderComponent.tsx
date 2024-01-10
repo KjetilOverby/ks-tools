@@ -14,6 +14,7 @@
 // }
 import Link from "next/link";
 import { getServerAuthSession } from "~/server/auth";
+import RoleChange from "./users/RoleChange";
 
 const HeaderComponent = async () => {
   const session = await getServerAuthSession();
@@ -120,6 +121,26 @@ const HeaderComponent = async () => {
                   Oversikt
                 </a>
               </li>
+              {session && session?.user.email === "ktldesign80@gmail.com" && (
+                <li>
+                  <a
+                    href="#"
+                    className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pl-3 pr-4 text-sm text-neutral hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
+                  >
+                    <RoleChange />
+                  </a>
+                </li>
+              )}
+              {session && session?.user.email === "kailundquist@gmail.com" && (
+                <li>
+                  <a
+                    href="#"
+                    className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pl-3 pr-4 text-sm text-neutral hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
+                  >
+                    <RoleChange />
+                  </a>
+                </li>
+              )}
 
               {session && session?.user.role === "ADMIN" && (
                 <li>
