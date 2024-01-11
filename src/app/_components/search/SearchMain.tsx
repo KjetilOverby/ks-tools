@@ -12,7 +12,12 @@ import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
 import ActivateBlade from "./ActivateBlade";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { BsClipboardData } from "react-icons/bs";
+import {
+  BsClipboardData,
+  BsFillEmojiSmileUpsideDownFill,
+} from "react-icons/bs";
+import { BiSolidLeftArrowSquare } from "react-icons/bi";
+import { BiSolidRightArrowSquare } from "react-icons/bi";
 
 interface Blade {
   creatorImg: string | undefined;
@@ -64,7 +69,20 @@ interface BladeProps {
   deletedSawblades: Blade[];
 }
 
-const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
+const SearchMain = ({
+  sawblades,
+  deletedSawblades,
+  params,
+  date,
+  date2,
+}: BladeProps) => {
+  const router = useRouter();
+  const page = params["page"] ?? "1";
+  const per_page = params["per_page"] ?? "10";
+  const start = (Number(page) - 1) * Number(per_page);
+  const end = start + Number(per_page);
+  const entries = sawblades.slice(start, end);
+
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
   const [openBandhistorikkData, setOpenBandhistorikkData] = useState(false);
@@ -75,7 +93,6 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
   const [openHistorikk, setopenHistorikk] = useState<string | null>(null);
   const [wasteReasonInput, setWasteReasonInput] = useState("");
   const [openDeleteID, setOpenDeleteID] = useState<string | null>(null);
-  const router = useRouter();
   const [closeSearchComponent, setCloseSearchComponent] = useState(false);
 
   const [countBlades, setCountBlades] = useState();
@@ -134,7 +151,6 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
         ) : (
           ""
         )}
-
         <table className="table table-xs bg-neutral">
           <thead>
             <tr>
@@ -149,7 +165,7 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
             </tr>
           </thead>
           <tbody>
-            {sawblades.map((blade) => {
+            {entries.map((blade) => {
               const statusHandler = (postId: string) => {
                 setOpenStatus(postId);
               };
@@ -425,6 +441,33 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
             })}
           </tbody>
         </table>
+        <div className="flex">
+          <BiSolidLeftArrowSquare
+            className="text-2xl"
+            onClick={() => {
+              router.push(
+                `/search/?date=${date}&date2=${date2}&serial=&page=${
+                  Number(page) - 1
+                }&per_page=${per_page}`,
+              );
+            }}
+          />
+
+          <div>
+            {page} / {Math.ceil(sawblades.length / Number(per_page))}
+          </div>
+
+          <BiSolidRightArrowSquare
+            className="text-2xl"
+            onClick={() => {
+              router.push(
+                `/search/?date=${date}&date2=${date2}&serial=&page=${
+                  Number(page) + 1
+                }&per_page=${per_page}`,
+              );
+            }}
+          />
+        </div>
       </div>
       <button
         className="btn btn-xs my-5"

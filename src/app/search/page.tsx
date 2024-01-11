@@ -75,6 +75,8 @@ const page = async ({ searchParams }: dateProps) => {
     init: "MM",
   });
 
+  console.log(searchParams);
+
   return (
     <div>
       <HeaderComponent />
@@ -83,6 +85,9 @@ const page = async ({ searchParams }: dateProps) => {
           <SearchMain
             sawblades={sawblades}
             deletedSawblades={deletedSawblades}
+            params={searchParams}
+            date={date1}
+            date2={date2}
           />
         )}
         {session && session?.user.role === "MO_ADMIN" && (
