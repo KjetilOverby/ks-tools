@@ -189,6 +189,11 @@ const ActivateBlade = ({
           >
             Avbryt
           </button>
+          {createPost.isLoading ? (
+            <span className="loading loading-dots loading-lg"></span>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

@@ -134,6 +134,7 @@ const SearchMain = ({ sawblades, deletedSawblades }: BladeProps) => {
         ) : (
           ""
         )}
+
         <table className="table table-xs bg-neutral">
           <thead>
             <tr>

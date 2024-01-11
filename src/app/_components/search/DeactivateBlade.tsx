@@ -93,10 +93,12 @@ const ActivateBlade = ({
   post,
   setOpenDeactivateModal,
 }: BladeProps) => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const updateBladeStatus = api.sawblades.updateStatus.useMutation({
     onSuccess: () => {
       router.refresh();
+      setLoading(true);
     },
   });
 
@@ -150,7 +152,12 @@ const ActivateBlade = ({
           >
             <div className="card-body items-center text-center">
               <h2 className="card-title">
-                <span className="text-orange-600">{blade.IdNummer}</span>
+                <span className="text-orange-600">{blade.IdNummer}</span>{" "}
+                {loading ? (
+                  <span className="loading loading-infinity loading-lg  text-orange-600"></span>
+                ) : (
+                  ""
+                )}
               </h2>
               <p>Deaktiver blad</p>
               <div>
@@ -248,6 +255,7 @@ const ActivateBlade = ({
                 </div>
               </div>
             </div>
+
             <button className="btn btn-primary btn-xs bg-accent">
               Deaktiver
             </button>
