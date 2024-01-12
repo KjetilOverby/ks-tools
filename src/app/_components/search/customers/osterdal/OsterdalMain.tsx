@@ -166,7 +166,7 @@ const OsterdalsMain = ({
               <th className="text-sm text-accent">Type</th>
               <th className="text-sm text-accent">Dato opprettet</th>
               <th className="text-sm text-accent">Opprettet av</th>
-              <th className="text-sm text-accent">Aktiv</th>
+              {/* <th className="text-sm text-accent">Aktiv</th> */}
 
               <th className="text-sm text-accent">Historikk</th>
               <th className="text-sm text-accent">Slett</th>
@@ -192,8 +192,6 @@ const OsterdalsMain = ({
                   setCloseSearchComponent(false);
                 }, 100);
               };
-
-              console.log(openHistorikk);
 
               const updateStatusHandler = () => {
                 void updateStatus.mutate({
@@ -266,7 +264,7 @@ const OsterdalsMain = ({
                         </div>
                         {blade.creator}
                       </td>
-                      <th>
+                      {/* <th>
                         <div>
                           <div
                             onClick={() => statusHandler(blade.id)}
@@ -284,7 +282,7 @@ const OsterdalsMain = ({
                             )}
                           </div>
                         </div>
-                      </th>
+                      </th> */}
 
                       <td>
                         <div className="flex items-center">
