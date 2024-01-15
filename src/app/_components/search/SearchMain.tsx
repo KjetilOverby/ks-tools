@@ -72,16 +72,16 @@ interface BladeProps {
 const SearchMain = ({
   sawblades,
   deletedSawblades,
-  params,
-  date,
-  date2,
-}: BladeProps) => {
+} // params,
+// date,
+// date2,
+: BladeProps) => {
   const router = useRouter();
-  const page = params["page"] ?? "1";
-  const per_page = params["per_page"] ?? "10";
-  const start = (Number(page) - 1) * Number(per_page);
-  const end = start + Number(per_page);
-  const entries = sawblades.slice(start, end);
+  // const page = params["page"] ?? "1";
+  // const per_page = params["per_page"] ?? "10";
+  // const start = (Number(page) - 1) * Number(per_page);
+  // const end = start + Number(per_page);
+  // const entries = sawblades.slice(start, end);
 
   const [showDeletedBlades, setShowDeletedBlades] = useState(false);
 
@@ -165,7 +165,7 @@ const SearchMain = ({
             </tr>
           </thead>
           <tbody>
-            {entries.map((blade) => {
+            {sawblades.map((blade) => {
               const statusHandler = (postId: string) => {
                 setOpenStatus(postId);
               };
@@ -441,7 +441,7 @@ const SearchMain = ({
             })}
           </tbody>
         </table>
-        <div className="flex">
+        {/* <div className="flex">
           <BiSolidLeftArrowSquare
             className="text-2xl"
             onClick={() => {
@@ -467,7 +467,7 @@ const SearchMain = ({
               );
             }}
           />
-        </div>
+        </div> */}
       </div>
       <button
         className="btn btn-xs my-5"
