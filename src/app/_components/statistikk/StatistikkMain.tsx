@@ -20,7 +20,7 @@ const StatistikkMain = ({ historikkData }: statistikkProps) => {
     "Tannbrudd",
     "Sponpåliming",
     "Sløv",
-    "River",
+    "Riper",
     "Ytre faktorer",
     "Reklamasjon",
     "Havari",
