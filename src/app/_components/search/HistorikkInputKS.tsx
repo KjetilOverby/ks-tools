@@ -80,7 +80,7 @@ const HistorikkInputKS = ({
               onChange={(e) =>
                 setHistorikkKs({
                   ...historikkKs,
-                  datoSrv: new Date(e.currentTarget.value),
+                  datoSrv: new Date(),
                 })
               }
               type="date"
